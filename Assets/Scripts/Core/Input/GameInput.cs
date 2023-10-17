@@ -394,10 +394,19 @@ namespace Frogalypse.Input
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Aim"",
+                    ""name"": ""Move"",
                     ""type"": ""PassThrough"",
                     ""id"": ""ef4e0dba-5ecf-4f20-b78e-d6d1bb5c7588"",
                     ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Aim"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""890854d6-a527-45e0-a731-d682b0fad63a"",
+                    ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -433,7 +442,7 @@ namespace Frogalypse.Input
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Aim"",
+                    ""action"": ""Move"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
@@ -444,7 +453,7 @@ namespace Frogalypse.Input
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Aim"",
+                    ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -455,9 +464,20 @@ namespace Frogalypse.Input
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Aim"",
+                    ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""99ccdc82-677f-472c-b16f-e072adf673d3"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Aim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -477,6 +497,7 @@ namespace Frogalypse.Input
             m_Gameplay = asset.FindActionMap("Gameplay", throwIfNotFound: true);
             m_Gameplay_Jump = m_Gameplay.FindAction("Jump", throwIfNotFound: true);
             m_Gameplay_Grapple = m_Gameplay.FindAction("Grapple", throwIfNotFound: true);
+            m_Gameplay_Move = m_Gameplay.FindAction("Move", throwIfNotFound: true);
             m_Gameplay_Aim = m_Gameplay.FindAction("Aim", throwIfNotFound: true);
         }
 
@@ -635,6 +656,7 @@ namespace Frogalypse.Input
         private List<IGameplayActions> m_GameplayActionsCallbackInterfaces = new List<IGameplayActions>();
         private readonly InputAction m_Gameplay_Jump;
         private readonly InputAction m_Gameplay_Grapple;
+        private readonly InputAction m_Gameplay_Move;
         private readonly InputAction m_Gameplay_Aim;
         public struct GameplayActions
         {
@@ -642,6 +664,7 @@ namespace Frogalypse.Input
             public GameplayActions(@GameInput wrapper) { m_Wrapper = wrapper; }
             public InputAction @Jump => m_Wrapper.m_Gameplay_Jump;
             public InputAction @Grapple => m_Wrapper.m_Gameplay_Grapple;
+            public InputAction @Move => m_Wrapper.m_Gameplay_Move;
             public InputAction @Aim => m_Wrapper.m_Gameplay_Aim;
             public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
             public void Enable() { Get().Enable(); }
@@ -658,6 +681,9 @@ namespace Frogalypse.Input
                 @Grapple.started += instance.OnGrapple;
                 @Grapple.performed += instance.OnGrapple;
                 @Grapple.canceled += instance.OnGrapple;
+                @Move.started += instance.OnMove;
+                @Move.performed += instance.OnMove;
+                @Move.canceled += instance.OnMove;
                 @Aim.started += instance.OnAim;
                 @Aim.performed += instance.OnAim;
                 @Aim.canceled += instance.OnAim;
@@ -671,6 +697,9 @@ namespace Frogalypse.Input
                 @Grapple.started -= instance.OnGrapple;
                 @Grapple.performed -= instance.OnGrapple;
                 @Grapple.canceled -= instance.OnGrapple;
+                @Move.started -= instance.OnMove;
+                @Move.performed -= instance.OnMove;
+                @Move.canceled -= instance.OnMove;
                 @Aim.started -= instance.OnAim;
                 @Aim.performed -= instance.OnAim;
                 @Aim.canceled -= instance.OnAim;
@@ -705,6 +734,7 @@ namespace Frogalypse.Input
         {
             void OnJump(InputAction.CallbackContext context);
             void OnGrapple(InputAction.CallbackContext context);
+            void OnMove(InputAction.CallbackContext context);
             void OnAim(InputAction.CallbackContext context);
         }
     }

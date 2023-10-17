@@ -17,6 +17,19 @@ namespace Frogalypse.Input {
 		public event Action<Vector2> AimEvent = delegate { };
 
 		/// <summary>
+		/// Property that stores the screen position of the mouse.
+		/// For components that don't need live updates.
+		/// </summary>
+		public Vector2 MousePosition { get; private set; }
+
+		/// <summary>
+		/// Invoked when the player presses a movement button
+		/// -1 => move left
+		/// +1 => move right
+		/// </summary>
+		public event Action<float> MoveEvent = delegate { };
+
+		/// <summary>
 		/// Invoked when the player presses the grapple button
 		/// </summary>
 		public event Action GrappleEvent = delegate { };
@@ -55,12 +68,14 @@ namespace Frogalypse.Input {
 		#region Handlers
 
 		public void OnAim(InputAction.CallbackContext context) {
-			if ( context.phase == InputActionPhase.Performed ) {
+			if ( context.phase == InputActionPhase.Performed || context.phase == InputActionPhase.Started ) {
 				var aim = context.ReadValue<Vector2>();
+				MousePosition = aim;
 				AimEvent?.Invoke(aim);
-				Debug.Log($"Aiming at ({aim.x}, {aim.y})");
+				//Debug.Log($"Aiming at ({aim.x}, {aim.y})");
 			}
 		}
+
 		public void OnGrapple(InputAction.CallbackContext context) {
 			switch ( context.phase ) {
 				case InputActionPhase.Performed:
@@ -73,6 +88,7 @@ namespace Frogalypse.Input {
 					return;
 			}
 		}
+
 		public void OnJump(InputAction.CallbackContext context) {
 			switch ( context.phase ) {
 				case InputActionPhase.Performed:
@@ -82,6 +98,17 @@ namespace Frogalypse.Input {
 				case InputActionPhase.Canceled:
 					Debug.Log("Jump Cancelled");
 					JumpCancelledEvent?.Invoke();
+					return;
+			}
+		}
+
+		public void OnMove(InputAction.CallbackContext context) {
+			switch ( context.phase ) {
+				case InputActionPhase.Performed:
+					MoveEvent?.Invoke(context.ReadValue<float>());
+					return;
+				case InputActionPhase.Canceled:
+					MoveEvent?.Invoke(0f);
 					return;
 			}
 		}
