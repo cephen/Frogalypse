@@ -3,6 +3,8 @@ using System.Collections.Generic;
 
 using Frogalypse.Input;
 
+using SideFX;
+
 using UnityEngine;
 
 namespace Frogalypse {

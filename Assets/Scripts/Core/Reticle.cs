@@ -8,15 +8,18 @@ using UnityEngine.InputSystem;
 namespace Frogalypse {
 	[RequireComponent(typeof(SpriteRenderer))]
 	public class Reticle : MonoBehaviour {
+		[Header("Settings")]
+		[SerializeField] private PlayerSettings _playerSettings;
 
 		[Header("Anchors")]
-		[SerializeField] private PlayerSettings _playerSettings;
 		[SerializeField] private TransformAnchor _playerAnchor;
+		[SerializeField] private TransformAnchor _reticleAnchor;
+
+		// Components
 		private Camera _camera;
 		private SpriteRenderer _renderer;
 
-		[Header("Targeting")]
-		[SerializeField] private ContactFilter2D _targetFilter;
+		// Data
 		private readonly RaycastHit2D[] _targets = new RaycastHit2D[4];
 
 		private void Awake() {
@@ -54,11 +57,11 @@ namespace Frogalypse {
 			var positionDelta = mousePos - playerPos;
 			var aimDirection = positionDelta.normalized;
 
-			var numHits = Physics2D.Raycast(playerPos, aimDirection, _targetFilter, _targets);
+			var numHits = Physics2D.Raycast(playerPos, aimDirection, _playerSettings.grappleContactFilter, _targets);
 
 			for (int i = 0 ; i < numHits ; i++) {
 				var hit = _targets[i];
-				if (hit.distance < _playerSettings.grappleReach) {
+				if (hit.distance < _playerSettings.maxGrappleDistance) {
 					Debug.DrawLine(playerPos, hit.point, Color.green);
 					// If the mouse is further away than the hit point
 					return positionDelta.magnitude > hit.distance
@@ -70,7 +73,7 @@ namespace Frogalypse {
 			}
 
 			// This code is only reached if there are no valid targets
-			Debug.DrawLine(playerPos, playerPos + aimDirection * _playerSettings.grappleReach, Color.red);
+			Debug.DrawLine(playerPos, playerPos + aimDirection * _playerSettings.maxGrappleDistance, Color.red);
 			return (false, mousePos);
 		}
 
