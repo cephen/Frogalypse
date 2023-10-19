@@ -1,4 +1,4 @@
-using System;
+using System.Collections;
 
 using Frogalypse.Input;
 using Frogalypse.Settings;
@@ -33,7 +33,10 @@ namespace Frogalypse {
 			Disabled = 4,
 		}
 
-		private void Awake() => _line = GetComponent<Line>();
+		private void Awake() {
+			_line = GetComponent<Line>();
+			_line.enabled = false;
+		}
 
 		private void OnEnable() {
 			if (_input == null) {
@@ -41,6 +44,7 @@ namespace Frogalypse {
 				Destroy(gameObject);
 			}
 			_input.GrappleEvent += CreateTether;
+			_input.GrappleCancelledEvent += ReloadTether;
 		}
 
 		private void OnDisable() {
@@ -59,27 +63,25 @@ namespace Frogalypse {
 			}
 		}
 
-		private void CreateTether() {
-			switch (_state) {
-				case TetherState.Ready:
-					Debug.Log("Tether is ready, firing!");
-					_state = TetherState.Firing;
-					return;
-				case TetherState.Firing:
-					Debug.LogWarning($"Tether already launched, can't launch until reeled in", this);
-					return;
-				case TetherState.Attached:
-					Debug.Log("Already tethered to an object, ignoring CreateTether", this);
-					return;
-				case TetherState.Reeling:
-					Debug.Log("Tether is being reeled in, can't create new tether just yet");
-					return;
-				case TetherState.Disabled:
-					Debug.LogWarning("Failed to create tether: tether is disabled", this);
-					return;
-				default:
-					throw new ArgumentOutOfRangeException(nameof(_state), _state, "Tether state value not recognised");
-			};
+		private void CreateTether() => StartCoroutine(FireTether());
+
+		private void ReloadTether() {
+			_line.enabled = false;
+			_state = TetherState.Reeling;
+			return;
+		}
+
+		private IEnumerator FireTether() {
+			_state = TetherState.Firing;
+			_line.enabled = true;
+
+			Vector3 targetPosition = _reticleAnchor.Value.position;
+
+			for (float i = 0f ; i < _playerSettings.timeToHitTarget ; i += Time.deltaTime) {
+				float t = Mathf.Lerp(0f, Vector3.Distance(_tetherStartPositionAnchor.Value.position, _targetPosition), i / _playerSettings.timeToHitTarget);
+				_line.End = Vector3.Lerp(_tetherStartPositionAnchor.Value.position, targetPosition, t);
+				yield return null;
+			}
 		}
 	}
 }

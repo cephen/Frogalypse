@@ -14,8 +14,8 @@ namespace Frogalypse.Settings {
 		public ContactFilter2D grappleContactFilter;
 
 		[Header("Animation")]
-		public float firingSpeed = 5f;
-		public float reelingSpeed = 4f;
+		public float timeToHitTarget = 0.5f;
+		public float reelingSpeed = 1f / 3;
 		public AnimationCurve firingSpeedCurve;
 		public AnimationCurve reelingSpeedCurve;
 	}

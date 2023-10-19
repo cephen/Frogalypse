@@ -30,18 +30,20 @@ MonoBehaviour:
     maxDepth: 0
     minNormalAngle: 0
     maxNormalAngle: 0
-  _firingSpeedCurve:
+  timeToHitTarget: 0.5
+  reelingSpeed: 1
+  firingSpeedCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 2.7243187
-      outSlope: 2.7243187
+      inSlope: 2
+      outSlope: 2
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.039823007
+      outWeight: 0
     - serializedVersion: 3
       time: 1
       value: 1
@@ -54,7 +56,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _reelingSpeedCurve:
+  reelingSpeedCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
