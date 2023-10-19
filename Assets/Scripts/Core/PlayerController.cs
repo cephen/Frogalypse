@@ -13,22 +13,26 @@ namespace Frogalypse {
 		[SerializeField] private PlayerSettings _playerSettings;
 		[SerializeField] private TransformAnchor _playerAnchor;
 		[SerializeField] private TransformAnchor _reticleAnchor;
+		[SerializeField] private TransformAnchor _tetherStartPointAnchor;
 
-		private Rigidbody2D _rb;
+		[Header("Child Transforms")]
+		[SerializeField] private Transform _tetherLauncherPivot;
+		[SerializeField] private Transform _tetherLauncher;
+		[SerializeField] private Transform _tetherStartPoint;
+
+		// Components
+		private Rigidbody2D _body;
+		private SpringJoint2D _tetherSpring;
 
 		private void Awake() {
 			if (_input == null) {
 				Debug.LogError($"Input Reader isn't set D:");
 				Destroy(this);
 			}
-			if (_playerAnchor == null) {
-				Debug.LogError("Reference to Player Anchor isn't set D:", _playerAnchor);
-				Destroy(this);
-			} else {
-				_playerAnchor.Provide(transform);
-			}
+			SetPlayerTransformAnchor();
 
-			_rb = GetComponent<Rigidbody2D>();
+			_body = GetComponent<Rigidbody2D>();
+			InitTether();
 		}
 
 		private void OnEnable() {
@@ -45,6 +49,15 @@ namespace Frogalypse {
 			}
 		}
 
+		private void SetPlayerTransformAnchor() {
+			if (_playerAnchor == null) {
+				Debug.LogError("Reference to Player Anchor isn't set D:", _playerAnchor);
+				Destroy(this);
+			} else {
+				_playerAnchor.Provide(transform);
+			}
+		}
+
 		private void OnGrapple() {
 			if (_reticleAnchor == null || !_reticleAnchor.IsSet) {
 				Debug.LogError("Reticle Anchor isn't set, can't get grapple target", this);
@@ -55,6 +68,22 @@ namespace Frogalypse {
 
 		private void OngrappleCancelled() {
 
+		}
+
+		private void InitTether() {
+			_tetherStartPointAnchor.Provide(_tetherStartPoint);
+
+			if (TryGetComponent(out SpringJoint2D component)) {
+				_tetherSpring = component;
+				_tetherSpring.enabled = false;
+				_tetherSpring.enableCollision = false;
+				_tetherSpring.autoConfigureDistance = false;
+				_tetherSpring.breakForce = Mathf.Infinity;
+				_tetherSpring.breakTorque = Mathf.Infinity;
+				_tetherSpring.dampingRatio = 0.9f;
+			} else {
+				Debug.LogError("Failed to get reference to SpringJoint2D component", gameObject);
+			}
 		}
 	}
 }
