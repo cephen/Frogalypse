@@ -24,6 +24,12 @@ namespace Frogalypse {
 				Debug.LogError($"Input Reader isn't set D:");
 				Destroy(this);
 			}
+			if (_playerAnchor == null) {
+				Debug.LogError("Reference to Player Anchor isn't set D:", _playerAnchor);
+				Destroy(this);
+			} else {
+				_playerAnchor.Provide(transform);
+			}
 
 			_rb = GetComponent<Rigidbody2D>();
 		}

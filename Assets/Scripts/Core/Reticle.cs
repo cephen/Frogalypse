@@ -25,9 +25,19 @@ namespace Frogalypse {
 		private void Awake() {
 			InitRenderer();
 			_camera = Camera.main;
+
+		}
+
+		private void Start() {
+			if (_reticleAnchor == null) {
+				Debug.LogError("Reticle Anchor isn't set", _reticleAnchor);
+				return;
+			}
+			_reticleAnchor.Provide(transform);
 		}
 
 		private void Update() {
+
 			if (!_playerAnchor.IsSet) {
 				Debug.LogError("Reference to Player Anchor is not set");
 				return;
