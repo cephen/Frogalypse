@@ -49,28 +49,15 @@ namespace Frogalypse {
 		}
 
 		private void OnGrapple() {
-			if ( _activeGrapple != null ) return;
-
-			Ray ray = Camera.main.ScreenPointToRay(_input.MousePosition);
-
-			Debug.DrawLine(ray.origin, ray.origin + ray.direction * 20f, Color.green, 1f);
-
-			RaycastHit2D[] hits = Physics2D.GetRayIntersectionAll(ray, 20f, GrappleableLayers.value);
-
-			if ( hits.Length > 0 ) {
-				Debug.Log($"Grapple check hit {hits.Length} objects");
-				var point = hits[0].point;
-				if ( Vector2.Distance(transform.position, point) <= MaxGrappleDistance ) {
-					Debug.Log($"Spawing Grapple Point at ({point.x}, {point.y})");
-					_activeGrapple = Instantiate(_grapplePrefab, point, Quaternion.identity);
-					_activeGrapple.ConnectPlayer(_rb);
-				}
+			if (_reticleAnchor == null || !_reticleAnchor.IsSet) {
+				Debug.LogError("Reticle Anchor isn't set, can't get grapple target", this);
+				return;
 			}
+			Debug.DrawLine(transform.position, _reticleAnchor.Value.position, Color.cyan, 2f);
 		}
 
 		private void OngrappleCancelled() {
-			Destroy(_activeGrapple.gameObject);
-			_activeGrapple = null;
+
 		}
 	}
 }
