@@ -6,16 +6,18 @@ using SideFX;
 using UnityEngine;
 
 namespace Frogalypse {
+	[RequireComponent(typeof(Line))]
 	public class Tether : MonoBehaviour {
 		[SerializeField] private TransformAnchor _playerAnchor;
 		[SerializeField] private InputReader _input;
 
 		// Components
+		private Line _line;
+
 		// Fields
 		private Vector3 _targetPosition = Vector3.zero;
 		[SerializeField] private TetherState _state = TetherState.Disabled;
 
-		private void Awake() => _lineRenderer = GetComponent<LineRenderer>();
 		private enum TetherState : byte {
 			Ready = 0,
 			Firing = 1,
@@ -23,6 +25,8 @@ namespace Frogalypse {
 			Reeling = 3,
 			Disabled = 4,
 		}
+
+		private void Awake() => _line = GetComponent<Line>();
 
 		private void OnEnable() {
 			if (_input == null) {
@@ -38,6 +42,14 @@ namespace Frogalypse {
 				Destroy(gameObject);
 			}
 			_input.GrappleEvent -= CreateTether;
+		}
+
+		private void Update() {
+			if (_tetherStartPositionAnchor.IsSet) {
+				_line.Start = _tetherStartPositionAnchor.Value.position;
+			} else {
+				_line.enabled = false;
+			}
 		}
 
 		private void CreateTether() {
