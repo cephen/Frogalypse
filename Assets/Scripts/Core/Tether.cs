@@ -5,15 +5,11 @@ using SideFX;
 using UnityEngine;
 
 namespace Frogalypse {
-	[RequireComponent(typeof(LineRenderer))]
 	public class Tether : MonoBehaviour {
-		[Header("Anchors")]
 		[SerializeField] private TransformAnchor _playerAnchor;
-		[SerializeField] private TransformAnchor _reticleAnchor;
 		[SerializeField] private InputReader _input;
 
 		// Components
-		private LineRenderer _lineRenderer;
 
 		private void Awake() => _lineRenderer = GetComponent<LineRenderer>();
 
