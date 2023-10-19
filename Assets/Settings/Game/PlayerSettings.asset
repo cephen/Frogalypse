@@ -12,4 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb14b1cf306853234ac76ff1bfc52c23, type: 3}
   m_Name: PlayerSettings
   m_EditorClassIdentifier: 
-  grappleReach: 5
+  maxGrappleDistance: 8
+  grappleContactFilter:
+    useTriggers: 0
+    useLayerMask: 1
+    useDepth: 0
+    useOutsideDepth: 0
+    useNormalAngle: 0
+    useOutsideNormalAngle: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 3072
+    minDepth: 0
+    maxDepth: 0
+    minNormalAngle: 0
+    maxNormalAngle: 0
