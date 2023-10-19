@@ -54,7 +54,7 @@ namespace Frogalypse.Input {
 		private GameInput _inputSource;
 
 		private void OnEnable() {
-			if ( _inputSource == null ) {
+			if (_inputSource == null) {
 				_inputSource = new();
 				_inputSource.Gameplay.SetCallbacks(this);
 			}
@@ -68,8 +68,8 @@ namespace Frogalypse.Input {
 		#region Handlers
 
 		public void OnAim(InputAction.CallbackContext context) {
-			if ( context.phase == InputActionPhase.Performed || context.phase == InputActionPhase.Started ) {
-				var aim = context.ReadValue<Vector2>();
+			if (context.phase is InputActionPhase.Performed or InputActionPhase.Started) {
+				Vector2 aim = context.ReadValue<Vector2>();
 				MousePosition = aim;
 				AimEvent?.Invoke(aim);
 				//Debug.Log($"Aiming at ({aim.x}, {aim.y})");
@@ -77,7 +77,7 @@ namespace Frogalypse.Input {
 		}
 
 		public void OnGrapple(InputAction.CallbackContext context) {
-			switch ( context.phase ) {
+			switch (context.phase) {
 				case InputActionPhase.Performed:
 					Debug.Log("Grapple Started");
 					GrappleEvent?.Invoke();
@@ -90,7 +90,7 @@ namespace Frogalypse.Input {
 		}
 
 		public void OnJump(InputAction.CallbackContext context) {
-			switch ( context.phase ) {
+			switch (context.phase) {
 				case InputActionPhase.Performed:
 					Debug.Log("Jump Started");
 					JumpEvent?.Invoke();
@@ -103,7 +103,7 @@ namespace Frogalypse.Input {
 		}
 
 		public void OnMove(InputAction.CallbackContext context) {
-			switch ( context.phase ) {
+			switch (context.phase) {
 				case InputActionPhase.Performed:
 					MoveEvent?.Invoke(context.ReadValue<float>());
 					return;

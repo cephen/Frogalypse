@@ -28,8 +28,6 @@ namespace Frogalypse {
 			_spring.distance = Vector2.Distance(_rb.position, playerBody.position);
 		}
 
-		public void Update() {
-			Debug.DrawLine(_rb.position, _spring.connectedBody.position, Color.red);
-		}
+		public void Update() => Debug.DrawLine(_rb.position, _spring.connectedBody.position, Color.red);
 	}
 }

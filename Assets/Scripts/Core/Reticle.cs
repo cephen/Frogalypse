@@ -43,7 +43,7 @@ namespace Frogalypse {
 				return;
 			}
 
-			var (targetFound, targetPosition) = FindTarget();
+			(bool targetFound, Vector2 targetPosition) = FindTarget();
 			_renderer.color = targetFound ? Color.green : Color.red;
 			transform.position = targetPosition;
 		}
@@ -62,15 +62,15 @@ namespace Frogalypse {
 		/// The Vector2 contains the screen position to place the reticle at
 		/// </returns>
 		private (bool, Vector2) FindTarget() {
-			var mousePos = (Vector2) _camera.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-			var playerPos = (Vector2) _playerAnchor.Value.position;
-			var positionDelta = mousePos - playerPos;
-			var aimDirection = positionDelta.normalized;
+			Vector2 mousePos = (Vector2) _camera.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+			Vector2 playerPos = (Vector2) _playerAnchor.Value.position;
+			Vector2 positionDelta = mousePos - playerPos;
+			Vector2 aimDirection = positionDelta.normalized;
 
-			var numHits = Physics2D.Raycast(playerPos, aimDirection, _playerSettings.grappleContactFilter, _targets);
+			int numHits = Physics2D.Raycast(playerPos, aimDirection, _playerSettings.grappleContactFilter, _targets);
 
 			for (int i = 0 ; i < numHits ; i++) {
-				var hit = _targets[i];
+				RaycastHit2D hit = _targets[i];
 				if (hit.distance < _playerSettings.maxGrappleDistance) {
 					Debug.DrawLine(playerPos, hit.point, Color.green);
 					// If the mouse is further away than the hit point
@@ -86,7 +86,5 @@ namespace Frogalypse {
 			Debug.DrawLine(playerPos, playerPos + aimDirection * _playerSettings.maxGrappleDistance, Color.red);
 			return (false, mousePos);
 		}
-
 	}
-
 }

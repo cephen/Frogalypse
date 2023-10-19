@@ -15,9 +15,7 @@ namespace Frogalypse {
 		// Components
 		private LineRenderer _lineRenderer;
 
-		private void Awake() {
-			_lineRenderer = GetComponent<LineRenderer>();
-		}
+		private void Awake() => _lineRenderer = GetComponent<LineRenderer>();
 
 		private void OnEnable() {
 			if (_input == null) {

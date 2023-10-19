@@ -6,5 +6,4 @@ namespace Frogalypse.Settings {
 		public float maxGrappleDistance;
 		public ContactFilter2D grappleContactFilter;
 	}
-
 }
