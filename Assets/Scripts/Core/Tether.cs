@@ -1,5 +1,9 @@
 using System;
+
 using Frogalypse.Input;
+using Frogalypse.Settings;
+
+using Shapes;
 
 using SideFX;
 
@@ -8,8 +12,11 @@ using UnityEngine;
 namespace Frogalypse {
 	[RequireComponent(typeof(Line))]
 	public class Tether : MonoBehaviour {
-		[SerializeField] private TransformAnchor _playerAnchor;
+		[Header("Assets")]
 		[SerializeField] private InputReader _input;
+		[SerializeField] private PlayerSettings _playerSettings;
+		[SerializeField] private TransformAnchor _tetherStartPositionAnchor;
+		[SerializeField] private TransformAnchor _reticleAnchor;
 
 		// Components
 		private Line _line;
