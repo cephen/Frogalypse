@@ -75,13 +75,19 @@ namespace Frogalypse {
 			_state = TetherState.Firing;
 			_line.enabled = true;
 
-			Vector3 targetPosition = _reticleAnchor.Value.position;
+			Vector3 reticle = _reticleAnchor.Value.position;
+
 
 			for (float i = 0f ; i < _playerSettings.timeToHitTarget ; i += Time.deltaTime) {
-				float t = Mathf.Lerp(0f, Vector3.Distance(_tetherStartPositionAnchor.Value.position, _targetPosition), i / _playerSettings.timeToHitTarget);
-				_line.End = Vector3.Lerp(_tetherStartPositionAnchor.Value.position, targetPosition, t);
+				float t = Mathf.Lerp(0f, Vector3.Distance(_tetherStartPositionAnchor.Value.position, reticle), i / _playerSettings.timeToHitTarget);
+				_line.End = Vector3.Lerp(_tetherStartPositionAnchor.Value.position, reticle, t);
 				yield return null;
 			}
+
+			// TODO: implement hitting an object
+			// TODO: implement missing an object
+			// TODO: implement hitting the max distance
+
 		}
 	}
 }
