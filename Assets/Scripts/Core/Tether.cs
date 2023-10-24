@@ -22,7 +22,6 @@ namespace Frogalypse {
 		private Line _line;
 
 		// Fields
-		private Vector3 _targetPosition = Vector3.zero;
 		[SerializeField] private TetherState _state = TetherState.Disabled;
 
 		private enum TetherState : byte {
