@@ -37,15 +37,15 @@ namespace Frogalypse {
 
 		private void OnEnable() {
 			if (_input != null) {
-				_input.GrappleEvent += OnGrapple;
-				_input.GrappleCancelledEvent += OngrappleCancelled;
+				_input.TetherEvent += OnGrapple;
+				_input.TetherCancelledEvent += OngrappleCancelled;
 			}
 		}
 
 		private void OnDisable() {
 			if (_input != null) {
-				_input.GrappleEvent -= OnGrapple;
-				_input.GrappleCancelledEvent -= OngrappleCancelled;
+				_input.TetherEvent -= OnGrapple;
+				_input.TetherCancelledEvent -= OngrappleCancelled;
 			}
 		}
 

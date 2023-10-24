@@ -43,8 +43,8 @@ namespace Frogalypse {
 				Debug.LogError("Input Reader isn't set", _input);
 				Destroy(gameObject);
 			}
-			_input.GrappleEvent += CreateTether;
-			_input.GrappleCancelledEvent += ReloadTether;
+			_input.TetherEvent += OnTether;
+			_input.TetherCancelledEvent += OnTetherCancelled;
 		}
 
 		private void OnDisable() {
@@ -52,7 +52,8 @@ namespace Frogalypse {
 				Debug.LogError("Input Reader isn't set", _input);
 				Destroy(gameObject);
 			}
-			_input.GrappleEvent -= CreateTether;
+			_input.TetherEvent -= OnTether;
+			_input.TetherCancelledEvent -= OnTetherCancelled;
 		}
 
 		private void Update() {
@@ -63,12 +64,16 @@ namespace Frogalypse {
 			}
 		}
 
-		private void CreateTether() => StartCoroutine(FireTether());
+		private void OnTether() {
+			if (_state is TetherState.Ready)
+				StartCoroutine(FireTether());
 
-		private void ReloadTether() {
+		}
+
+		private void OnTetherCancelled() {
 			_line.enabled = false;
 			_state = TetherState.Reeling;
-			return;
+
 		}
 
 		private IEnumerator FireTether() {

@@ -385,7 +385,7 @@ namespace Frogalypse.Input
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Grapple"",
+                    ""name"": ""Tether"",
                     ""type"": ""Button"",
                     ""id"": ""7b7fe9f6-ab79-4341-8d2d-a3f523b2b5a6"",
                     ""expectedControlType"": ""Button"",
@@ -431,7 +431,7 @@ namespace Frogalypse.Input
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Grapple"",
+                    ""action"": ""Tether"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -496,7 +496,7 @@ namespace Frogalypse.Input
             // Gameplay
             m_Gameplay = asset.FindActionMap("Gameplay", throwIfNotFound: true);
             m_Gameplay_Jump = m_Gameplay.FindAction("Jump", throwIfNotFound: true);
-            m_Gameplay_Grapple = m_Gameplay.FindAction("Grapple", throwIfNotFound: true);
+            m_Gameplay_Tether = m_Gameplay.FindAction("Tether", throwIfNotFound: true);
             m_Gameplay_Move = m_Gameplay.FindAction("Move", throwIfNotFound: true);
             m_Gameplay_Aim = m_Gameplay.FindAction("Aim", throwIfNotFound: true);
         }
@@ -655,7 +655,7 @@ namespace Frogalypse.Input
         private readonly InputActionMap m_Gameplay;
         private List<IGameplayActions> m_GameplayActionsCallbackInterfaces = new List<IGameplayActions>();
         private readonly InputAction m_Gameplay_Jump;
-        private readonly InputAction m_Gameplay_Grapple;
+        private readonly InputAction m_Gameplay_Tether;
         private readonly InputAction m_Gameplay_Move;
         private readonly InputAction m_Gameplay_Aim;
         public struct GameplayActions
@@ -663,7 +663,7 @@ namespace Frogalypse.Input
             private @GameInput m_Wrapper;
             public GameplayActions(@GameInput wrapper) { m_Wrapper = wrapper; }
             public InputAction @Jump => m_Wrapper.m_Gameplay_Jump;
-            public InputAction @Grapple => m_Wrapper.m_Gameplay_Grapple;
+            public InputAction @Tether => m_Wrapper.m_Gameplay_Tether;
             public InputAction @Move => m_Wrapper.m_Gameplay_Move;
             public InputAction @Aim => m_Wrapper.m_Gameplay_Aim;
             public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
@@ -678,9 +678,9 @@ namespace Frogalypse.Input
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
-                @Grapple.started += instance.OnGrapple;
-                @Grapple.performed += instance.OnGrapple;
-                @Grapple.canceled += instance.OnGrapple;
+                @Tether.started += instance.OnTether;
+                @Tether.performed += instance.OnTether;
+                @Tether.canceled += instance.OnTether;
                 @Move.started += instance.OnMove;
                 @Move.performed += instance.OnMove;
                 @Move.canceled += instance.OnMove;
@@ -694,9 +694,9 @@ namespace Frogalypse.Input
                 @Jump.started -= instance.OnJump;
                 @Jump.performed -= instance.OnJump;
                 @Jump.canceled -= instance.OnJump;
-                @Grapple.started -= instance.OnGrapple;
-                @Grapple.performed -= instance.OnGrapple;
-                @Grapple.canceled -= instance.OnGrapple;
+                @Tether.started -= instance.OnTether;
+                @Tether.performed -= instance.OnTether;
+                @Tether.canceled -= instance.OnTether;
                 @Move.started -= instance.OnMove;
                 @Move.performed -= instance.OnMove;
                 @Move.canceled -= instance.OnMove;
@@ -733,7 +733,7 @@ namespace Frogalypse.Input
         public interface IGameplayActions
         {
             void OnJump(InputAction.CallbackContext context);
-            void OnGrapple(InputAction.CallbackContext context);
+            void OnTether(InputAction.CallbackContext context);
             void OnMove(InputAction.CallbackContext context);
             void OnAim(InputAction.CallbackContext context);
         }

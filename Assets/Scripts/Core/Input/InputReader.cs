@@ -32,12 +32,12 @@ namespace Frogalypse.Input {
 		/// <summary>
 		/// Invoked when the player presses the grapple button
 		/// </summary>
-		public event Action GrappleEvent = delegate { };
+		public event Action TetherEvent = delegate { };
 
 		/// <summary>
 		/// Invoked when the player releases the grapple button
 		/// </summary>
-		public event Action GrappleCancelledEvent = delegate { };
+		public event Action TetherCancelledEvent = delegate { };
 
 		/// <summary>
 		/// Invoked when the player presses the jump button
@@ -76,15 +76,15 @@ namespace Frogalypse.Input {
 			}
 		}
 
-		public void OnGrapple(InputAction.CallbackContext context) {
+		public void OnTether(InputAction.CallbackContext context) {
 			switch (context.phase) {
 				case InputActionPhase.Performed:
 					Debug.Log("Grapple Started");
-					GrappleEvent?.Invoke();
+					TetherEvent?.Invoke();
 					return;
 				case InputActionPhase.Canceled:
 					Debug.Log("Grapple Cancelled");
-					GrappleCancelledEvent?.Invoke();
+					TetherCancelledEvent?.Invoke();
 					return;
 			}
 		}
