@@ -27,7 +27,7 @@ namespace Frogalypse.Input {
 		/// -1 => move left
 		/// +1 => move right
 		/// </summary>
-		public event Action<float> MoveEvent = delegate { };
+		public event Action<Vector2> MoveEvent = delegate { };
 
 		/// <summary>
 		/// Invoked when the player presses the grapple button
@@ -105,10 +105,10 @@ namespace Frogalypse.Input {
 		public void OnMove(InputAction.CallbackContext context) {
 			switch (context.phase) {
 				case InputActionPhase.Performed:
-					MoveEvent?.Invoke(context.ReadValue<float>());
+					Vector2 value = context.ReadValue<Vector2>();
 					return;
 				case InputActionPhase.Canceled:
-					MoveEvent?.Invoke(0f);
+					MoveEvent?.Invoke(Vector2.zero);
 					return;
 			}
 		}
