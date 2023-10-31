@@ -361,7 +361,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Grapple",
+                    "name": "Tether",
                     "type": "Button",
                     "id": "7b7fe9f6-ab79-4341-8d2d-a3f523b2b5a6",
                     "expectedControlType": "Button",
@@ -407,7 +407,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Grapple",
+                    "action": "Tether",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

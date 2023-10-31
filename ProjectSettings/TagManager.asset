@@ -15,10 +15,10 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - Terrain
+  - Enemies
+  - Player
+  - Clutter
   - 
   - 
   - 
@@ -40,4 +40,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Tether
+    uniqueID: 1781471821
+    locked: 0
+  - name: Reticle
+    uniqueID: 298959725
     locked: 0

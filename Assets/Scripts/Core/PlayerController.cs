@@ -1,67 +1,89 @@
-using System.Collections;
-using System.Collections.Generic;
-
 using Frogalypse.Input;
+using Frogalypse.Settings;
+
+using SideFX;
 
 using UnityEngine;
 
 namespace Frogalypse {
 	[RequireComponent(typeof(Rigidbody2D))]
 	public class PlayerController : MonoBehaviour {
+		[Header("Assets")]
 		[SerializeField] private InputReader _input;
-		private Rigidbody2D _rb;
-		public LayerMask GrappleableLayers;
-		public float MaxGrappleDistance = 10f;
+		[SerializeField] private PlayerSettings _playerSettings;
+		[SerializeField] private TransformAnchor _playerAnchor;
+		[SerializeField] private TransformAnchor _reticleAnchor;
+		[SerializeField] private TransformAnchor _tetherStartPointAnchor;
 
-		[SerializeField] private HingeGrapple _grapplePrefab;
-		private HingeGrapple _activeGrapple;
+		[Header("Child Transforms")]
+		[SerializeField] private Transform _tetherLauncherPivot;
+		[SerializeField] private Transform _tetherLauncher;
+		[SerializeField] private Transform _tetherStartPoint;
+
+		// Components
+		private Rigidbody2D _body;
+		private SpringJoint2D _tetherSpring;
 
 		private void Awake() {
-			if ( _input == null ) {
-				Debug.LogError($"Input reader isn't set!!");
+			if (_input == null) {
+				Debug.LogError($"Input Reader isn't set D:");
 				Destroy(this);
 			}
+			SetPlayerTransformAnchor();
 
-			_rb = GetComponent<Rigidbody2D>();
+			_body = GetComponent<Rigidbody2D>();
+			InitTether();
 		}
 
 		private void OnEnable() {
-			if ( _input != null ) {
-				_input.GrappleEvent += OnGrapple;
-				_input.GrappleCancelledEvent += OngrappleCancelled;
+			if (_input != null) {
+				_input.TetherEvent += OnGrapple;
+				_input.TetherCancelledEvent += OngrappleCancelled;
 			}
 		}
 
 		private void OnDisable() {
-			if ( _input != null ) {
-				_input.GrappleEvent -= OnGrapple;
-				_input.GrappleCancelledEvent -= OngrappleCancelled;
+			if (_input != null) {
+				_input.TetherEvent -= OnGrapple;
+				_input.TetherCancelledEvent -= OngrappleCancelled;
+			}
+		}
+
+		private void SetPlayerTransformAnchor() {
+			if (_playerAnchor == null) {
+				Debug.LogError("Reference to Player Anchor isn't set D:", _playerAnchor);
+				Destroy(this);
+			} else {
+				_playerAnchor.Provide(transform);
 			}
 		}
 
 		private void OnGrapple() {
-			if ( _activeGrapple != null ) return;
-
-			Ray ray = Camera.main.ScreenPointToRay(_input.MousePosition);
-
-			Debug.DrawLine(ray.origin, ray.origin + ray.direction * 20f, Color.green, 1f);
-
-			RaycastHit2D[] hits = Physics2D.GetRayIntersectionAll(ray, 20f, GrappleableLayers.value);
-
-			if ( hits.Length > 0 ) {
-				Debug.Log($"Grapple check hit {hits.Length} objects");
-				var point = hits[0].point;
-				if ( Vector2.Distance(transform.position, point) <= MaxGrappleDistance ) {
-					Debug.Log($"Spawing Grapple Point at ({point.x}, {point.y})");
-					_activeGrapple = Instantiate(_grapplePrefab, point, Quaternion.identity);
-					_activeGrapple.ConnectPlayer(_rb);
-				}
+			if (_reticleAnchor == null || !_reticleAnchor.IsSet) {
+				Debug.LogError("Reticle Anchor isn't set, can't get grapple target", this);
+				return;
 			}
+			Debug.DrawLine(transform.position, _reticleAnchor.Value.position, Color.cyan, 2f);
 		}
 
 		private void OngrappleCancelled() {
-			Destroy(_activeGrapple.gameObject);
-			_activeGrapple = null;
+
+		}
+
+		private void InitTether() {
+			_tetherStartPointAnchor.Provide(_tetherStartPoint);
+
+			if (TryGetComponent(out SpringJoint2D component)) {
+				_tetherSpring = component;
+				_tetherSpring.enabled = false;
+				_tetherSpring.enableCollision = false;
+				_tetherSpring.autoConfigureDistance = false;
+				_tetherSpring.breakForce = Mathf.Infinity;
+				_tetherSpring.breakTorque = Mathf.Infinity;
+				_tetherSpring.dampingRatio = 0.9f;
+			} else {
+				Debug.LogError("Failed to get reference to SpringJoint2D component", gameObject);
+			}
 		}
 	}
 }
