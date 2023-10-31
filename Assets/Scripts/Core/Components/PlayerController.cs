@@ -7,7 +7,7 @@ using SideFX;
 using UnityEngine;
 
 namespace Frogalypse {
-	[RequireComponent(typeof(Rigidbody2D), typeof(ActorMover))]
+	[RequireComponent(typeof(ActorMover))]
 	public class PlayerController : MonoBehaviour {
 		[Header("Assets")]
 		[SerializeField] private InputReader _input;
@@ -22,7 +22,6 @@ namespace Frogalypse {
 		[SerializeField] private Transform _tetherStartPoint;
 
 		// Components
-		private Rigidbody2D _body;
 		private SpringJoint2D _tetherSpring;
 		private ActorMover _mover;
 
@@ -33,23 +32,18 @@ namespace Frogalypse {
 			}
 			SetPlayerTransformAnchor();
 
-			_body = GetComponent<Rigidbody2D>();
 			InitTether();
 			InitActorMover();
 		}
 
 		private void OnEnable() {
 			if (_input != null) {
-				_input.TetherEvent += OnGrapple;
-				_input.TetherCancelledEvent += OngrappleCancelled;
 				_input.MoveEvent += _mover.ProvideInput;
 			}
 		}
 
 		private void OnDisable() {
 			if (_input != null) {
-				_input.TetherEvent -= OnGrapple;
-				_input.TetherCancelledEvent -= OngrappleCancelled;
 				_input.MoveEvent -= _mover.ProvideInput;
 			}
 		}
@@ -62,16 +56,6 @@ namespace Frogalypse {
 				_playerAnchor.Provide(transform);
 			}
 		}
-
-		private void OnGrapple() {
-			if (_reticleAnchor == null || !_reticleAnchor.IsSet) {
-				Debug.LogError("Reticle Anchor isn't set, can't get grapple target", _reticleAnchor);
-				return;
-			}
-			Debug.DrawLine(transform.position, _reticleAnchor.Value.position, Color.cyan, 2f);
-		}
-
-		private void OngrappleCancelled() { }
 
 		private void InitTether() {
 			_tetherStartPointAnchor.Provide(_tetherStartPoint);
