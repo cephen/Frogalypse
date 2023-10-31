@@ -10,6 +10,9 @@ namespace Frogalypse.Input {
 	/// </summary>
 	[CreateAssetMenu(fileName = "Input Reader", menuName = "Frogalypse/Input Reader")]
 	public class InputReader : ScriptableObject, GameInput.IGameplayActions {
+#if UNITY_EDITOR
+		[SerializeField] private bool _logEvents = false;
+#endif
 		/// <summary>
 		/// Invoked whenever the player moves the mouse.
 		/// Event data is the screen position of the mouse.
@@ -79,11 +82,17 @@ namespace Frogalypse.Input {
 		public void OnTether(InputAction.CallbackContext context) {
 			switch (context.phase) {
 				case InputActionPhase.Performed:
-					Debug.Log("Grapple Started");
+#if UNITY_EDITOR
+					if (_logEvents)
+						Debug.Log("Grapple Started");
+#endif
 					TetherEvent?.Invoke();
 					return;
 				case InputActionPhase.Canceled:
-					Debug.Log("Grapple Cancelled");
+#if UNITY_EDITOR
+					if (_logEvents)
+						Debug.Log("Grapple Cancelled");
+#endif
 					TetherCancelledEvent?.Invoke();
 					return;
 			}
@@ -92,11 +101,17 @@ namespace Frogalypse.Input {
 		public void OnJump(InputAction.CallbackContext context) {
 			switch (context.phase) {
 				case InputActionPhase.Performed:
-					Debug.Log("Jump Started");
+#if UNITY_EDITOR
+					if (_logEvents)
+						Debug.Log("Jump Started");
+#endif
 					JumpEvent?.Invoke();
 					return;
 				case InputActionPhase.Canceled:
-					Debug.Log("Jump Cancelled");
+#if UNITY_EDITOR
+					if (_logEvents)
+						Debug.Log("Jump Cancelled");
+#endif
 					JumpCancelledEvent?.Invoke();
 					return;
 			}
@@ -106,8 +121,17 @@ namespace Frogalypse.Input {
 			switch (context.phase) {
 				case InputActionPhase.Performed:
 					Vector2 value = context.ReadValue<Vector2>();
+#if UNITY_EDITOR
+					if (_logEvents)
+						Debug.Log($"Performed Move with value {value}", this);
+#endif
+					MoveEvent?.Invoke(value);
 					return;
 				case InputActionPhase.Canceled:
+#if UNITY_EDITOR
+					if (_logEvents)
+						Debug.Log("Move cancelled", this);
+#endif
 					MoveEvent?.Invoke(Vector2.zero);
 					return;
 			}
