@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 namespace Frogalypse.Settings {
-	[CreateAssetMenu(fileName = "ActorMoveSettings", menuName = "Frogalypse/Settings/Actors/Movement")]
+	[CreateAssetMenu(fileName = "ActorMoveSettings", menuName = "Frogalypse/Actors/Movement Settings")]
 	public class ActorMoveSettings : ScriptableObject {
 		[Header("Walking")]
 		public float MaxWalkSpeed;
