@@ -7,7 +7,7 @@ using SideFX;
 using UnityEngine;
 
 namespace Frogalypse {
-	[RequireComponent(typeof(ActorMover))]
+	[RequireComponent(typeof(MoverComponent))]
 	public class PlayerController : MonoBehaviour {
 		[Header("Assets")]
 		[SerializeField] private InputReader _input;
@@ -23,7 +23,7 @@ namespace Frogalypse {
 
 		// Components
 		private SpringJoint2D _tetherSpring;
-		private ActorMover _mover;
+		private MoverComponent _mover;
 
 		private void Awake() {
 			if (_input == null) {
@@ -71,7 +71,7 @@ namespace Frogalypse {
 		}
 
 		private void InitActorMover() {
-			_mover = TryGetComponent(out ActorMover component) ? component : gameObject.AddComponent<ActorMover>();
+			_mover = TryGetComponent(out MoverComponent component) ? component : gameObject.AddComponent<MoverComponent>();
 			_mover.ProvideSettings(_playerSettings.MoveSettings);
 		}
 	}

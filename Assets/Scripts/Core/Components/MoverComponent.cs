@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Frogalypse.Components {
 	[RequireComponent(typeof(Rigidbody2D))]
-	public class ActorMover : MonoBehaviour {
+	public class MoverComponent : MonoBehaviour {
 		[SerializeField] private ActorMoveSettings _settings;
 
 		private Rigidbody2D _body;
