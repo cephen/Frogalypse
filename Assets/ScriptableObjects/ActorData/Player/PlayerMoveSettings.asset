@@ -15,10 +15,11 @@ MonoBehaviour:
   MaxWalkSpeed: 16
   WalkAcceleration: 20
   WalkDeceleration: 24
-  AirControlUpForce: 3
-  AirControlDownForce: 3
-  AirControlSideForce: 3
   CanAirControl: 1
+  AirControlUpAcceleration: 3
+  AirControlDownAcceleration: 3
+  AirControlSideAcceleration: 3
+  AirControlDeceleration: 10
   UseGravity: 1
   GroundContactFilter:
     useTriggers: 0

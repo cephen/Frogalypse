@@ -10,9 +10,10 @@ namespace Frogalypse.Settings {
 
 		[Header("Air Control Settings")]
 		public bool CanAirControl = false;
-		public float AirControlUpForce;
-		public float AirControlDownForce;
-		public float AirControlSideForce;
+		public float AirControlUpAcceleration;
+		public float AirControlDownAcceleration;
+		public float AirControlSideAcceleration;
+		public float AirControlDeceleration;
 
 		[Header("Grounding Settings")]
 		public bool UseGravity;
