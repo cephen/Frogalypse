@@ -5,6 +5,7 @@ namespace Frogalypse.Settings {
 	//[CreateAssetMenu(fileName = "PlayerSettings", menuName = "Frogalypse/Settings/Player")]
 	public class PlayerSettings : ScriptableObject {
 		public ActorMoveSettings MoveSettings;
+		public JumpSettings JumpSettings;
 
 		[Header("Tether")]
 		public float maxGrappleDistance;
