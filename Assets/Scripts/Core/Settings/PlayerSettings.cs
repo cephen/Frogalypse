@@ -4,10 +4,7 @@ namespace Frogalypse.Settings {
 	// Disabled becauseonly one asset instance is needed
 	//[CreateAssetMenu(fileName = "PlayerSettings", menuName = "Frogalypse/Settings/Player")]
 	public class PlayerSettings : ScriptableObject {
-		[Header("Movement")]
-		public float groundMoveSpeed = 2f;
-		public float airMoveSpeed = 3f;
-		public float jumpForce = 5f;
+		public ActorMoveSettings MoveSettings;
 
 		[Header("Tether")]
 		public float maxGrappleDistance;
