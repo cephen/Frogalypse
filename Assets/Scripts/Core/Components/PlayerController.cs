@@ -1,3 +1,4 @@
+using Frogalypse.Components;
 using Frogalypse.Input;
 using Frogalypse.Settings;
 
@@ -6,7 +7,7 @@ using SideFX;
 using UnityEngine;
 
 namespace Frogalypse {
-	[RequireComponent(typeof(Rigidbody2D))]
+	[RequireComponent(typeof(Rigidbody2D), typeof(ActorMover))]
 	public class PlayerController : MonoBehaviour {
 		[Header("Assets")]
 		[SerializeField] private InputReader _input;
@@ -23,6 +24,7 @@ namespace Frogalypse {
 		// Components
 		private Rigidbody2D _body;
 		private SpringJoint2D _tetherSpring;
+		private ActorMover _mover;
 
 		private void Awake() {
 			if (_input == null) {
@@ -33,12 +35,14 @@ namespace Frogalypse {
 
 			_body = GetComponent<Rigidbody2D>();
 			InitTether();
+			InitActorMover();
 		}
 
 		private void OnEnable() {
 			if (_input != null) {
 				_input.TetherEvent += OnGrapple;
 				_input.TetherCancelledEvent += OngrappleCancelled;
+				_input.MoveEvent += _mover.ProvideInput;
 			}
 		}
 
@@ -46,6 +50,7 @@ namespace Frogalypse {
 			if (_input != null) {
 				_input.TetherEvent -= OnGrapple;
 				_input.TetherCancelledEvent -= OngrappleCancelled;
+				_input.MoveEvent -= _mover.ProvideInput;
 			}
 		}
 
@@ -60,30 +65,30 @@ namespace Frogalypse {
 
 		private void OnGrapple() {
 			if (_reticleAnchor == null || !_reticleAnchor.IsSet) {
-				Debug.LogError("Reticle Anchor isn't set, can't get grapple target", this);
+				Debug.LogError("Reticle Anchor isn't set, can't get grapple target", _reticleAnchor);
 				return;
 			}
 			Debug.DrawLine(transform.position, _reticleAnchor.Value.position, Color.cyan, 2f);
 		}
 
-		private void OngrappleCancelled() {
-
-		}
+		private void OngrappleCancelled() { }
 
 		private void InitTether() {
 			_tetherStartPointAnchor.Provide(_tetherStartPoint);
+			// Get reference to or add SpringJoint2D
+			_tetherSpring = TryGetComponent(out SpringJoint2D component) ? component : gameObject.AddComponent<SpringJoint2D>();
 
-			if (TryGetComponent(out SpringJoint2D component)) {
-				_tetherSpring = component;
-				_tetherSpring.enabled = false;
-				_tetherSpring.enableCollision = false;
-				_tetherSpring.autoConfigureDistance = false;
-				_tetherSpring.breakForce = Mathf.Infinity;
-				_tetherSpring.breakTorque = Mathf.Infinity;
-				_tetherSpring.dampingRatio = 0.9f;
-			} else {
-				Debug.LogError("Failed to get reference to SpringJoint2D component", gameObject);
-			}
+			_tetherSpring.enabled = false;
+			_tetherSpring.enableCollision = false;
+			_tetherSpring.autoConfigureDistance = false;
+			_tetherSpring.breakForce = Mathf.Infinity;
+			_tetherSpring.breakTorque = Mathf.Infinity;
+			_tetherSpring.dampingRatio = 0.9f;
+		}
+
+		private void InitActorMover() {
+			_mover = TryGetComponent(out ActorMover component) ? component : gameObject.AddComponent<ActorMover>();
+			_mover.ProvideSettings(_playerSettings.MoveSettings);
 		}
 	}
 }
