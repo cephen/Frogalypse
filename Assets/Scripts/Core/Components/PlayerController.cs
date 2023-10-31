@@ -34,18 +34,23 @@ namespace Frogalypse {
 
 			InitTether();
 			InitMoveComponent();
+			InitJumpComponent();
 			SetPlayerTransformAnchor();
 		}
 
 		private void OnEnable() {
 			if (_input != null) {
 				_input.MoveEvent += _mover.ProvideInput;
+				_input.JumpEvent += _jump.OnJump;
+				_input.JumpCancelledEvent += _jump.OnJumpCancelled;
 			}
 		}
 
 		private void OnDisable() {
 			if (_input != null) {
 				_input.MoveEvent -= _mover.ProvideInput;
+				_input.JumpEvent -= _jump.OnJump;
+				_input.JumpCancelledEvent -= _jump.OnJumpCancelled;
 			}
 		}
 
@@ -79,6 +84,7 @@ namespace Frogalypse {
 		private void InitJumpComponent() {
 			_jump = TryGetComponent(out JumpComponent component) ? component : gameObject.AddComponent<JumpComponent>();
 			_jump.ProvideSettings(_playerSettings.JumpSettings);
+			_jump.SetGroundContactFilter(_playerSettings.MoveSettings.GroundContactFilter);
 		}
 	}
 }

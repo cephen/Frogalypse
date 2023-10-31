@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: PlayerSettings
   m_EditorClassIdentifier: 
   MoveSettings: {fileID: 11400000, guid: 52f273ff262654846931955c22adf89a, type: 2}
+  JumpSettings: {fileID: 11400000, guid: c9f1e1965bcd9b142a29cb9300a935ec, type: 2}
   maxGrappleDistance: 8
   grappleContactFilter:
     useTriggers: 0
