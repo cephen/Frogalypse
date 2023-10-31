@@ -30,10 +30,10 @@ namespace Frogalypse {
 				Debug.LogError($"Input Reader isn't set D:");
 				Destroy(this);
 			}
-			SetPlayerTransformAnchor();
 
 			InitTether();
 			InitActorMover();
+			SetPlayerTransformAnchor();
 		}
 
 		private void OnEnable() {
