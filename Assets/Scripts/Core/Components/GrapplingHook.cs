@@ -78,7 +78,7 @@ namespace Frogalypse.Components {
 					_body.velocity = Vector2.zero;
 
 					_spring.connectedBody = _playerBody;
-					_spring.distance = _settings.targetLength;
+					_spring.distance = Mathf.Min(_settings.targetLength, totalDistance);
 					_spring.enabled = true;
 
 					_isTravelling = false;
@@ -97,8 +97,10 @@ namespace Frogalypse.Components {
 
 			Vector2 startPos = (Vector2) _hookLauncherTransform.Value.position;
 			Vector2 reticlePosition = (Vector2) _reticleTransform.Value.position;
-			Vector2 direction = (reticlePosition - startPos).normalized;
+			Vector2 delta = reticlePosition - startPos;
+			Vector2 direction = delta.normalized;
 
+			transform.position = startPos;
 
 			RaycastHit2D[] hits = new RaycastHit2D[4];
 			int numHits = Physics2D.Raycast(startPos, direction, _settings.contactFilter, hits);
@@ -109,8 +111,6 @@ namespace Frogalypse.Components {
 			};
 
 			float speed = distance / _settings.travelTime;
-
-			_body.MovePosition(startPos);
 			_body.velocity = direction * speed;
 			_isTravelling = true;
 		}
