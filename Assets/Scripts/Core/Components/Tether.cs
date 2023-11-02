@@ -20,6 +20,8 @@ namespace Frogalypse {
 
 		// Components
 		private Line _line;
+		private SpringJoint2D _spring;
+		private Rigidbody2D _body;
 
 		// Fields
 		[SerializeField] private TetherState _state = TetherState.Disabled;
@@ -34,7 +36,10 @@ namespace Frogalypse {
 
 		private void Awake() {
 			_line = GetComponent<Line>();
+			_spring = GetComponent<SpringJoint2D>();
+			_body = GetComponent<Rigidbody2D>();
 			_line.enabled = false;
+			_spring.enabled = false;
 		}
 
 		private void OnEnable() {
