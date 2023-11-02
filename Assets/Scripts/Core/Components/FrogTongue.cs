@@ -96,26 +96,36 @@ namespace Frogalypse.Components {
 
 		// Input Handlers
 		private void OnLaunchTether() {
+			if (_state is not State.Ready)
+				return;
+
 			Vector2 startPos = (Vector2) _tetherLauncher.position;
 			Vector2 target = (Vector2) _reticle.position;
 			Vector2 delta = target - startPos;
 			Vector2 direction = delta.normalized;
 			float distance = Mathf.Min(delta.magnitude, _settings.maxTravelDistance);
-
 			Vector2 velocity = direction * (distance / _settings.travelTime);
 
-			Debug.Log("Launching Tether.\n" +
+#if UNITY_EDITOR
+			Debug.Log("Launching Tether\n" +
 				$"Start Position: {startPos}\n" +
-				$"Target: {target}\n" +
-				$"Delta: {delta}\n" +
+				$"Target Position: {target}\n" +
 				$"Direction: {direction}\n" +
 				$"Distance: {distance}\n" +
 				$"Velocity: {velocity}");
+			Debug.DrawLine(startPos, startPos + direction, Color.magenta, 0.5f);
+#endif
 
+			transform.position = startPos;
 			_body.velocity = velocity;
-
+			_body.simulated = true;
+			_state = State.Travelling;
 		}
-		private void OnCancelTether() { }
+
+		private void OnCancelTether() {
+			if (_state is not State.Ready)
+				MakeReady();
+		}
 
 		#endregion
 
