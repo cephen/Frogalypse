@@ -1,5 +1,4 @@
-using System.Collections;
-
+using Frogalypse.Components;
 using Frogalypse.Input;
 using Frogalypse.Settings;
 
@@ -10,18 +9,17 @@ using SideFX;
 using UnityEngine;
 
 namespace Frogalypse {
-	[RequireComponent(typeof(Line), typeof(SpringJoint2D))]
+	[RequireComponent(typeof(Line))]
 	public class Tether : MonoBehaviour {
 		[Header("Assets")]
 		[SerializeField] private InputReader _input;
 		[SerializeField] private PlayerSettings _playerSettings;
-		[SerializeField] private TransformAnchor _tetherStartPositionAnchor;
+		[SerializeField] private TransformAnchor _hookLauncherAnchor;
 		[SerializeField] private TransformAnchor _reticleAnchor;
 
 		// Components
 		private Line _line;
-		private SpringJoint2D _spring;
-		private Rigidbody2D _body;
+		private GrapplingHook _hook;
 
 		// Fields
 		[SerializeField] private TetherState _state = TetherState.Ready;
@@ -33,11 +31,10 @@ namespace Frogalypse {
 		}
 
 		private void Awake() {
+			_hook = transform.GetChild(0).GetComponent<GrapplingHook>();
+			_hook.UpdateSettings(_playerSettings.tetherSettings);
 			_line = GetComponent<Line>();
-			_spring = GetComponent<SpringJoint2D>();
-			_body = GetComponent<Rigidbody2D>();
 			_line.enabled = false;
-			_spring.enabled = false;
 		}
 
 		private void OnEnable() {
@@ -47,6 +44,8 @@ namespace Frogalypse {
 			}
 			_input.TetherEvent += OnTether;
 			_input.TetherCancelledEvent += OnTetherCancelled;
+			_hook.HookHitEvent += OnHookHit;
+			_hook.HookMissEvent += OnHookMiss;
 		}
 
 		private void OnDisable() {
@@ -56,45 +55,49 @@ namespace Frogalypse {
 			}
 			_input.TetherEvent -= OnTether;
 			_input.TetherCancelledEvent -= OnTetherCancelled;
+			_hook.HookHitEvent -= OnHookHit;
+			_hook.HookMissEvent -= OnHookMiss;
 		}
 
 		private void Update() {
-			if (_tetherStartPositionAnchor.IsSet) {
-				_line.Start = _tetherStartPositionAnchor.Value.position;
-			} else {
-				_line.enabled = false;
+			if (!_hookLauncherAnchor.IsSet) {
+				Debug.LogError("Hook Launcher Anchor isn't set", _hookLauncherAnchor);
+				enabled = false;
+			}
+			switch (_state) {
+				case TetherState.Ready:
+					_line.enabled = false;
+					_line.End = Vector3.zero;
+					break;
+				case TetherState.Firing:
+					_line.enabled = true;
+					_line.End = _hook.transform.localPosition;
+					transform.position = _hookLauncherAnchor.Value.position;
+					break;
+				case TetherState.Attached:
+					transform.position = _hookLauncherAnchor.Value.position;
+					break;
 			}
 		}
 
 		private void OnTether() {
-			if (_state is TetherState.Ready)
-				StartCoroutine(FireTether());
-
+			if (_state is not TetherState.Ready) {
+				return;
+			}
+			_hook.Fire();
+			_state = TetherState.Firing;
 		}
 
 		private void OnTetherCancelled() {
-			_line.enabled = false;
 			_state = TetherState.Ready;
-
+			_hook.Cancel();
 		}
 
-		private IEnumerator FireTether() {
-			_state = TetherState.Firing;
-			_line.enabled = true;
-
-			Vector3 reticle = _reticleAnchor.Value.position;
-
-
-			for (float i = 0f ; i < _playerSettings.timeToHitTarget ; i += Time.deltaTime) {
-				float t = Mathf.Lerp(0f, Vector3.Distance(_tetherStartPositionAnchor.Value.position, reticle), i / _playerSettings.timeToHitTarget);
-				_line.End = Vector3.Lerp(_tetherStartPositionAnchor.Value.position, reticle, t);
-				yield return null;
-			}
-
-			// TODO: implement hitting an object
-			// TODO: implement missing an object
-			// TODO: implement hitting the max distance
-
+		private void OnHookHit(Vector2 point) {
+			_state = TetherState.Attached;
+		}
+		private void OnHookMiss() {
+			_state = TetherState.Ready;
 		}
 	}
 }
