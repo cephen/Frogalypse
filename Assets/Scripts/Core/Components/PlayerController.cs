@@ -21,6 +21,8 @@ namespace Frogalypse {
 		[SerializeField] private Transform _tetherLauncher;
 		[SerializeField] private Transform _tetherStartPoint;
 
+		[SerializeField] private FrogTongue _tongue;
+
 		// Components
 		private MoveComponent _mover;
 		private JumpComponent _jump;
@@ -34,14 +36,15 @@ namespace Frogalypse {
 
 			_tetherStartPointAnchor.Provide(_tetherStartPoint);
 			_playerAnchor.Provide(transform);
+			if (_tongue != null)
+				_tongue.UpdateSettings(_playerSettings.tetherSettings);
 			InitMoveComponent();
 			InitJumpComponent();
 		}
 
 		private void Start() {
-			if (_mainCameraAnchor.IsSet) {
+			if (_mainCameraAnchor.IsSet)
 				UpdateCameraReference();
-			}
 		}
 
 		private void Update() {

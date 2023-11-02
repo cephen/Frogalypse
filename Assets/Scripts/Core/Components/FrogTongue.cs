@@ -19,10 +19,20 @@ namespace Frogalypse.Components {
 		private TetherSettings _settings;
 		private SpringJoint2D _spring;
 		private Rigidbody2D _body;
+		private Rigidbody2D _playerBody;
 
 		private void Awake() {
 			_body = GetComponent<Rigidbody2D>();
 			_spring = GetComponent<SpringJoint2D>();
+		}
+
+		private void Start() {
+			if (_playerAnchor.IsSet)
+				_player = _playerAnchor.Value;
+			if (_tetherLauncherAnchor.IsSet)
+				_tetherLauncher = _tetherLauncherAnchor.Value;
+			if (_reticleAnchor.IsSet)
+				_reticle = _reticleAnchor.Value;
 		}
 
 		private void OnEnable() {
@@ -44,16 +54,33 @@ namespace Frogalypse.Components {
 		#region Event Handlers
 
 		// Anchor Update Handlers
-		private void OnPlayerAnchorUpdated() => _player = _playerAnchor.Value;
+		private void OnPlayerAnchorUpdated() {
+			_player = _playerAnchor.Value;
+			_playerBody = _player.GetComponent<Rigidbody2D>();
+		}
+
 		private void OnTetherLauncherAnchorUpdated() => _tetherLauncher = _tetherLauncherAnchor.Value;
 		private void OnReticleAnchorUpdated() => _reticle = _reticleAnchor.Value;
 
 		// Input Handlers
 		private void OnLaunchTether() {
-			var startPos = (Vector2) _tetherLauncher.position;
-			var target = (Vector2) _reticle.position;
-			var delta = target - startPos;
-			var direction = delta.normalized;
+			Vector2 startPos = (Vector2) _tetherLauncher.position;
+			Vector2 target = (Vector2) _reticle.position;
+			Vector2 delta = target - startPos;
+			Vector2 direction = delta.normalized;
+			float distance = Mathf.Min(delta.magnitude, _settings.maxTravelDistance);
+
+			Vector2 velocity = direction * (distance / _settings.travelTime);
+
+			Debug.Log("Launching Tether.\n" +
+				$"Start Position: {startPos}\n" +
+				$"Target: {target}\n" +
+				$"Delta: {delta}\n" +
+				$"Direction: {direction}\n" +
+				$"Distance: {distance}\n" +
+				$"Velocity: {velocity}");
+
+			_body.velocity = velocity;
 
 		}
 		private void OnCancelTether() { }

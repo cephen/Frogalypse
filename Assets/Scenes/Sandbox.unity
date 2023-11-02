@@ -772,6 +772,97 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1907026873
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1907026877}
+  - component: {fileID: 1907026876}
+  - component: {fileID: 1907026875}
+  - component: {fileID: 1907026874}
+  m_Layer: 0
+  m_Name: Tongue
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1907026874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1907026873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b851f11a6b7c3f4ebf755e477791ddf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _input: {fileID: 11400000, guid: 0f714ea4d2c5f8048982a4cd167d05da, type: 2}
+  _playerAnchor: {fileID: 11400000, guid: a154207a5ced87cf4bdcf43be57a68b6, type: 2}
+  _tetherLauncherAnchor: {fileID: 11400000, guid: ee2f54d630683124ea75a04fdfa31143, type: 2}
+  _reticleAnchor: {fileID: 11400000, guid: 1e81bd72df752ab7a912cb98dc18b59a, type: 2}
+--- !u!231 &1907026875
+SpringJoint2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1907026873}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_EnableCollision: 0
+  m_ConnectedRigidBody: {fileID: 0}
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_AutoConfigureConnectedAnchor: 0
+  m_Anchor: {x: 0, y: 0}
+  m_ConnectedAnchor: {x: 0, y: 0}
+  m_AutoConfigureDistance: 1
+  m_Distance: 0.005
+  m_DampingRatio: 0
+  m_Frequency: 1
+--- !u!50 &1907026876
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1907026873}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 1
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 4
+--- !u!4 &1907026877
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1907026873}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1992127329
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -826,6 +917,14 @@ PrefabInstance:
     - target: {fileID: 7176246646053938273, guid: f68d8550d93e159418493105c0032a66, type: 3}
       propertyPath: m_Name
       value: Tether
+      objectReference: {fileID: 0}
+    - target: {fileID: 7176246646053938273, guid: f68d8550d93e159418493105c0032a66, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260540768634219543, guid: f68d8550d93e159418493105c0032a66, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f68d8550d93e159418493105c0032a66, type: 3}
@@ -951,6 +1050,10 @@ PrefabInstance:
       propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[1].outWeight
       value: 0.10616438
       objectReference: {fileID: 0}
+    - target: {fileID: 3541486581230153472, guid: 84297716b697fcd47add9350df3b235e, type: 3}
+      propertyPath: _tongue
+      value: 
+      objectReference: {fileID: 1907026874}
     - target: {fileID: 3541486581230153473, guid: 84297716b697fcd47add9350df3b235e, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -998,6 +1101,10 @@ PrefabInstance:
     - target: {fileID: 3541486581230153479, guid: 84297716b697fcd47add9350df3b235e, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 3541486581230153479, guid: 84297716b697fcd47add9350df3b235e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 84297716b697fcd47add9350df3b235e, type: 3}
@@ -1055,6 +1162,10 @@ PrefabInstance:
     - target: {fileID: 7365762063447835499, guid: 5657c94f3ac51624286537da0eb916f0, type: 3}
       propertyPath: m_Name
       value: Reticle
+      objectReference: {fileID: 0}
+    - target: {fileID: 7365762063447835499, guid: 5657c94f3ac51624286537da0eb916f0, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5657c94f3ac51624286537da0eb916f0, type: 3}
