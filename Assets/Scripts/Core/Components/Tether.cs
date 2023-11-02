@@ -45,7 +45,7 @@ namespace Frogalypse {
 		private void OnEnable() {
 			if (_input == null) {
 				Debug.LogError("Input Reader isn't set", _input);
-				Destroy(gameObject);
+				return;
 			}
 			_input.TetherEvent += OnTether;
 			_input.TetherCancelledEvent += OnTetherCancelled;
@@ -54,7 +54,7 @@ namespace Frogalypse {
 		private void OnDisable() {
 			if (_input == null) {
 				Debug.LogError("Input Reader isn't set", _input);
-				Destroy(gameObject);
+				return;
 			}
 			_input.TetherEvent -= OnTether;
 			_input.TetherCancelledEvent -= OnTetherCancelled;
