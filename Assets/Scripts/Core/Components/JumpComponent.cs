@@ -43,6 +43,13 @@ namespace Frogalypse.Components {
 		public void ProvideSettings(JumpSettings settings) => _settings = settings;
 		public void SetGroundContactFilter(ContactFilter2D filter) => _contactFilter = filter;
 
+		private void OnCollisionEnter2D() {
+			if (IsGrounded()) {
+				_state = JumpState.Grounded;
+				_body.gravityScale = 1f;
+			}
+		}
+
 		private bool IsGrounded() {
 			// The length of the array determines the number of hits to gather
 			// Since only colliders that pass through the contact filter will be counted,
