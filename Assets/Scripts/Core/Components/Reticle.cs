@@ -71,7 +71,7 @@ namespace Frogalypse {
 
 			for (int i = 0 ; i < numHits ; i++) {
 				RaycastHit2D hit = _targets[i];
-				if (hit.distance < _playerSettings.tetherSettings.maxLength) {
+				if (hit.distance < _playerSettings.tetherSettings.maxTravelDistance) {
 					Debug.DrawLine(playerPos, hit.point, Color.green);
 					// If the mouse is further away than the hit point
 					return positionDelta.magnitude > hit.distance
@@ -83,7 +83,7 @@ namespace Frogalypse {
 			}
 
 			// This code is only reached if there are no valid targets
-			Debug.DrawLine(playerPos, playerPos + aimDirection * _playerSettings.tetherSettings.maxLength, Color.red);
+			Debug.DrawLine(playerPos, playerPos + aimDirection * _playerSettings.tetherSettings.maxTravelDistance, Color.red);
 			return (false, mousePos);
 		}
 	}
