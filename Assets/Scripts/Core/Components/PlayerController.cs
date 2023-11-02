@@ -46,6 +46,10 @@ namespace Frogalypse {
 			}
 		}
 
+		private void Update() {
+			SetLauncherPivotAngle();
+		}
+
 		private void OnEnable() {
 			if (_input == null) {
 				Debug.LogError("Input Reader isn't set D:", _input);
@@ -80,6 +84,13 @@ namespace Frogalypse {
 
 		private void UpdateCameraReference() {
 			_camera = _mainCameraAnchor.Value.GetComponent<Camera>();
+		}
+
+		private void SetLauncherPivotAngle() {
+			Vector2 target = (Vector2) _camera.ScreenToWorldPoint(_input.MousePosition);
+			Vector2 delta = target - (Vector2) transform.position;
+			float angle = Vector2.SignedAngle(Vector3.up, delta);
+			_tetherLauncherPivot.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 		}
 	}
 }
