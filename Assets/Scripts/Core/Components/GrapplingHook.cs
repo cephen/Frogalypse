@@ -12,12 +12,12 @@ namespace Frogalypse.Components {
 		/// <summary>
 		/// Invoked when the hook hits a tetherable object
 		/// </summary>
-		public event Action<Vector2> HookHitEvent = delegate { };
+		public event Action HitEvent = delegate { };
 
 		/// <summary>
 		/// Invoked when the hook reaches the max distance from the player
 		/// </summary>
-		public event Action HookMissEvent = delegate { };
+		public event Action MissEvent = delegate { };
 
 		[SerializeField] private TransformAnchor _playerTransform;
 		[SerializeField] private TransformAnchor _reticleTransform;
@@ -60,7 +60,7 @@ namespace Frogalypse.Components {
 			// Early exit if tether length is beyond maximum
 			if (Vector2.Distance(startPos, _body.position) > _settings.maxLength) {
 				ResetSpring();
-				HookMissEvent?.Invoke();
+				MissEvent?.Invoke();
 				return;
 			}
 
@@ -81,7 +81,7 @@ namespace Frogalypse.Components {
 					_spring.enabled = true;
 
 					_isTravelling = false;
-					HookHitEvent?.Invoke(hit.point);
+					HitEvent?.Invoke();
 					return;
 				}
 			}

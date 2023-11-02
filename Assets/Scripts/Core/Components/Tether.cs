@@ -42,10 +42,11 @@ namespace Frogalypse {
 				Debug.LogError("Input Reader isn't set", _input);
 				return;
 			}
-			_input.TetherEvent += OnTether;
+			_input.TetherEvent += OnLaunchTether;
 			_input.TetherCancelledEvent += OnTetherCancelled;
-			_hook.HookHitEvent += OnHookHit;
-			_hook.HookMissEvent += OnHookMiss;
+			_hook.HitEvent += OnHookHit;
+			_hook.MissEvent += OnHookMiss;
+			_line.enabled = false;
 		}
 
 		private void OnDisable() {
@@ -53,10 +54,11 @@ namespace Frogalypse {
 				Debug.LogError("Input Reader isn't set", _input);
 				return;
 			}
-			_input.TetherEvent -= OnTether;
+			_input.TetherEvent -= OnLaunchTether;
 			_input.TetherCancelledEvent -= OnTetherCancelled;
-			_hook.HookHitEvent -= OnHookHit;
-			_hook.HookMissEvent -= OnHookMiss;
+			_hook.HitEvent -= OnHookHit;
+			_hook.MissEvent -= OnHookMiss;
+			_line.enabled = false;
 		}
 
 		private void Update() {
@@ -93,11 +95,7 @@ namespace Frogalypse {
 			_hook.Cancel();
 		}
 
-		private void OnHookHit(Vector2 point) {
-			_state = TetherState.Attached;
-		}
-		private void OnHookMiss() {
-			_state = TetherState.Ready;
-		}
+		private void OnHookHit() => _state = TetherState.Attached;
+		private void OnHookMiss() => _state = TetherState.Ready;
 	}
 }
