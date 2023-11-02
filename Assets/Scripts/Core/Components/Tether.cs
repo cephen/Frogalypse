@@ -34,7 +34,6 @@ namespace Frogalypse {
 			_hook = transform.GetChild(0).GetComponent<GrapplingHook>();
 			_hook.UpdateSettings(_playerSettings.tetherSettings);
 			_line = GetComponent<Line>();
-			_line.enabled = false;
 		}
 
 		private void OnEnable() {
@@ -74,12 +73,13 @@ namespace Frogalypse {
 				case TetherState.Firing:
 					_line.enabled = true;
 					_line.End = _hook.transform.localPosition;
-					transform.position = _hookLauncherAnchor.Value.position;
 					break;
 				case TetherState.Attached:
-					transform.position = _hookLauncherAnchor.Value.position;
+					_line.enabled = true;
+					_line.End = _hook.transform.localPosition;
 					break;
 			}
+			transform.position = _hookLauncherAnchor.Value.position;
 		}
 
 		private void OnTether() {
