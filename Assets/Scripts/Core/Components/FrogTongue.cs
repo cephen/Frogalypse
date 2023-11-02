@@ -41,6 +41,8 @@ namespace Frogalypse.Components {
 
 			if (_reticleAnchor.IsSet)
 				OnReticleAnchorUpdated();
+
+			MakeReady();
 		}
 
 		private void OnEnable() {
@@ -57,6 +59,17 @@ namespace Frogalypse.Components {
 			_reticleAnchor.OnAnchorUpdated -= OnReticleAnchorUpdated;
 			_input.TetherEvent -= OnLaunchTether;
 			_input.TetherCancelledEvent -= OnCancelTether;
+		}
+
+		private void MakeReady() {
+			_body.simulated = false;
+			_body.bodyType = RigidbodyType2D.Dynamic;
+			_body.velocity = Vector2.zero;
+			_spring.enabled = false;
+			_spring.connectedBody = null;
+			_spring.distance = 0;
+			_spring.autoConfigureDistance = false;
+			_state = State.Ready;
 		}
 
 		#region Event Handlers
