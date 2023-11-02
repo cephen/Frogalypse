@@ -72,6 +72,17 @@ namespace Frogalypse.Components {
 			_state = State.Ready;
 		}
 
+		private void MakeAnchored(RaycastHit2D hit) {
+			Debug.Log($"Anchoring to object {hit.collider.name} at position {hit.point}. Distance to player: {Vector2.Distance(_body.position, _playerBody.position)}m");
+			_body.velocity = Vector2.zero;
+			_body.bodyType = RigidbodyType2D.Static;
+			transform.position = hit.point;
+			_spring.connectedBody = _playerBody;
+			_spring.distance = Mathf.Min(Vector2.Distance(_body.position, _tetherLauncher.position), _settings.targetLength);
+			_spring.enabled = true;
+			_state = State.Anchored;
+		}
+
 		#region Event Handlers
 
 		// Anchor Update Handlers
