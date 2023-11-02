@@ -39,19 +39,25 @@ namespace Frogalypse {
 		}
 
 		private void OnEnable() {
-			if (_input != null) {
-				_input.MoveEvent += _mover.ProvideInput;
-				_input.JumpEvent += _jump.OnJump;
-				_input.JumpCancelledEvent += _jump.OnJumpCancelled;
+			if (_input == null) {
+				Debug.LogError("Input Reader isn't set D:", _input);
+				return;
 			}
+			_input.MoveEvent += _mover.ProvideInput;
+			_input.JumpEvent += _jump.OnJump;
+			_input.JumpCancelledEvent += _jump.OnJumpCancelled;
+			_mainCameraAnchor.OnAnchorUpdated += UpdateCameraReference;
 		}
 
 		private void OnDisable() {
-			if (_input != null) {
-				_input.MoveEvent -= _mover.ProvideInput;
-				_input.JumpEvent -= _jump.OnJump;
-				_input.JumpCancelledEvent -= _jump.OnJumpCancelled;
+			if (_input == null) {
+				Debug.LogError("Input Reader isn't set D:", _input);
+				return;
 			}
+			_input.MoveEvent -= _mover.ProvideInput;
+			_input.JumpEvent -= _jump.OnJump;
+			_input.JumpCancelledEvent -= _jump.OnJumpCancelled;
+			_mainCameraAnchor.OnAnchorUpdated -= UpdateCameraReference;
 		}
 
 		private void SetPlayerTransformAnchor() {
