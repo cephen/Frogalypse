@@ -34,10 +34,10 @@ namespace Frogalypse {
 				return;
 			}
 
-			InitTether();
+			_tetherStartPointAnchor.Provide(_tetherStartPoint);
+			_playerAnchor.Provide(transform);
 			InitMoveComponent();
 			InitJumpComponent();
-			SetPlayerTransformAnchor();
 		}
 
 		private void Start() {
@@ -66,28 +66,6 @@ namespace Frogalypse {
 			_input.JumpEvent -= _jump.OnJump;
 			_input.JumpCancelledEvent -= _jump.OnJumpCancelled;
 			_mainCameraAnchor.OnAnchorUpdated -= UpdateCameraReference;
-		}
-
-		private void SetPlayerTransformAnchor() {
-			if (_playerAnchor == null) {
-				Debug.LogError("Reference to Player Anchor isn't set D:", _playerAnchor);
-				Destroy(this);
-			} else {
-				_playerAnchor.Provide(transform);
-			}
-		}
-
-		private void InitTether() {
-			_tetherStartPointAnchor.Provide(_tetherStartPoint);
-			// Get reference to or add SpringJoint2D
-			_tetherSpring = TryGetComponent(out SpringJoint2D component) ? component : gameObject.AddComponent<SpringJoint2D>();
-
-			_tetherSpring.enabled = false;
-			_tetherSpring.enableCollision = false;
-			_tetherSpring.autoConfigureDistance = false;
-			_tetherSpring.breakForce = Mathf.Infinity;
-			_tetherSpring.breakTorque = Mathf.Infinity;
-			_tetherSpring.dampingRatio = 0.9f;
 		}
 
 		private void InitMoveComponent() {
