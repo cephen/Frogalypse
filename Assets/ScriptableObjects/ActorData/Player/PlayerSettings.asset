@@ -13,24 +13,24 @@ MonoBehaviour:
   m_Name: PlayerSettings
   m_EditorClassIdentifier: 
   MoveSettings: {fileID: 11400000, guid: 52f273ff262654846931955c22adf89a, type: 2}
-  JumpSettings: {fileID: 11400000, guid: c9f1e1965bcd9b142a29cb9300a935ec, type: 2}
-  maxGrappleDistance: 8
-  grappleContactFilter:
-    useTriggers: 0
-    useLayerMask: 1
-    useDepth: 0
-    useOutsideDepth: 0
-    useNormalAngle: 0
-    useOutsideNormalAngle: 0
-    layerMask:
-      serializedVersion: 2
-      m_Bits: 3072
-    minDepth: 0
-    maxDepth: 0
-    minNormalAngle: 0
-    maxNormalAngle: 0
-  timeToHitTarget: 0.5
-  reelingSpeed: 1
+  tetherSettings:
+    maxLength: 8
+    targetLength: 6
+    travelTime: 0.5
+    contactFilter:
+      useTriggers: 0
+      useLayerMask: 1
+      useDepth: 0
+      useOutsideDepth: 0
+      useNormalAngle: 0
+      useOutsideNormalAngle: 0
+      layerMask:
+        serializedVersion: 2
+        m_Bits: 3072
+      minDepth: 0
+      maxDepth: 0
+      minNormalAngle: 0
+      maxNormalAngle: 0
   firingSpeedCurve:
     serializedVersion: 2
     m_Curve:
@@ -48,30 +48,6 @@ MonoBehaviour:
       value: 1
       inSlope: 0
       outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reelingSpeedCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 2
-      outSlope: 2
       tangentMode: 0
       weightedMode: 0
       inWeight: 0

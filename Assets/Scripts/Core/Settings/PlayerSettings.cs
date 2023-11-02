@@ -7,11 +7,17 @@ namespace Frogalypse.Settings {
 		public ActorMoveSettings MoveSettings;
 
 		[Header("Tether")]
-		public float maxGrappleDistance;
-		public ContactFilter2D grappleContactFilter;
+		public TetherSettings tetherSettings;
 
 		[Header("Animation")]
-		public float timeToHitTarget = 0.5f;
 		public AnimationCurve firingSpeedCurve;
+	}
+
+	[System.Serializable]
+	public struct TetherSettings {
+		public float maxLength;
+		public float targetLength;
+		public float travelTime;
+		public ContactFilter2D contactFilter;
 	}
 }
