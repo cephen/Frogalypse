@@ -1,11 +1,11 @@
-using Frogalypse.Settings;
+﻿using Frogalypse.Settings;
 
 using UnityEngine;
 
 namespace Frogalypse.Components {
 	[RequireComponent(typeof(Rigidbody2D))]
 	public class JumpComponent : MonoBehaviour {
-		[SerializeField] private JumpSettings _settings;
+		[SerializeField] private float _jumpForce;
 		[SerializeField] private float _fallingGravityScale = 1f;
 
 		private Rigidbody2D _body;
@@ -37,10 +37,14 @@ namespace Frogalypse.Components {
 			if (!IsGrounded()) {
 				return;
 			}
-			_body.AddForce(Vector2.up * _settings.JumpForce, ForceMode2D.Impulse);
+			_body.AddForce(Vector2.up * _jumpForce, ForceMode2D.Impulse);
+			_state = JumpState.Rising;
 		}
 
-		public void ProvideSettings(JumpSettings settings) => _settings = settings;
+		public void OnJumpCancelled() {
+			_state = JumpState.Falling;
+		}
+
 		public void SetGroundContactFilter(ContactFilter2D filter) => _contactFilter = filter;
 
 		private void OnCollisionEnter2D() {

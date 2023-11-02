@@ -83,7 +83,6 @@ namespace Frogalypse {
 
 		private void InitJumpComponent() {
 			_jump = TryGetComponent(out JumpComponent component) ? component : gameObject.AddComponent<JumpComponent>();
-			_jump.ProvideSettings(_playerSettings.JumpSettings);
 			_jump.SetGroundContactFilter(_playerSettings.MoveSettings.GroundContactFilter);
 		}
 	}
