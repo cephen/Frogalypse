@@ -24,14 +24,12 @@ namespace Frogalypse {
 		private Rigidbody2D _body;
 
 		// Fields
-		[SerializeField] private TetherState _state = TetherState.Disabled;
+		[SerializeField] private TetherState _state = TetherState.Ready;
 
 		private enum TetherState : byte {
-			Ready = 0,
-			Firing = 1,
-			Attached = 2,
-			Reeling = 3,
-			Disabled = 4,
+			Ready,
+			Firing,
+			Attached,
 		}
 
 		private void Awake() {
@@ -76,7 +74,7 @@ namespace Frogalypse {
 
 		private void OnTetherCancelled() {
 			_line.enabled = false;
-			_state = TetherState.Reeling;
+			_state = TetherState.Ready;
 
 		}
 
