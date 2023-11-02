@@ -1,4 +1,4 @@
-using Frogalypse.Input;
+﻿using Frogalypse.Input;
 using Frogalypse.Settings;
 
 using SideFX;
@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Frogalypse.Components {
 	[RequireComponent(typeof(SpringJoint2D))]
-	public class FrogTongue : MonoBehaviour {
+	internal class FrogTongue : MonoBehaviour {
 		[SerializeField] private InputReader _input;
 		[SerializeField] private TransformAnchor _playerAnchor;
 		[SerializeField] private TransformAnchor _tetherLauncherAnchor;
@@ -93,6 +93,9 @@ namespace Frogalypse.Components {
 		}
 
 		#endregion
+
+		internal void UpdateSettings(TetherSettings settings) => _settings = settings;
+
 		private void MakeReady() {
 			_body.simulated = false;
 			_body.bodyType = RigidbodyType2D.Dynamic;
@@ -161,7 +164,6 @@ namespace Frogalypse.Components {
 
 		#endregion
 
-		internal void UpdateSettings(TetherSettings settings) => _settings = settings;
 
 	}
 }
