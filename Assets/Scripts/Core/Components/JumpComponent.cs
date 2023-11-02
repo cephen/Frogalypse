@@ -1,4 +1,4 @@
-﻿using Frogalypse.Settings;
+using Frogalypse.Settings;
 
 using UnityEngine;
 
@@ -6,11 +6,32 @@ namespace Frogalypse.Components {
 	[RequireComponent(typeof(Rigidbody2D))]
 	public class JumpComponent : MonoBehaviour {
 		[SerializeField] private JumpSettings _settings;
+		[SerializeField] private float _fallingGravityScale = 1f;
 
 		private Rigidbody2D _body;
 		private ContactFilter2D _contactFilter;
+		private JumpState _state = JumpState.Grounded;
+
+		private enum JumpState : byte {
+			Grounded, Rising, Falling
+		}
 
 		private void Awake() => _body = TryGetComponent(out Rigidbody2D component) ? component : gameObject.AddComponent<Rigidbody2D>();
+
+		private void FixedUpdate() {
+			switch (_state) {
+				case JumpState.Rising:
+					if (_body.velocity.y < 0f) {
+						_state = JumpState.Falling;
+					}
+					break;
+				case JumpState.Falling:
+					_body.gravityScale = _fallingGravityScale;
+					break;
+				default:
+					break;
+			}
+		}
 
 		public void OnJump() {
 			if (!IsGrounded()) {
