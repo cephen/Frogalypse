@@ -10,7 +10,7 @@ using SideFX;
 using UnityEngine;
 
 namespace Frogalypse {
-	[RequireComponent(typeof(Line))]
+	[RequireComponent(typeof(Line), typeof(SpringJoint2D))]
 	public class Tether : MonoBehaviour {
 		[Header("Assets")]
 		[SerializeField] private InputReader _input;

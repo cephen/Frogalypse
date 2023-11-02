@@ -13,7 +13,6 @@ namespace Frogalypse {
 		[SerializeField] private InputReader _input;
 		[SerializeField] private PlayerSettings _playerSettings;
 		[SerializeField] private TransformAnchor _playerAnchor;
-		[SerializeField] private TransformAnchor _reticleAnchor;
 		[SerializeField] private TransformAnchor _tetherStartPointAnchor;
 		[SerializeField] private TransformAnchor _mainCameraAnchor;
 
@@ -23,7 +22,6 @@ namespace Frogalypse {
 		[SerializeField] private Transform _tetherStartPoint;
 
 		// Components
-		private SpringJoint2D _tetherSpring;
 		private MoveComponent _mover;
 		private JumpComponent _jump;
 		private Camera _camera;
