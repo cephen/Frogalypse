@@ -15,6 +15,7 @@ namespace Frogalypse {
 		[SerializeField] private TransformAnchor _playerAnchor;
 		[SerializeField] private TransformAnchor _reticleAnchor;
 		[SerializeField] private TransformAnchor _tetherStartPointAnchor;
+		[SerializeField] private TransformAnchor _mainCameraAnchor;
 
 		[Header("Child Transforms")]
 		[SerializeField] private Transform _tetherLauncherPivot;
@@ -25,6 +26,7 @@ namespace Frogalypse {
 		private SpringJoint2D _tetherSpring;
 		private MoveComponent _mover;
 		private JumpComponent _jump;
+		private Camera _camera;
 
 		private void Awake() {
 			if (_input == null) {
@@ -36,6 +38,12 @@ namespace Frogalypse {
 			InitMoveComponent();
 			InitJumpComponent();
 			SetPlayerTransformAnchor();
+		}
+
+		private void Start() {
+			if (_mainCameraAnchor.IsSet) {
+				UpdateCameraReference();
+			}
 		}
 
 		private void OnEnable() {
@@ -90,6 +98,10 @@ namespace Frogalypse {
 		private void InitJumpComponent() {
 			_jump = TryGetComponent(out JumpComponent component) ? component : gameObject.AddComponent<JumpComponent>();
 			_jump.SetGroundContactFilter(_playerSettings.MoveSettings.GroundContactFilter);
+		}
+
+		private void UpdateCameraReference() {
+			_camera = _mainCameraAnchor.Value.GetComponent<Camera>();
 		}
 	}
 }
