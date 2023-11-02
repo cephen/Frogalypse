@@ -82,7 +82,7 @@ namespace Frogalypse {
 			transform.position = _hookLauncherAnchor.Value.position;
 		}
 
-		private void OnTether() {
+		private void OnLaunchTether() {
 			if (_state is not TetherState.Ready) {
 				return;
 			}
@@ -92,7 +92,7 @@ namespace Frogalypse {
 
 		private void OnTetherCancelled() {
 			_state = TetherState.Ready;
-			_hook.Cancel();
+			_hook.Reload();
 		}
 
 		private void OnHookHit() => _state = TetherState.Attached;

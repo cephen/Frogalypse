@@ -115,10 +115,12 @@ namespace Frogalypse.Components {
 			_isTravelling = true;
 		}
 
-		public void Cancel() {
-			ResetSpring();
-			_isTravelling = false;
+		public void Reload() {
+			transform.localPosition = Vector2.zero;
 			_body.velocity = Vector2.zero;
+			_isTravelling = false;
+
+			ResetSpring();
 		}
 
 		private void ResetSpring() {
