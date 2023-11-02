@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MoveSettings: {fileID: 11400000, guid: 52f273ff262654846931955c22adf89a, type: 2}
   tetherSettings:
-    maxLength: 8
     targetLength: 6
     travelTime: 0.5
+    maxTravelDistance: 10
     contactFilter:
       useTriggers: 0
       useLayerMask: 1
