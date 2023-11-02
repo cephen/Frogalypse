@@ -21,6 +21,12 @@ namespace Frogalypse.Components {
 		private Rigidbody2D _body;
 		private Rigidbody2D _playerBody;
 
+		private State _state = State.Ready;
+
+		private enum State {
+			Ready, Travelling, Anchored
+		}
+
 		private void Awake() {
 			_body = GetComponent<Rigidbody2D>();
 			_spring = GetComponent<SpringJoint2D>();
