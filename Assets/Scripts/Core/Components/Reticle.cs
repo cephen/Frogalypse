@@ -67,7 +67,7 @@ namespace Frogalypse {
 			Vector2 positionDelta = mousePos - playerPos;
 			Vector2 aimDirection = positionDelta.normalized;
 
-			int numHits = Physics2D.Raycast(playerPos, aimDirection, _playerSettings.grappleContactFilter, _targets);
+			int numHits = Physics2D.CircleCast(playerPos, 0.3f, aimDirection, _playerSettings.grappleContactFilter, _targets);
 
 			for (int i = 0 ; i < numHits ; i++) {
 				RaycastHit2D hit = _targets[i];
