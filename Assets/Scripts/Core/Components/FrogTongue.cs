@@ -1,4 +1,4 @@
-﻿using Frogalypse.Input;
+using Frogalypse.Input;
 using Frogalypse.Settings;
 
 using SideFX;
@@ -28,11 +28,13 @@ namespace Frogalypse.Components {
 
 		private void Start() {
 			if (_playerAnchor.IsSet)
-				_player = _playerAnchor.Value;
+				OnPlayerAnchorUpdated();
+
 			if (_tetherLauncherAnchor.IsSet)
-				_tetherLauncher = _tetherLauncherAnchor.Value;
+				OnTetherLauncherAnchorUpdated();
+
 			if (_reticleAnchor.IsSet)
-				_reticle = _reticleAnchor.Value;
+				OnReticleAnchorUpdated();
 		}
 
 		private void OnEnable() {
