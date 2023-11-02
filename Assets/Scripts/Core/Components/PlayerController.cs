@@ -28,8 +28,8 @@ namespace Frogalypse {
 
 		private void Awake() {
 			if (_input == null) {
-				Debug.LogError($"Input Reader isn't set D:");
-				Destroy(this);
+				Debug.LogError($"Input Reader isn't set D:", _input);
+				return;
 			}
 
 			InitTether();
