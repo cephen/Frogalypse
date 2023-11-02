@@ -15,9 +15,9 @@ namespace Frogalypse.Settings {
 
 	[System.Serializable]
 	public struct TetherSettings {
-		public float maxLength;
 		public float targetLength;
 		public float travelTime;
+		public float maxTravelDistance;
 		public ContactFilter2D contactFilter;
 	}
 }

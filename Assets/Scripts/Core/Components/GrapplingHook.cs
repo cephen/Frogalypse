@@ -58,7 +58,7 @@ namespace Frogalypse.Components {
 			Vector2 startPos = (Vector2) _hookLauncherTransform.Value.position;
 
 			// Early exit if tether length is beyond maximum
-			if (Vector2.Distance(startPos, _body.position) > _settings.maxLength) {
+			if (Vector2.Distance(startPos, _body.position) > _settings.maxTravelDistance) {
 				ResetSpring();
 				MissEvent?.Invoke();
 				return;
@@ -72,7 +72,8 @@ namespace Frogalypse.Components {
 				RaycastHit2D hit = hitBuffer[i];
 				float totalDistance = Vector2.Distance(startPos, hit.point);
 
-				if (totalDistance < _settings.maxLength) {
+				if (totalDistance < _settings.maxTravelDistance) {
+					Debug.Log($"Attaching hook to object {hit.collider.name}");
 					_body.MovePosition(hit.point);
 					_body.velocity = Vector2.zero;
 
@@ -103,8 +104,8 @@ namespace Frogalypse.Components {
 			int numHits = Physics2D.Raycast(startPos, direction, _settings.contactFilter, hits);
 
 			float distance = numHits switch {
-				0 => _settings.maxLength,
-				_ => Mathf.Min(_settings.maxLength, Vector2.Distance(startPos, hits[0].point)),
+				0 => _settings.maxTravelDistance,
+				_ => Mathf.Min(_settings.maxTravelDistance, delta.magnitude),
 			};
 
 			float speed = distance / _settings.travelTime;
