@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e0e9d546bd0fba49b87be5d661214e7, type: 3}
   m_Name: PlayerMoveSettings
   m_EditorClassIdentifier: 
-  MaxWalkSpeed: 16
-  WalkAcceleration: 20
-  WalkDeceleration: 24
+  MaxWalkSpeed: 12
+  WalkAcceleration: 14
+  WalkDeceleration: 16
   CanAirControl: 1
-  AirControlUpAcceleration: 3
-  AirControlDownAcceleration: 3
-  AirControlSideAcceleration: 3
-  AirControlDeceleration: 10
+  AirControlUpAcceleration: 1.5
+  AirControlDownAcceleration: 2
+  AirControlSideAcceleration: 6
+  AirControlDeceleration: 2
   UseGravity: 1
   GroundContactFilter:
     useTriggers: 0

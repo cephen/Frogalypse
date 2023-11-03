@@ -15,7 +15,7 @@ MonoBehaviour:
   MoveSettings: {fileID: 11400000, guid: 52f273ff262654846931955c22adf89a, type: 2}
   tetherSettings:
     targetLength: 4
-    travelTime: 0.5
+    travelTime: 0.2
     maxTravelDistance: 20
     contactFilter:
       useTriggers: 0
