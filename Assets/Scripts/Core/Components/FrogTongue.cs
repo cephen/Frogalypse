@@ -1,12 +1,14 @@
-using Frogalypse.Input;
+﻿using Frogalypse.Input;
 using Frogalypse.Settings;
+
+using Shapes;
 
 using SideFX;
 
 using UnityEngine;
 
 namespace Frogalypse.Components {
-	[RequireComponent(typeof(SpringJoint2D))]
+	[RequireComponent(typeof(SpringJoint2D), typeof(Line))]
 	internal class FrogTongue : MonoBehaviour {
 		[SerializeField] private InputReader _input;
 		[SerializeField] private TransformAnchor _playerAnchor;
@@ -20,8 +22,10 @@ namespace Frogalypse.Components {
 		private SpringJoint2D _spring;
 		private Rigidbody2D _body;
 		private Rigidbody2D _playerBody;
+		private Line _line;
 
 		private State _state = State.Ready;
+		private Vector2 _anchorPoint;
 
 		private enum State {
 			Ready, Travelling, Anchored
@@ -32,6 +36,7 @@ namespace Frogalypse.Components {
 		private void Awake() {
 			_body = GetComponent<Rigidbody2D>();
 			_spring = GetComponent<SpringJoint2D>();
+			_line = GetComponent<Line>();
 		}
 
 		private void Start() {
@@ -61,6 +66,24 @@ namespace Frogalypse.Components {
 			_reticleAnchor.OnAnchorUpdated -= OnReticleAnchorUpdated;
 			_input.TetherEvent -= OnLaunchTether;
 			_input.TetherCancelledEvent -= OnCancelTether;
+		}
+
+		private void Update() {
+			// Start of the line tracks the player
+			if (_state is not State.Ready) {
+				Vector2 playerHookPositionDelta = _player.position - transform.position;
+				Vector2 direction = playerHookPositionDelta.normalized;
+				float distance = playerHookPositionDelta.magnitude;
+				_line.Start = direction * distance;
+			}
+
+			// Prevents the end of the line from moving around with the anchor point of the spring joint
+			if (_state is State.Anchored) {
+				Vector2 anchorPositionDelta = _anchorPoint - (Vector2) transform.position;
+				Vector2 direction = anchorPositionDelta.normalized;
+				float distance = anchorPositionDelta.magnitude;
+				_line.End = direction * distance;
+			}
 		}
 
 		private void FixedUpdate() {
@@ -95,6 +118,9 @@ namespace Frogalypse.Components {
 			_spring.connectedBody = null;
 			_spring.distance = 0;
 			_spring.autoConfigureDistance = false;
+			_line.enabled = false;
+			_line.Start = Vector3.zero;
+			_line.End = Vector3.zero;
 			_state = State.Ready;
 		}
 
@@ -103,6 +129,7 @@ namespace Frogalypse.Components {
 			_body.velocity = Vector2.zero;
 			_body.bodyType = RigidbodyType2D.Static;
 			transform.position = hit.point;
+			_anchorPoint = hit.point;
 			_spring.connectedBody = _playerBody;
 			_spring.distance = Mathf.Min(Vector2.Distance(_body.position, _tetherLauncher.position), _settings.targetLength);
 			_spring.enabled = true;
@@ -145,6 +172,7 @@ namespace Frogalypse.Components {
 			transform.position = startPos;
 			_body.velocity = velocity;
 			_body.simulated = true;
+			_line.enabled = true;
 			_state = State.Travelling;
 		}
 
@@ -154,7 +182,5 @@ namespace Frogalypse.Components {
 		}
 
 		#endregion
-
-
 	}
 }
