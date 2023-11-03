@@ -814,6 +814,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 539035796036785741, guid: 84297716b697fcd47add9350df3b235e, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d8dcf53039a8e5f468fb44f7e1a08f76, type: 2}
     - target: {fileID: 3541486581154232535, guid: 84297716b697fcd47add9350df3b235e, type: 3}
       propertyPath: m_Positions.Array.size
       value: 5
@@ -942,6 +946,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5660408141275107639, guid: 84297716b697fcd47add9350df3b235e, type: 3}
+      propertyPath: m_DampingRatio
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8229777421281984619, guid: 84297716b697fcd47add9350df3b235e, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 43100795730674332, guid: a3d1f56cebf202c448b6fb479f61a9dc, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 84297716b697fcd47add9350df3b235e, type: 3}
 --- !u!1001 &7365762063108252779
