@@ -1,4 +1,4 @@
-﻿using Frogalypse.Input;
+using Frogalypse.Input;
 using Frogalypse.Settings;
 
 using SideFX;
@@ -64,31 +64,22 @@ namespace Frogalypse.Components {
 		}
 
 		private void FixedUpdate() {
-			switch (_state) {
-				case State.Ready:
-					break;
-				case State.Travelling:
-					// Cancel ability when tip is too far from player
-					if (Vector2.Distance(_tetherLauncher.position, _body.position) > _settings.maxTravelDistance) {
-						MakeReady();
-						return;
-					}
+			if (_state is State.Travelling) {
+				// Cancel ability when tip is too far from player
+				if (Vector2.Distance(_tetherLauncher.position, _body.position) > _settings.maxTravelDistance) {
+					MakeReady();
+					return;
+				}
 
-					// Check ahead for collisions
-					// Filters are used, so only consider the first valid object
-					var hits = new RaycastHit2D[1];
-					Vector2 direction = _body.velocity.normalized;
-					float checkDistance = _body.velocity.magnitude * Time.deltaTime;
+				// Check ahead for collisions
+				// Filters are used, so only consider the first valid object
+				var hits = new RaycastHit2D[1];
+				Vector2 direction = _body.velocity.normalized;
+				float checkDistance = _body.velocity.magnitude * Time.deltaTime;
 
-					// TODO: Move circle check radius into tether settings
-					if (Physics2D.CircleCast(_body.position, 0.3f, direction, _settings.contactFilter, hits, checkDistance) > 0)
-						MakeAnchored(hits[0]);
-
-					Debug.DrawLine(_body.position, _body.position + (checkDistance * Time.deltaTime * direction), Color.red, 2f);
-
-					break;
-				case State.Anchored:
-					break;
+				// TODO: Move circle check radius into tether settings
+				if (Physics2D.CircleCast(_body.position, 0.3f, direction, _settings.contactFilter, hits, checkDistance) > 0)
+					MakeAnchored(hits[0]);
 			}
 		}
 
