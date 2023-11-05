@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 
 namespace Frogalypse {
 	[RequireComponent(typeof(SpriteRenderer))]
-	public class Reticle : MonoBehaviour {
+	internal sealed class Reticle : MonoBehaviour {
 		[Header("Settings")]
 		[SerializeField] private PlayerSettings _playerSettings;
 
@@ -20,6 +20,7 @@ namespace Frogalypse {
 		private SpriteRenderer _renderer;
 
 		// Data
+		// Moved out of the FindTarget method to reduce allocation & deallocation
 		private readonly RaycastHit2D[] _targets = new RaycastHit2D[4];
 
 		private void Awake() {
@@ -67,11 +68,11 @@ namespace Frogalypse {
 			Vector2 positionDelta = mousePos - playerPos;
 			Vector2 aimDirection = positionDelta.normalized;
 
-			int numHits = Physics2D.Raycast(playerPos, aimDirection, _playerSettings.grappleContactFilter, _targets);
+			int numHits = Physics2D.CircleCast(playerPos, 0.3f, aimDirection, _playerSettings.tetherSettings.contactFilter, _targets);
 
 			for (int i = 0 ; i < numHits ; i++) {
 				RaycastHit2D hit = _targets[i];
-				if (hit.distance < _playerSettings.maxGrappleDistance) {
+				if (hit.distance < _playerSettings.tetherSettings.maxTravelDistance) {
 					Debug.DrawLine(playerPos, hit.point, Color.green);
 					// If the mouse is further away than the hit point
 					return positionDelta.magnitude > hit.distance
@@ -83,7 +84,7 @@ namespace Frogalypse {
 			}
 
 			// This code is only reached if there are no valid targets
-			Debug.DrawLine(playerPos, playerPos + aimDirection * _playerSettings.maxGrappleDistance, Color.red);
+			Debug.DrawLine(playerPos, playerPos + aimDirection * _playerSettings.tetherSettings.maxTravelDistance, Color.red);
 			return (false, mousePos);
 		}
 	}

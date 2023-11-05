@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe56e629d52735980a29fd08377ca3c7, type: 3}
-  m_Name: TetherStartTransform
+  m_Name: HookLauncherTransform
   m_EditorClassIdentifier: 
   _description: The transform from which the tether launches
   _value: {fileID: 0}
