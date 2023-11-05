@@ -1,10 +1,10 @@
-﻿using Frogalypse.Settings;
+using Frogalypse.Settings;
 
 using UnityEngine;
 
 namespace Frogalypse.Components {
 	[RequireComponent(typeof(Rigidbody2D))]
-	public class MoveComponent : MonoBehaviour {
+	internal class MoveComponent : MonoBehaviour {
 		[SerializeField] private ActorMoveSettings _settings;
 
 		private Rigidbody2D _body;
@@ -33,13 +33,13 @@ namespace Frogalypse.Components {
 		/// <summary>
 		/// Set the travel direction of this actor
 		/// </summary>
-		public void ProvideInput(Vector2 input) => _input = input;
+		internal void SetInput(Vector2 input) => _input = input;
 
 		/// <summary>
 		/// Change the settings used by this movement component.
 		/// Typically only called when initialising the component.
 		/// </summary>
-		public void ProvideSettings(ActorMoveSettings settings) => _settings = settings;
+		internal void ProvideSettings(ActorMoveSettings settings) => _settings = settings;
 
 		private bool IsGrounded() {
 			// The length of the array determines the number of hits to gather

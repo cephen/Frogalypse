@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 
 namespace Frogalypse {
 	[RequireComponent(typeof(SpriteRenderer))]
-	public class Reticle : MonoBehaviour {
+	internal sealed class Reticle : MonoBehaviour {
 		[Header("Settings")]
 		[SerializeField] private PlayerSettings _playerSettings;
 
@@ -20,6 +20,7 @@ namespace Frogalypse {
 		private SpriteRenderer _renderer;
 
 		// Data
+		// Moved out of the FindTarget method to reduce allocation & deallocation
 		private readonly RaycastHit2D[] _targets = new RaycastHit2D[4];
 
 		private void Awake() {

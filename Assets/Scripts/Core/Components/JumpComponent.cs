@@ -1,10 +1,8 @@
-﻿using Frogalypse.Settings;
-
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Frogalypse.Components {
 	[RequireComponent(typeof(Rigidbody2D))]
-	public class JumpComponent : MonoBehaviour {
+	internal sealed class JumpComponent : MonoBehaviour {
 		[SerializeField] private float _jumpForce;
 		[SerializeField] private float _fallingGravityScale = 1f;
 
@@ -19,6 +17,7 @@ namespace Frogalypse.Components {
 		private void Awake() => _body = TryGetComponent(out Rigidbody2D component) ? component : gameObject.AddComponent<Rigidbody2D>();
 
 		private void FixedUpdate() {
+			// TODO: If the player walks off an edge they aren't switched to the falling state
 			switch (_state) {
 				case JumpState.Rising:
 					if (_body.velocity.y < 0f) {
@@ -33,7 +32,7 @@ namespace Frogalypse.Components {
 			}
 		}
 
-		public void OnJump() {
+		internal void OnJump() {
 			if (!IsGrounded()) {
 				return;
 			}
@@ -41,11 +40,11 @@ namespace Frogalypse.Components {
 			_state = JumpState.Rising;
 		}
 
-		public void OnJumpCancelled() {
+		internal void OnJumpCancelled() {
 			_state = JumpState.Falling;
 		}
 
-		public void SetGroundContactFilter(ContactFilter2D filter) => _contactFilter = filter;
+		internal void SetGroundContactFilter(ContactFilter2D filter) => _contactFilter = filter;
 
 		private void OnCollisionEnter2D() {
 			if (IsGrounded()) {
@@ -58,6 +57,7 @@ namespace Frogalypse.Components {
 			// The length of the array determines the number of hits to gather
 			// Since only colliders that pass through the contact filter will be counted,
 			// only one collider needs to be found to consider the actor grounded.
+			// TODO: Current logic will ground the player when they touch terrain above them, this might be unwanted behaviour
 			Collider2D[] hits = new Collider2D[1];
 			return _body.GetContacts(_contactFilter, hits) > 0;
 		}

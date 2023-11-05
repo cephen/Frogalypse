@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace Frogalypse {
 	[RequireComponent(typeof(MoveComponent), typeof(JumpComponent))]
-	public class PlayerController : MonoBehaviour {
+	internal class PlayerController : MonoBehaviour {
 		[Header("Assets")]
 		[SerializeField] private InputReader _input;
 		[SerializeField] private PlayerSettings _playerSettings;
@@ -56,7 +56,7 @@ namespace Frogalypse {
 				Debug.LogError("Input Reader isn't set D:", _input);
 				return;
 			}
-			_input.MoveEvent += _mover.ProvideInput;
+			_input.MoveEvent += _mover.SetInput;
 			_input.JumpEvent += _jump.OnJump;
 			_input.JumpCancelledEvent += _jump.OnJumpCancelled;
 			_mainCameraAnchor.OnAnchorUpdated += UpdateCameraReference;
@@ -67,7 +67,7 @@ namespace Frogalypse {
 				Debug.LogError("Input Reader isn't set D:", _input);
 				return;
 			}
-			_input.MoveEvent -= _mover.ProvideInput;
+			_input.MoveEvent -= _mover.SetInput;
 			_input.JumpEvent -= _jump.OnJump;
 			_input.JumpCancelledEvent -= _jump.OnJumpCancelled;
 			_mainCameraAnchor.OnAnchorUpdated -= UpdateCameraReference;

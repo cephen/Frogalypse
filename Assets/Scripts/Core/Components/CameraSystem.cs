@@ -5,7 +5,7 @@ using SideFX;
 using UnityEngine;
 
 namespace Frogalypse {
-	public class CameraSystem : MonoBehaviour {
+	internal sealed class CameraSystem : MonoBehaviour {
 		[SerializeField] private Camera _mainCamera;
 		[SerializeField] private CinemachineVirtualCamera _virtualCamera;
 		[SerializeField] private TransformAnchor _cameraTransformAnchor;

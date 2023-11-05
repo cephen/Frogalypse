@@ -3,21 +3,12 @@ using UnityEngine;
 namespace Frogalypse.Settings {
 	// Disabled becauseonly one asset instance is needed
 	//[CreateAssetMenu(fileName = "PlayerSettings", menuName = "Frogalypse/Settings/Player")]
-	public class PlayerSettings : ScriptableObject {
-		public ActorMoveSettings MoveSettings;
+	internal class PlayerSettings : ScriptableObject {
+		internal ActorMoveSettings MoveSettings;
 
-		[Header("Tether")]
-		public TetherSettings tetherSettings;
+		internal TetherSettings tetherSettings;
 
 		[Header("Animation")]
-		public AnimationCurve firingSpeedCurve;
-	}
-
-	[System.Serializable]
-	public struct TetherSettings {
-		public float targetLength;
-		public float travelTime;
-		public float maxTravelDistance;
-		public ContactFilter2D contactFilter;
+		internal AnimationCurve firingSpeedCurve;
 	}
 }

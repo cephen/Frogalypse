@@ -2,7 +2,7 @@
 
 namespace Frogalypse.Settings {
 	[CreateAssetMenu(fileName = "ActorMoveSettings", menuName = "Frogalypse/Actors/Movement Settings")]
-	public class ActorMoveSettings : ScriptableObject {
+	internal class ActorMoveSettings : ScriptableObject {
 		[Header("Walking")]
 		public float MaxWalkSpeed;
 		public float WalkAcceleration;

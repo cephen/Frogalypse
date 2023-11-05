@@ -9,13 +9,13 @@ using UnityEngine;
 
 namespace Frogalypse.Components {
 	[RequireComponent(typeof(SpringJoint2D), typeof(Line))]
-	internal class FrogTongue : MonoBehaviour {
+	internal sealed class FrogTongue : MonoBehaviour {
 		[SerializeField] private InputReader _input;
 		[SerializeField] private TransformAnchor _playerAnchor;
 		[SerializeField] private TransformAnchor _tetherLauncherAnchor;
 		[SerializeField] private TransformAnchor _reticleAnchor;
 
-		private Transform _player;
+		private Transform _playerTransform;
 		private Transform _tetherLauncher;
 		private Transform _reticle;
 		private TetherSettings _settings;
@@ -71,7 +71,7 @@ namespace Frogalypse.Components {
 		private void Update() {
 			// Start of the line tracks the player
 			if (_state is not State.Ready) {
-				Vector2 playerHookPositionDelta = _player.position - transform.position;
+				Vector2 playerHookPositionDelta = _playerTransform.position - transform.position;
 				Vector2 direction = playerHookPositionDelta.normalized;
 				float distance = playerHookPositionDelta.magnitude;
 				_line.Start = direction * distance;
@@ -140,8 +140,8 @@ namespace Frogalypse.Components {
 
 		// Anchor Update Handlers
 		private void OnPlayerAnchorUpdated() {
-			_player = _playerAnchor.Value;
-			_playerBody = _player.GetComponent<Rigidbody2D>();
+			_playerTransform = _playerAnchor.Value;
+			_playerBody = _playerTransform.GetComponent<Rigidbody2D>();
 		}
 
 		private void OnTetherLauncherAnchorUpdated() => _tetherLauncher = _tetherLauncherAnchor.Value;
