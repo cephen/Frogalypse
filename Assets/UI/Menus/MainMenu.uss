@@ -1,0 +1,16 @@
+.menu-button {
+    width: auto;
+    height: auto;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-size: 24px;
+    -unity-font: resource('FlatSkin/Font/Roboto-Medium');
+    -unity-font-definition: initial;
+    -unity-font-style: normal;
+    -unity-text-align: upper-center;
+    -unity-text-outline-width: 1px;
+    min-width: 250px;
+    margin-top: 5px;
+}
