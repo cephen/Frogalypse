@@ -1,9 +1,9 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/Menus/MainMenu.uss?fileID=7433441132597879392&amp;guid=ae26a5d9a4abc54efa073bc6fc962d4f&amp;type=3#MainMenu" />
-    <ui:VisualElement name="Container" style="max-width: 35%; padding-left: 40px; padding-right: 0; padding-top: 110px; align-items: center; flex-direction: column-reverse; flex-grow: 1;">
-        <ui:VisualElement style="height: 200px; width: 100%;" />
-        <ui:Button text="Exit Game" display-tooltip-when-elided="true" name="start-game" class="menu-button" />
-        <ui:Button text="Settings" display-tooltip-when-elided="true" name="start-game" class="menu-button" />
+    <ui:VisualElement name="container" class="container">
+        <ui:Label text="Frogalypse" display-tooltip-when-elided="true" name="title" class="title" />
         <ui:Button text="Start Game" display-tooltip-when-elided="true" name="start-game" class="menu-button" />
+        <ui:Button text="Settings" display-tooltip-when-elided="true" name="settings" class="menu-button" />
+        <ui:Button text="Exit Game" display-tooltip-when-elided="true" name="exit-game" class="menu-button" />
     </ui:VisualElement>
 </ui:UXML>

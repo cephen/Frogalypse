@@ -1,3 +1,22 @@
+#container {
+    align-items: center;
+    flex-grow: 1;
+    background-color: rgba(0, 0, 0, 0.6);
+    margin-left: 3%;
+    width: 25%;
+    justify-content: flex-end;
+    padding-bottom: 8%;
+}
+
+#title {
+    -unity-font: url('project://database/Assets/Art/Fonts/LilitaOne-Regular.ttf?fileID=12800000&guid=90102fddbfef25d9a8179bed75db327b&type=3#LilitaOne-Regular');
+    font-size: 64px;
+    -unity-text-align: upper-center;
+    color: rgb(210, 210, 210);
+    margin-bottom: 50px;
+    -unity-font-definition: initial;
+}
+
 .menu-button {
     width: auto;
     height: auto;
@@ -5,12 +24,34 @@
     padding-right: 40px;
     padding-top: 15px;
     padding-bottom: 15px;
-    font-size: 24px;
-    -unity-font: resource('FlatSkin/Font/Roboto-Medium');
+    font-size: 28px;
+    -unity-font: url('project://database/Assets/Art/Fonts/Poppins-Medium.ttf?fileID=12800000&guid=9176a281ae798ea2088a36167f1be911&type=3#Poppins-Medium');
     -unity-font-definition: initial;
     -unity-font-style: normal;
     -unity-text-align: upper-center;
-    -unity-text-outline-width: 1px;
     min-width: 250px;
-    margin-top: 5px;
+    margin-top: 20px;
+    color: rgb(38, 38, 38);
+    background-color: rgba(178, 178, 178, 255);
+    border-left-color: rgb(0, 0, 0);
+    border-right-color: rgb(0, 0, 0);
+    border-top-color: rgb(0, 0, 0);
+    border-bottom-color: rgb(0, 0, 0);
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.menu-button:hover {
+    background-color: rgb(38, 38, 38);
+    border-left-color: rgba(217, 217, 217, 255);
+    border-right-color: rgba(217, 217, 217, 255);
+    border-top-color: rgba(217, 217, 217, 255);
+    border-bottom-color: rgba(217, 217, 217, 255);
+    color: rgba(217, 217, 217, 255);
 }
