@@ -1,6 +1,8 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
     <Style src="project://database/Assets/Art/UI/Menus/MainMenu.uss?fileID=7433441132597879392&amp;guid=ae26a5d9a4abc54efa073bc6fc962d4f&amp;type=3#MainMenu" />
+    <Style src="project://database/Assets/Art/UI/Menus/LevelFrame.uss?fileID=7433441132597879392&amp;guid=5505ec1489d789049948d8a5285123b8&amp;type=3#LevelFrame" />
     <ui:VisualElement name="container">
+        <Frogalypse.UI.LevelSelector name="level-selector" />
         <ui:VisualElement name="sidebar" class="container">
             <ui:VisualElement name="main-section" class="menu-section">
                 <ui:Label text="Frogalypse" name="title" class="title section-header" />
