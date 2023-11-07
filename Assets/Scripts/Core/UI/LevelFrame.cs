@@ -1,18 +1,16 @@
-﻿using UnityEngine;
-using UnityEngine.UIElements;
+﻿using UnityEngine.UIElements;
 
 namespace Frogalypse.UI {
 	public class LevelFrame : Button {
 		public new class UxmlFactory : UxmlFactory<LevelFrame> { }
 		public void Init(int levelNumber, bool complete) {
-			style.backgroundColor = complete ? Color.white : Color.clear;
+			ClearClassList();
+			AddToClassList("level-frame");
+			AddToClassList(complete ? "complete-level" : "incomplete-level");
 			text = $"{levelNumber:00}";
 		}
 
 		// Custom UI controls need a default constructor
-		public LevelFrame() {
-			AddToClassList("level-frame");
-			Init(0, false);
-		}
+		public LevelFrame() => Init(0, false);
 	}
 }
