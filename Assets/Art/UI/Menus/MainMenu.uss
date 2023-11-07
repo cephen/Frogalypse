@@ -100,11 +100,6 @@
 }
 
 #level-selector {
-    position: absolute;
-    left: 100px;
-    top: 100px;
-    right: 100px;
-    bottom: 100px;
     opacity: 0;
     background-color: rgba(0, 0, 0, 0.8);
     flex-direction: row;
@@ -113,15 +108,20 @@
     padding-right: 30px;
     padding-top: 30px;
     padding-bottom: 30px;
+    flex-grow: 1;
+    margin-left: 100px;
+    margin-right: 100px;
+    margin-top: 100px;
+    margin-bottom: 100px;
 }
 
 .level-frame {
     width: 128px;
     height: 128px;
-    margin-left: 10px;
-    margin-right: 10px;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
     padding-left: 10px;
     padding-right: 10px;
     padding-top: 10px;
