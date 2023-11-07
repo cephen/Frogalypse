@@ -25,7 +25,13 @@ namespace Frogalypse {
 		private bool _isTransitioning = false;
 
 		[SerializeField] private float _scrollTime = 0.5f;
-		private float _scrollHeight = 0f;
+		private float _currentScrollHeight = 0f;
+		private float ScrollTarget => _nextState switch {
+			MenuState.Index => 0f,
+			MenuState.LevelSelection => -100f,
+			MenuState.Settings => 100f,
+			_ => 0f,
+		};
 
 
 		private enum MenuState : byte {
@@ -50,10 +56,8 @@ namespace Frogalypse {
 		private void Update() {
 			if (!_isTransitioning) {
 				CheckTransitions();
-			} else {
-				if (_nextState is MenuState.Index or MenuState.Settings) {
-					_sidebar.style.bottom = new StyleLength(new Length(_scrollHeight, LengthUnit.Percent));
-				}
+			} else if (_nextState is not null) {
+				_sidebar.style.bottom = new StyleLength(new Length(_currentScrollHeight, LengthUnit.Percent));
 			}
 		}
 
@@ -88,33 +92,42 @@ namespace Frogalypse {
 			switch (_currentState, _nextState) {
 				case (_, null): // No transition queued
 					return;
-				case (MenuState.Index, MenuState.Settings): // Index => Settings
-					DOTween.To(
-						getter: () => _scrollHeight,
-						setter: (float x) => _scrollHeight = x,
-						endValue: 100f,
-						duration: _scrollTime)
-						.OnComplete(() => {
-							_currentState = MenuState.Settings;
-							_nextState = null;
-							_isTransitioning = false;
-						});
+				case (MenuState.Index, MenuState.LevelSelection): // Index => LevelSelection
 					_isTransitioning = true;
+					Scroll(onComplete: () => {
+						_levelSelector.Show();
+						_nextState = null;
+						_isTransitioning = false;
+					});
+					return;
+				case (MenuState.Index, MenuState.Settings): // Index => Settings
+					_isTransitioning = true;
+					Scroll(onComplete: () => {
+						_currentState = MenuState.Settings;
+						_nextState = null;
+						_isTransitioning = false;
+					});
 					return;
 				case (MenuState.Settings, MenuState.Index): // Settings => Index
-					DOTween.To(
-						getter: () => _scrollHeight,
-						setter: (float x) => _scrollHeight = x,
-						endValue: 0f,
-						duration: _scrollTime)
-						.OnComplete(() => {
-							_currentState = MenuState.Index;
-							_nextState = null;
-							_isTransitioning = false;
-						});
 					_isTransitioning = true;
+					Scroll(onComplete: () => {
+						_currentState = MenuState.Index;
+						_nextState = null;
+						_isTransitioning = false;
+					});
 					return;
 			}
+		}
+
+		private void Scroll(TweenCallback onComplete = null) {
+			var tween = DOTween.To(
+				getter: () => _currentScrollHeight,
+				setter: (float x) => _currentScrollHeight = x,
+				endValue: ScrollTarget,
+				duration: _scrollTime);
+
+			if (onComplete is not null)
+				tween.OnComplete(onComplete);
 		}
 	}
 }
