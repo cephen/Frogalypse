@@ -8,9 +8,10 @@ namespace Frogalypse.UI {
 	public class LevelSelector : VisualElement {
 		public new class UxmlFactory : UxmlFactory<LevelSelector> { }
 
-		private const float _activeOpacity = 0.6f;
-
-		public LevelSelector() { }
+		public LevelSelector() {
+			name = "level-selector";
+			style.opacity = 0f;
+		}
 
 		internal void Populate(LevelDB levels) {
 			for (int i = 0 ; i < levels.Count ; i++) {
@@ -25,7 +26,7 @@ namespace Frogalypse.UI {
 			DOTween.To(
 				getter: () => style.opacity.value,
 				setter: (float x) => style.opacity = x,
-				endValue: _activeOpacity,
+				endValue: 1f,
 				duration: 1f);
 
 		internal void Hide() =>
