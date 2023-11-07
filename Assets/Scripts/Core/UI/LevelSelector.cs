@@ -14,6 +14,7 @@ namespace Frogalypse.UI {
 		}
 
 		internal void Populate(LevelDB levels) {
+			Clear();
 			for (int i = 0 ; i < levels.Count ; i++) {
 				LevelData data = levels[i];
 				LevelFrame frame = new();
