@@ -1,11 +1,16 @@
 using DG.Tweening;
 
+using Frogalypse.Levels;
+using Frogalypse.UI;
+
 using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace Frogalypse {
 	[RequireComponent(typeof(UIDocument))]
 	internal sealed class MainMenuController : MonoBehaviour {
+		[SerializeField] private LevelDB _levels;
+
 		private UIDocument _doc;
 		private VisualElement _sidebar;
 		private Button _startGameButton;
@@ -13,6 +18,7 @@ namespace Frogalypse {
 		private Button _exitGameButton;
 		private Button _saveSettingsButton;
 		private Button _exitSettingsButton;
+		private LevelSelector _levelSelector;
 
 		private MenuState _currentState = MenuState.Index;
 		private MenuState? _nextState = null;
@@ -36,6 +42,9 @@ namespace Frogalypse {
 
 			_saveSettingsButton = _doc.rootVisualElement.Q<Button>("save-settings");
 			_exitSettingsButton = _doc.rootVisualElement.Q<Button>("exit-settings");
+
+			_levelSelector = _doc.rootVisualElement.Q<LevelSelector>("level-selector");
+			_levelSelector.Populate(_levels);
 		}
 
 		private void Update() {
