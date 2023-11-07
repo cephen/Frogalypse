@@ -48,7 +48,7 @@
 }
 
 .menu-button:hover {
-    background-color: rgb(38, 38, 38);
+    background-color: rgb(64, 64, 64);
     border-left-color: rgba(217, 217, 217, 255);
     border-right-color: rgba(217, 217, 217, 255);
     border-top-color: rgba(217, 217, 217, 255);
