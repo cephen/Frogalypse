@@ -1,7 +1,4 @@
-using UnityEditor;
-
 using UnityEngine.AddressableAssets;
-
 
 namespace SideFX.Scenes {
 	/// <summary>
@@ -9,6 +6,6 @@ namespace SideFX.Scenes {
 	/// Enables asynchronous loading and unloading of scenes.
 	/// </summary>
 	public abstract class SceneDataSO : DescriptionBaseSO {
-		public AssetReferenceT<SceneAsset> sceneReference;
+		public AssetReference sceneReference;
 	}
 }
