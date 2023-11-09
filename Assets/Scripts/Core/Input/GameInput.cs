@@ -385,7 +385,7 @@ namespace Frogalypse.Input
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Grapple"",
+                    ""name"": ""Tether"",
                     ""type"": ""Button"",
                     ""id"": ""7b7fe9f6-ab79-4341-8d2d-a3f523b2b5a6"",
                     ""expectedControlType"": ""Button"",
@@ -397,7 +397,7 @@ namespace Frogalypse.Input
                     ""name"": ""Move"",
                     ""type"": ""PassThrough"",
                     ""id"": ""ef4e0dba-5ecf-4f20-b78e-d6d1bb5c7588"",
-                    ""expectedControlType"": ""Axis"",
+                    ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -431,14 +431,14 @@ namespace Frogalypse.Input
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Grapple"",
+                    ""action"": ""Tether"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": ""Keys"",
-                    ""id"": ""a6bbc35f-1af4-4d07-bdec-898a8944e645"",
-                    ""path"": ""1DAxis"",
+                    ""id"": ""f18b65da-2100-471a-a406-0ee5c54289c0"",
+                    ""path"": ""2DVector"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -447,8 +447,30 @@ namespace Frogalypse.Input
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""negative"",
-                    ""id"": ""a5e823c3-5ddf-4186-999b-4af7567ce736"",
+                    ""name"": ""up"",
+                    ""id"": ""45c0919a-787b-401c-a343-b2beeb1d5c6c"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""1b56e2d0-a2af-4c8e-a086-dbbe0fa840b8"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""f2d236ab-c03b-4063-a426-755b69974c36"",
                     ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -458,8 +480,8 @@ namespace Frogalypse.Input
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""positive"",
-                    ""id"": ""8cdb98f0-ba00-4169-97d3-7313a52be3c5"",
+                    ""name"": ""right"",
+                    ""id"": ""d47fc9bd-6a62-4dfa-a5e8-e64a38f3d0c5"",
                     ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -496,7 +518,7 @@ namespace Frogalypse.Input
             // Gameplay
             m_Gameplay = asset.FindActionMap("Gameplay", throwIfNotFound: true);
             m_Gameplay_Jump = m_Gameplay.FindAction("Jump", throwIfNotFound: true);
-            m_Gameplay_Grapple = m_Gameplay.FindAction("Grapple", throwIfNotFound: true);
+            m_Gameplay_Tether = m_Gameplay.FindAction("Tether", throwIfNotFound: true);
             m_Gameplay_Move = m_Gameplay.FindAction("Move", throwIfNotFound: true);
             m_Gameplay_Aim = m_Gameplay.FindAction("Aim", throwIfNotFound: true);
         }
@@ -655,7 +677,7 @@ namespace Frogalypse.Input
         private readonly InputActionMap m_Gameplay;
         private List<IGameplayActions> m_GameplayActionsCallbackInterfaces = new List<IGameplayActions>();
         private readonly InputAction m_Gameplay_Jump;
-        private readonly InputAction m_Gameplay_Grapple;
+        private readonly InputAction m_Gameplay_Tether;
         private readonly InputAction m_Gameplay_Move;
         private readonly InputAction m_Gameplay_Aim;
         public struct GameplayActions
@@ -663,7 +685,7 @@ namespace Frogalypse.Input
             private @GameInput m_Wrapper;
             public GameplayActions(@GameInput wrapper) { m_Wrapper = wrapper; }
             public InputAction @Jump => m_Wrapper.m_Gameplay_Jump;
-            public InputAction @Grapple => m_Wrapper.m_Gameplay_Grapple;
+            public InputAction @Tether => m_Wrapper.m_Gameplay_Tether;
             public InputAction @Move => m_Wrapper.m_Gameplay_Move;
             public InputAction @Aim => m_Wrapper.m_Gameplay_Aim;
             public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
@@ -678,9 +700,9 @@ namespace Frogalypse.Input
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
-                @Grapple.started += instance.OnGrapple;
-                @Grapple.performed += instance.OnGrapple;
-                @Grapple.canceled += instance.OnGrapple;
+                @Tether.started += instance.OnTether;
+                @Tether.performed += instance.OnTether;
+                @Tether.canceled += instance.OnTether;
                 @Move.started += instance.OnMove;
                 @Move.performed += instance.OnMove;
                 @Move.canceled += instance.OnMove;
@@ -694,9 +716,9 @@ namespace Frogalypse.Input
                 @Jump.started -= instance.OnJump;
                 @Jump.performed -= instance.OnJump;
                 @Jump.canceled -= instance.OnJump;
-                @Grapple.started -= instance.OnGrapple;
-                @Grapple.performed -= instance.OnGrapple;
-                @Grapple.canceled -= instance.OnGrapple;
+                @Tether.started -= instance.OnTether;
+                @Tether.performed -= instance.OnTether;
+                @Tether.canceled -= instance.OnTether;
                 @Move.started -= instance.OnMove;
                 @Move.performed -= instance.OnMove;
                 @Move.canceled -= instance.OnMove;
@@ -733,7 +755,7 @@ namespace Frogalypse.Input
         public interface IGameplayActions
         {
             void OnJump(InputAction.CallbackContext context);
-            void OnGrapple(InputAction.CallbackContext context);
+            void OnTether(InputAction.CallbackContext context);
             void OnMove(InputAction.CallbackContext context);
             void OnAim(InputAction.CallbackContext context);
         }
