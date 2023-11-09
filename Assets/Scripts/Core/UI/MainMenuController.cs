@@ -3,6 +3,8 @@ using DG.Tweening;
 using Frogalypse.Levels;
 using Frogalypse.UI;
 
+using SideFX.Events;
+
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -10,6 +12,7 @@ namespace Frogalypse {
 	[RequireComponent(typeof(UIDocument))]
 	internal sealed class MainMenuController : MonoBehaviour {
 		[SerializeField] private LevelDB _levels;
+		[SerializeField] private LoadEventChannelSO _loadLevelChannel;
 
 		private UIDocument _doc;
 		private VisualElement _sidebar;
@@ -50,7 +53,7 @@ namespace Frogalypse {
 			_exitSettingsButton = _doc.rootVisualElement.Q<Button>("exit-settings");
 
 			_levelSelector = _doc.rootVisualElement.Q<LevelSelector>("level-selector");
-			_levelSelector.Populate(_levels);
+			_levelSelector.Init(_loadLevelChannel, _levels);
 		}
 
 		private void Update() {

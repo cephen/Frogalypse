@@ -2,23 +2,25 @@
 
 using Frogalypse.Levels;
 
+using SideFX.Events;
+
 using UnityEngine.UIElements;
 
 namespace Frogalypse.UI {
-	public class LevelSelector : VisualElement {
-		public new class UxmlFactory : UxmlFactory<LevelSelector> { }
+	internal sealed class LevelSelector : VisualElement {
+		internal new class UxmlFactory : UxmlFactory<LevelSelector> { }
 
 		public LevelSelector() {
 			name = "level-selector";
 			style.opacity = 0f;
 		}
 
-		internal void Populate(LevelDB levels) {
-			Clear();
-			for (int i = 0 ; i < levels.Count ; i++) {
-				LevelData data = levels[i];
+		internal void Init(LoadEventChannelSO channel, LevelDB levelDatabase) {
+			Clear(); // Remove existing level frames before adding new ones
+			for (int i = 1 ; i <= levelDatabase.Count ; i++) {
+				LevelData data = levelDatabase[i];
 				LevelFrame frame = new();
-				frame.Init(i + 1, data.IsCompleted);
+				frame.Init(i, data, channel);
 				Add(frame);
 			}
 		}

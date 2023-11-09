@@ -1,16 +1,23 @@
-﻿using UnityEngine.UIElements;
+﻿using Frogalypse.Levels;
+
+using SideFX.Events;
+
+using UnityEngine.UIElements;
 
 namespace Frogalypse.UI {
-	public class LevelFrame : Button {
-		public new class UxmlFactory : UxmlFactory<LevelFrame> { }
-		public void Init(int levelNumber, bool complete) {
+	internal sealed class LevelFrame : Button {
+		internal new class UxmlFactory : UxmlFactory<LevelFrame> { }
+
+		internal void Init(int levelNumber, LevelData data, LoadEventChannelSO channel) {
 			ClearClassList();
 			AddToClassList("level-frame");
-			AddToClassList(complete ? "complete-level" : "incomplete-level");
-			text = $"{levelNumber:00}";
+			AddToClassList(data.IsCompleted ? "complete-level" : "incomplete-level");
+
+			text = $"{levelNumber}";
+			clicked += () => channel.RaiseEvent(data.Scene, showLoadingScreen: true, fadeScreen: true);
 		}
 
 		// Custom UI controls need a default constructor
-		public LevelFrame() => Init(0, false);
+		public LevelFrame() { }
 	}
 }
