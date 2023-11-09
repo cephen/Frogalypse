@@ -10,7 +10,7 @@ using SideFX.Events;
 
 namespace SideFX.Scenes {
 	public class SceneLoader : MonoBehaviour {
-		[SerializeField] private GameplaySceneSO _gameplayScene;
+		[SerializeField] private PersistentManagersSO _gameplayManagers;
 
 		[Header("Listening to")]
 		[SerializeField] private LoadEventChannelSO _coldStartupLocation;
@@ -59,7 +59,7 @@ namespace SideFX.Scenes {
 
 			if (_currentlyLoadedScene is GameplaySceneSO) {
 				//Gameplay managers is loaded synchronously
-				_gameplayManagerLoadingOpHandle = _gameplayScene.sceneReference.LoadSceneAsync(LoadSceneMode.Additive, true);
+				_gameplayManagerLoadingOpHandle = _gameplayManagers.sceneReference.LoadSceneAsync(LoadSceneMode.Additive, true);
 				_gameplayManagerLoadingOpHandle.WaitForCompletion();
 				_gameplayManagerSceneInstance = _gameplayManagerLoadingOpHandle.Result;
 
@@ -115,8 +115,8 @@ namespace SideFX.Scenes {
 
 			// Load gameplay managers if they're not already loaded
 			if (_gameplayManagerSceneInstance.Scene == null || !_gameplayManagerSceneInstance.Scene.isLoaded) {
-				Debug.Log($"Loading gameplay managers: {_gameplayScene.sceneReference}");
-				_gameplayManagerLoadingOpHandle = _gameplayScene.sceneReference.LoadSceneAsync(LoadSceneMode.Additive, true);
+				Debug.Log($"Loading gameplay managers: {_gameplayManagers.sceneReference}");
+				_gameplayManagerLoadingOpHandle = _gameplayManagers.sceneReference.LoadSceneAsync(LoadSceneMode.Additive, true);
 				_gameplayManagerLoadingOpHandle.Completed += OnGameplayManagersLoaded;
 			} else {
 				StartCoroutine(UnloadPreviousScene());
