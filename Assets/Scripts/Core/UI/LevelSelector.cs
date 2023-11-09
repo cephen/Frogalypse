@@ -17,10 +17,10 @@ namespace Frogalypse.UI {
 
 		internal void Init(LoadEventChannelSO channel, LevelDB levelDatabase) {
 			Clear(); // Remove existing level frames before adding new ones
-			for (int i = 1 ; i <= levelDatabase.Count ; i++) {
+			for (int i = 0 ; i < levelDatabase.Count ; i++) {
 				LevelData data = levelDatabase[i];
 				LevelFrame frame = new();
-				frame.Init(i, data, channel);
+				frame.Init(i + 1, data, channel);
 				Add(frame);
 			}
 		}
