@@ -1,4 +1,7 @@
+using System;
+
 namespace Frogalypse.Settings {
+	[Serializable]
 	internal struct FrogalypseSettings {
 		public AudioSettings Audio;
 		public GraphicsSettings Graphics;
