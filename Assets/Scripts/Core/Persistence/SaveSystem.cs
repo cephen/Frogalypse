@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 using Frogalypse.Settings;
 
@@ -20,6 +20,10 @@ namespace Frogalypse.Persistence {
 		private readonly Save _saveData = new();
 		public Save Save => _saveData;
 
+		private void Awake() {
+			LoadSaveDataFromDisk();
+		}
+
 		private void OnEnable() {
 			_saveSettingsEvent.OnEventRaised += SaveSettings;
 			_saveGameEvent.OnEventRaised += SaveDataToDisk;
@@ -40,6 +44,8 @@ namespace Frogalypse.Persistence {
 		}
 
 		public bool LoadSaveDataFromDisk() {
+			FileManager.CreateIfNotExists(SaveName, _saveData.ToJson());
+
 			if (FileManager.LoadFromFile(SaveName, out string json)) {
 				_saveData.LoadFromJson(json);
 				SaveLoadedEvent?.Invoke(_saveData);
