@@ -13,6 +13,8 @@ namespace Frogalypse {
 	internal sealed class MainMenuController : MonoBehaviour {
 		[SerializeField] private LevelDB _levels;
 		[SerializeField] private LoadEventChannelSO _loadLevelChannel;
+		[SerializeField] private VoidEventChannelSO _saveSettingsChannel;
+		[SerializeField] private VoidEventChannelSO _saveGameChannel;
 
 		private UIDocument _doc;
 		private VisualElement _sidebar;
@@ -69,7 +71,7 @@ namespace Frogalypse {
 			_settingsButton.clicked += NavigateToSettings;
 			_exitGameButton.clicked += ExitGame;
 
-			_saveSettingsButton.clicked += NavigateToIndex; // TODO: also save settings
+			_saveSettingsButton.clicked += OnSaveSettings;
 			_exitSettingsButton.clicked += NavigateToIndex;
 		}
 
@@ -78,7 +80,7 @@ namespace Frogalypse {
 			_settingsButton.clicked -= NavigateToSettings;
 			_exitGameButton.clicked -= ExitGame;
 
-			_saveSettingsButton.clicked -= NavigateToIndex;
+			_saveSettingsButton.clicked -= OnSaveSettings;
 			_exitSettingsButton.clicked -= NavigateToIndex;
 		}
 
@@ -86,7 +88,13 @@ namespace Frogalypse {
 		private void NavigateToSettings() => _nextState ??= MenuState.Settings;
 		private void NavigateToLevelSelect() => _nextState ??= MenuState.LevelSelection;
 
+		private void OnSaveSettings() {
+			_saveSettingsChannel.RaiseEvent();
+			NavigateToIndex();
+		}
+
 		private void ExitGame() {
+			_saveGameChannel.RaiseEvent();
 			Debug.Log("Exiting Game");
 			Application.Quit();
 		}

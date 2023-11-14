@@ -63,4 +63,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _levels: {fileID: 11400000, guid: 4f6f513dab8892b4ca2de3b2f3dd6b68, type: 2}
   _loadLevelChannel: {fileID: 11400000, guid: f71283aa82c0b112281a2a92882c67ea, type: 2}
+  _saveSettingsChannel: {fileID: 11400000, guid: 036ab3cd456734641917cf2ac11954b5, type: 2}
+  _saveGameChannel: {fileID: 11400000, guid: f587b135aa585a14b8e9fecb20f8d515, type: 2}
   _scrollTime: 0.5
