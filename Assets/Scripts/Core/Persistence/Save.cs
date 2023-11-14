@@ -3,6 +3,8 @@ using System.Collections.Generic;
 
 using Frogalypse.Settings;
 
+using Newtonsoft.Json;
+
 using SideFX.Scenes;
 
 using UnityEngine;
@@ -10,8 +12,17 @@ using UnityEngine;
 namespace Frogalypse.Persistence {
 	[Serializable]
 	internal class Save {
-		public FrogalypseSettings Settings { get; private set; } = FrogalypseSettings.Default();
-		public Dictionary<GameplaySceneSO, LevelRecord> LevelRecords { get; private set; } = new();
+		[SerializeField] private FrogalypseSettings _settings;
+		[SerializeField] private Dictionary<GameplaySceneSO, LevelRecord> _levelRecords;
+
+		public FrogalypseSettings Settings => _settings;
+		public Dictionary<GameplaySceneSO, LevelRecord> LevelRecords => _levelRecords;
+
+
+		public Save() {
+			_settings = FrogalypseSettings.Default();
+			_levelRecords = new Dictionary<GameplaySceneSO, LevelRecord>();
+		}
 
 		public void SaveRecord(GameplaySceneSO level, LevelRecord newRecord) {
 			if (!LevelRecords.ContainsKey(level))
@@ -27,14 +38,21 @@ namespace Frogalypse.Persistence {
 		}
 
 		public void SaveSettings(GameSettingsSO settings) {
-			Settings = new FrogalypseSettings {
+			_settings = new FrogalypseSettings {
 				Audio = settings.AudioSettings,
 				Graphics = settings.GraphicsSettings,
 			};
 		}
 
-		public string ToJson() => JsonUtility.ToJson(this);
-		public void LoadFromJson(string json) => JsonUtility.FromJsonOverwrite(json, this);
+		public string ToJson() => JsonConvert.SerializeObject(this);
+
+		public void LoadFromJson(string json) {
+			Save deserialized = JsonConvert.DeserializeObject<Save>(json);
+			_settings = deserialized.Settings;
+			_levelRecords.Clear();
+			foreach (var (level, record) in deserialized.LevelRecords)
+				_levelRecords.Add(level, record);
+		}
 	}
 
 }
