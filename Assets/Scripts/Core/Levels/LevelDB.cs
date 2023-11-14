@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 
 using Frogalypse.Persistence;
 
@@ -37,7 +37,7 @@ namespace Frogalypse.Levels {
 		private void OnSaveLoaded(Save save) {
 			_records.Clear();
 			foreach (GameplaySceneSO level in _levels) {
-				if (save.LevelRecords.TryGetValue(level, out LevelRecord record)) {
+				if (save.LevelRecords.TryGetValue(level.Guid, out LevelRecord record)) {
 					_records.Add(level, record);
 				} else {
 					_records.Add(level, LevelRecord.Default());

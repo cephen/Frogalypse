@@ -23,9 +23,7 @@ namespace Frogalypse.Persistence {
 		private readonly Save _saveData = new();
 		public Save Save => _saveData;
 
-		private void Awake() {
-			LoadSaveDataFromDisk();
-		}
+		private void Awake() => LoadSaveDataFromDisk();
 
 		private void OnEnable() {
 			_saveSettingsEvent.OnEventRaised += SaveSettings;
@@ -42,6 +40,7 @@ namespace Frogalypse.Persistence {
 		public void WriteEmptySaveFile() => FileManager.WriteToFile(SaveName, new Save().ToJson());
 
 		public void SaveDataToDisk() {
+			_saveData.LevelRecords.Clear();
 			for (int i = 0 ; i < _levelDatabase.Count ; i++) {
 				GameplaySceneSO level = _levelDatabase[i];
 				LevelRecord record = _levelDatabase[level];
