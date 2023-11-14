@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: LevelDB
   m_EditorClassIdentifier: 
   _levels:
-  - {fileID: 11400000, guid: 892df7c42a9df664eabbccb98ebfb6f4, type: 2}
+  - _scene: {fileID: 11400000, guid: 39d5357ad7ed18f4aa4bfc986d1b963f, type: 2}
+    _isCompleted: 0
