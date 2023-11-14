@@ -7,11 +7,14 @@ using UnityEngine;
 namespace Frogalypse.Persistence {
 	[Serializable]
 	internal class Save {
-		public FrogalypseSettings FrogalypseSettings { get; private set; } = FrogalypseSettings.Default();
+		public FrogalypseSettings Settings { get; private set; } = FrogalypseSettings.Default();
 
 
-		public void SaveSettings(FrogalypseSettings settings) {
-			FrogalypseSettings = settings;
+		public void SaveSettings(GameSettingsSO settings) {
+			Settings = new FrogalypseSettings {
+				Audio = settings.AudioSettings,
+				Graphics = settings.GraphicsSettings,
+			};
 		}
 
 		public string ToJson() => JsonUtility.ToJson(this);
