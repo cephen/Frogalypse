@@ -52,6 +52,9 @@ namespace Frogalypse.Persistence {
 			var fromPath = Path.Combine(Application.persistentDataPath, from);
 			var toPath = Path.Combine(Application.persistentDataPath, to);
 			try {
+				if (File.Exists(toPath))
+					File.Delete(toPath);
+
 				File.Move(fromPath, toPath);
 				return true;
 			} catch (Exception e) {
