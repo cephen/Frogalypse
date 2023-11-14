@@ -13,7 +13,10 @@ namespace Frogalypse.Settings {
 		[SerializeField] private UniversalRenderPipelineAsset _urpAsset;
 
 		private void Awake() {
-			_saveSystem.LoadSaveDataFromDisk();
+			if (!_saveSystem.LoadSaveDataFromDisk()) {
+				_saveSystem.WriteEmptySaveFile();
+				_saveSystem.LoadSaveDataFromDisk();
+			}
 			_settings.LoadSavedSettings(_saveSystem.Save.Settings);
 		}
 
