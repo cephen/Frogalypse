@@ -13,28 +13,29 @@ namespace Frogalypse.Persistence {
 	[Serializable]
 	internal class Save {
 		[SerializeField] private FrogalypseSettings _settings;
-		[SerializeField] private Dictionary<GameplaySceneSO, LevelRecord> _levelRecords;
+		[SerializeField] private Dictionary<string, LevelRecord> _levelRecords;
 
 		public FrogalypseSettings Settings => _settings;
-		public Dictionary<GameplaySceneSO, LevelRecord> LevelRecords => _levelRecords;
+		public Dictionary<string, LevelRecord> LevelRecords => _levelRecords;
 
 
 		public Save() {
 			_settings = FrogalypseSettings.Default();
-			_levelRecords = new Dictionary<GameplaySceneSO, LevelRecord>();
+			_levelRecords = new Dictionary<string, LevelRecord>();
 		}
 
 		public void SaveRecord(GameplaySceneSO level, LevelRecord newRecord) {
-			if (!LevelRecords.ContainsKey(level))
-				LevelRecords.Add(level, LevelRecord.Default());
+			string levelID = level.Guid;
+			if (!LevelRecords.ContainsKey(levelID))
+				LevelRecords.Add(levelID, LevelRecord.Default());
 
-			LevelRecord current = LevelRecords[level];
+			LevelRecord current = LevelRecords[levelID];
 			LevelRecord next = new() {
-				IsComplete = true,
+				IsComplete = newRecord.IsComplete,
 				BestTime = newRecord.BestTime.TotalMilliseconds < current.BestTime.TotalMilliseconds ? current.BestTime : newRecord.BestTime,
 			};
 
-			LevelRecords[level] = next;
+			LevelRecords[levelID] = next;
 		}
 
 		public void SaveSettings(GameSettingsSO settings) {
