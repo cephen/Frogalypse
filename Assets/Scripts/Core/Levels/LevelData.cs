@@ -1,16 +1,25 @@
-﻿using SideFX.Scenes;
+﻿using System;
+
+using SideFX.Scenes;
 
 using UnityEngine;
 
 namespace Frogalypse.Levels {
-	[CreateAssetMenu(fileName = "Level x", menuName = "Frogalypse/Level Data")]
-	internal class LevelData : ScriptableObject {
+	[Serializable]
+	internal struct LevelData {
 		[SerializeField] private GameplaySceneSO _scene;
-		[SerializeField] private bool _isCompleted = false;
+		[SerializeField] private bool _isCompleted;
+		[SerializeField] private TimeSpan _bestTime;
 
-		internal GameplaySceneSO Scene => _scene;
-		internal bool IsCompleted => _isCompleted;
+		internal readonly GameplaySceneSO Scene => _scene;
+		internal readonly bool IsCompleted => _isCompleted;
+		internal readonly TimeSpan BestTime => _bestTime;
 
 		internal void MarkComplete() => _isCompleted = true;
+		internal void RecordTime(TimeSpan timeTaken) {
+			if (timeTaken.TotalMilliseconds < _bestTime.TotalMilliseconds) {
+				_bestTime = timeTaken;
+			}
+		}
 	}
 }
