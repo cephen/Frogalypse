@@ -15,3 +15,4 @@ MonoBehaviour:
   _saveSettingsEvent: {fileID: 11400000, guid: 036ab3cd456734641917cf2ac11954b5, type: 2}
   _saveGameEvent: {fileID: 11400000, guid: f587b135aa585a14b8e9fecb20f8d515, type: 2}
   _gameSettings: {fileID: 11400000, guid: ecdfdf4512cae714a89d74f8c74c1738, type: 2}
+  _levelDatabase: {fileID: 11400000, guid: 4f6f513dab8892b4ca2de3b2f3dd6b68, type: 2}
