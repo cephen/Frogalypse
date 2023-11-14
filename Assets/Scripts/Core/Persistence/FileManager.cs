@@ -32,5 +32,17 @@ namespace Frogalypse.Persistence {
 				return false;
 			}
 		}
+
+		public static bool MoveFile(string from, string to) {
+			var fromPath = Path.Combine(Application.persistentDataPath, from);
+			var toPath = Path.Combine(Application.persistentDataPath, to);
+			try {
+				File.Move(fromPath, toPath);
+				return true;
+			} catch (Exception e) {
+				Debug.LogError($"Failed to move {fromPath} to {toPath} with exception {e}");
+				return false;
+			}
+		}
 	}
 }
