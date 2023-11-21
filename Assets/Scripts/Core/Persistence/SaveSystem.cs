@@ -4,19 +4,21 @@ using Frogalypse.Levels;
 using Frogalypse.Settings;
 
 using SideFX.Events;
-using SideFX.Scenes;
+using SideFX.SceneManagement;
 
 using UnityEngine;
 
 namespace Frogalypse.Persistence {
+	internal struct SaveGameEvent : IEvent { }
+
 	[CreateAssetMenu(fileName = "SaveSystem", menuName = "Frogalypse/Save System")]
 	internal class SaveSystem : ScriptableObject {
 		internal static event Action<Save> SaveLoadedEvent = delegate { };
 
-		[SerializeField] private VoidEventChannelSO _saveSettingsEvent;
-		[SerializeField] private VoidEventChannelSO _saveGameEvent;
 		[SerializeField] private GameSettingsSO _gameSettings;
 		[SerializeField] private LevelDB _levelDatabase;
+
+		private EventBinding<SaveGameEvent> _saveGameBinding;
 
 		private const string SaveName = "save.frog";
 		private const string SaveBackupName = SaveName + ".bak";
@@ -26,13 +28,12 @@ namespace Frogalypse.Persistence {
 		private void Awake() => LoadSaveDataFromDisk();
 
 		private void OnEnable() {
-			_saveSettingsEvent.OnEventRaised += SaveSettings;
-			_saveGameEvent.OnEventRaised += SaveDataToDisk;
+			_saveGameBinding = new(SaveDataToDisk);
+			EventBus<SaveGameEvent>.Register(_saveGameBinding);
 		}
 
 		private void OnDisable() {
-			_saveSettingsEvent.OnEventRaised -= SaveSettings;
-			_saveGameEvent.OnEventRaised -= SaveDataToDisk;
+			EventBus<SaveGameEvent>.Deregister(_saveGameBinding);
 		}
 
 		private void SaveSettings() => _saveData.SaveSettings(_gameSettings);
@@ -42,7 +43,7 @@ namespace Frogalypse.Persistence {
 		public void SaveDataToDisk() {
 			_saveData.LevelRecords.Clear();
 			for (int i = 0 ; i < _levelDatabase.Count ; i++) {
-				GameplaySceneSO level = _levelDatabase[i];
+				GameplayScene level = _levelDatabase[i];
 				LevelRecord record = _levelDatabase[level];
 				_saveData.SaveRecord(level, record);
 			}

@@ -2,27 +2,29 @@ using System.Collections.Generic;
 
 using Frogalypse.Persistence;
 
-using SideFX.Scenes;
+using SideFX.SceneManagement;
+
+using UnityEditor;
 
 using UnityEngine;
 
 namespace Frogalypse.Levels {
 	[CreateAssetMenu(fileName = "LevelDB", menuName = "Frogalypse/Databases/Levels")]
 	internal class LevelDB : ScriptableObject {
-		[SerializeField] private GameplaySceneSO[] _levels;
-		private readonly Dictionary<GameplaySceneSO, LevelRecord> _records = new();
+		[SerializeField] private GameplayScene[] _levels;
+		private readonly Dictionary<GameplayScene, LevelRecord> _records = new();
 
 		public int Count => _levels.Length;
 
 		/// <summary>
 		/// Indexer that fetches a level reference from an integer level ID
 		/// </summary>
-		public GameplaySceneSO this[int i] => _levels[i];
+		public GameplayScene this[int i] => _levels[i];
 
 		/// <summary>
 		/// Indexer that fetches the records for a level from that level's reference
 		/// </summary>
-		public LevelRecord this[GameplaySceneSO level] {
+		public LevelRecord this[GameplayScene level] {
 			get {
 				if (!_records.ContainsKey(level)) {
 					_records.Add(level, LevelRecord.Default());
@@ -36,8 +38,9 @@ namespace Frogalypse.Levels {
 
 		private void OnSaveLoaded(Save save) {
 			_records.Clear();
-			foreach (GameplaySceneSO level in _levels) {
-				if (save.LevelRecords.TryGetValue(level.Guid, out LevelRecord record)) {
+			foreach (GameplayScene level in _levels) {
+				string assetId = AssetDatabase.AssetPathToGUID(AssetDatabase.GetAssetPath(level));
+				if (save.LevelRecords.TryGetValue(assetId, out LevelRecord record)) {
 					_records.Add(level, record);
 				} else {
 					_records.Add(level, LevelRecord.Default());

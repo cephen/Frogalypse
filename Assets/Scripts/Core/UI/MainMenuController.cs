@@ -1,8 +1,11 @@
 using DG.Tweening;
 
 using Frogalypse.Levels;
+using Frogalypse.Persistence;
+using Frogalypse.Settings;
 using Frogalypse.UI;
 
+using SideFX.Events;
 using SideFX.SceneManagement;
 
 using UnityEngine;
@@ -12,9 +15,9 @@ namespace Frogalypse {
 	[RequireComponent(typeof(UIDocument))]
 	internal sealed class MainMenuController : MonoBehaviour {
 		[SerializeField] private LevelDB _levels;
-		[SerializeField] private LoadEventChannelSO _loadLevelChannel;
-		[SerializeField] private VoidEventChannelSO _saveSettingsChannel;
-		[SerializeField] private VoidEventChannelSO _saveGameChannel;
+		[SerializeField] private LoadEventChannel _loadLevelChannel;
+		//[SerializeField] private EventChannel _saveSettingsChannel;
+		//[SerializeField] private EventChannel _saveGameChannel;
 
 		private UIDocument _doc;
 		private VisualElement _sidebar;
@@ -89,12 +92,14 @@ namespace Frogalypse {
 		private void NavigateToLevelSelect() => _nextState ??= MenuState.LevelSelection;
 
 		private void OnSaveSettings() {
-			_saveSettingsChannel.RaiseEvent();
+			EventBus<SaveSettingsEvent>.Raise(new SaveSettingsEvent());
+			//_saveSettingsChannel.Raise();
 			NavigateToIndex();
 		}
 
 		private void ExitGame() {
-			_saveGameChannel.RaiseEvent();
+			EventBus<SaveGameEvent>.Raise(new SaveGameEvent());
+			//_saveGameChannel.Raise();
 			Debug.Log("Exiting Game");
 			Application.Quit();
 		}

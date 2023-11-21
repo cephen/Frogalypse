@@ -19,7 +19,7 @@ namespace Frogalypse.UI {
 		internal void Init(LoadEventChannel channel, LevelDB levelDatabase) {
 			Clear(); // Remove existing level frames before adding new ones
 			for (int i = 0 ; i < levelDatabase.Count ; i++) {
-				GameplaySceneSO scene = levelDatabase[i];
+				GameplayScene scene = levelDatabase[i];
 				LevelRecord record = levelDatabase[scene];
 				LevelFrame frame = new LevelFrame();
 				frame.Init(i + 1, scene, record, channel);

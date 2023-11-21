@@ -9,7 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4526557b180f3c309a1ebfc88c97c27c, type: 3}
-  m_Name: ColdStartupChannel
+  m_Script: {fileID: 11500000, guid: 8a8bba3e0225e14fe924c326842df3db, type: 3}
+  m_Name: MainMenuScene
   m_EditorClassIdentifier: 
-  _description: Used in the Editor to load managers in a level scene
+  _description: 
+  <SceneReference>k__BackingField:
+    m_AssetGUID: a203c210ea5b11eb5bfcd35097ac2863
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0

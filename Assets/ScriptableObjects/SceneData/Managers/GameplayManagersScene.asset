@@ -9,13 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 770aff45463a371fa877c1d104a7ce36, type: 3}
-  m_Name: PersistentManagers
+  m_Script: {fileID: 11500000, guid: 0ba3c1b19ac174f278282a28198c8991, type: 3}
+  m_Name: GameplayManagersScene
   m_EditorClassIdentifier: 
-  _description: The scene that contains all the persistent managers in the game like
-    scene loader and Audio manager etc...
-  sceneReference:
-    m_AssetGUID: fbaf91f5388d88660be4370019975e58
+  _description: 
+  <SceneReference>k__BackingField:
+    m_AssetGUID: 260e314e775fd3e1c87d7ab02450cb0d
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0

@@ -9,13 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb4e77bdca04c27c9810f8499e8c9c03, type: 3}
-  m_Name: MainMenu
+  m_Script: {fileID: 11500000, guid: 14f0b92fad42c461bae7cd4060a81950, type: 3}
+  m_Name: FadeRequestChannel
   m_EditorClassIdentifier: 
   _description: 
-  sceneReference:
-    m_AssetGUID: a203c210ea5b11eb5bfcd35097ac2863
-    m_SubObjectName: 
-    m_SubObjectType: 
-    m_EditorAssetChanged: 0
-  sceneMode: 0

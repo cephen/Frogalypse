@@ -6,11 +6,10 @@ using Newtonsoft.Json;
 
 using UnityEngine;
 
-namespace SideFX {
+namespace Frogalypse.Persistence {
 	public class SerializableScriptableObject : ScriptableObject {
 		[SerializeField, HideInInspector] private string _guid;
-		[JsonIgnore]
-		public string Guid => _guid;
+		[JsonIgnore] public string Guid => _guid;
 
 #if UNITY_EDITOR
 		private void OnValidate() {

@@ -253,7 +253,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3000f9ef26355c5428d44639edf559e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _saveSettingsEvent: {fileID: 11400000, guid: 036ab3cd456734641917cf2ac11954b5, type: 2}
   _saveSystem: {fileID: 11400000, guid: 5613362aa08115b44a46b381cbb7484b, type: 2}
   _settings: {fileID: 11400000, guid: ecdfdf4512cae714a89d74f8c74c1738, type: 2}
   _urpAsset: {fileID: 11400000, guid: 681886c5eb7344803b6206f758bf0b1c, type: 2}
@@ -316,7 +315,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9732b9b3a273c753eae534df50265dbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _fadeChannel: {fileID: 11400000, guid: 5fcab5867edf391b0bc2ea0be4a3c2b9, type: 2}
+  _fadeChannel: {fileID: 11400000, guid: 8436957312d91184695f5829be20f8c0, type: 2}
   _image: {fileID: 1894590455}
 --- !u!1 &1894590453
 GameObject:
@@ -403,7 +402,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2106763990}
-  - component: {fileID: 2106763989}
+  - component: {fileID: 2106763991}
   m_Layer: 0
   m_Name: SceneLoader
   m_TagString: Untagged
@@ -411,25 +410,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2106763989
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2106763988}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b6c1a018922ac1d391831ae8f4d3912, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _gameplayManagers: {fileID: 11400000, guid: 382a6439576964bb7aacab5541437b8c, type: 2}
-  _coldStartupLocation: {fileID: 11400000, guid: 47b1dcb121ea387f396d08891313770e, type: 2}
-  _loadMenu: {fileID: 11400000, guid: 781de8efff4adad9a9c6f9071b958165, type: 2}
-  _loadLocation: {fileID: 11400000, guid: f71283aa82c0b112281a2a92882c67ea, type: 2}
-  _toggleLoadingScreen: {fileID: 11400000, guid: b418b0be8e540f5f1bef9de2af4f77d7, type: 2}
-  _onSceneReady: {fileID: 11400000, guid: d86f7d11694430900b5b903b67e9ced6, type: 2}
-  _fadeRequestChannel: {fileID: 11400000, guid: 5fcab5867edf391b0bc2ea0be4a3c2b9, type: 2}
 --- !u!4 &2106763990
 Transform:
   m_ObjectHideFlags: 0
@@ -445,6 +425,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2106763991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2106763988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 185b5cb0d61357a6c9b800e5fe61637d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gameplayManagersScene: {fileID: 11400000, guid: 8a265d7d9ba3c954e96cde13e7f546db, type: 2}
+  _loadMainMenuScene: {fileID: 11400000, guid: 498442d032a0c654b8a6db1dd942aedb, type: 2}
+  _loadGameplayScene: {fileID: 11400000, guid: d907fd2c8f3574842b507ea69bc39e5c, type: 2}
+  _coldStartupLocation: {fileID: 11400000, guid: 5ee77006be5715348801fbe4fe08465b, type: 2}
+  _toggleLoadingScreenChannel: {fileID: 11400000, guid: b418b0be8e540f5f1bef9de2af4f77d7, type: 2}
+  _requestFadeChannel: {fileID: 11400000, guid: 8436957312d91184695f5829be20f8c0, type: 2}
+  _sceneReadyChannel: {fileID: 11400000, guid: a213192774ddc8c46b3737021c340e9a, type: 2}
 --- !u!1001 &1076373441676235533
 PrefabInstance:
   m_ObjectHideFlags: 0
