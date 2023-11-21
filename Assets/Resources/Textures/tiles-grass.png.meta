@@ -117,7 +117,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: tiles-grass_0
+      name: grass-platform-left
       rect:
         serializedVersion: 2
         x: 0
@@ -125,7 +125,7 @@ TextureImporter:
         width: 70
         height: 70
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -138,7 +138,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tiles-grass_1
+      name: grass-corner-inside-br
       rect:
         serializedVersion: 2
         x: 70
@@ -146,7 +146,7 @@ TextureImporter:
         width: 70
         height: 70
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -159,7 +159,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tiles-grass_2
+      name: grass-wall-right
       rect:
         serializedVersion: 2
         x: 140
@@ -167,7 +167,7 @@ TextureImporter:
         width: 70
         height: 70
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -180,7 +180,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tiles-grass_3
+      name: grass-slope-corner-r
       rect:
         serializedVersion: 2
         x: 210
@@ -188,7 +188,7 @@ TextureImporter:
         width: 70
         height: 70
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -201,7 +201,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tiles-grass_4
+      name: grass-slope-right
       rect:
         serializedVersion: 2
         x: 280
@@ -209,7 +209,7 @@ TextureImporter:
         width: 70
         height: 70
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -222,7 +222,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tiles-grass_5
+      name: grass-corner-inside-tl
       rect:
         serializedVersion: 2
         x: 350
@@ -230,7 +230,7 @@ TextureImporter:
         width: 70
         height: 70
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -243,7 +243,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tiles-grass_6
+      name: grass-platform-solo
       rect:
         serializedVersion: 2
         x: 0
@@ -251,7 +251,7 @@ TextureImporter:
         width: 70
         height: 70
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -264,15 +264,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tiles-grass_7
+      name: grass-corner-inside-bl
       rect:
         serializedVersion: 2
         x: 70
-        y: 372
+        y: 371
         width: 70
         height: 70
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -285,7 +285,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tiles-grass_8
+      name: grass-wall-left
       rect:
         serializedVersion: 2
         x: 140
@@ -293,7 +293,7 @@ TextureImporter:
         width: 70
         height: 70
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -306,7 +306,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tiles-grass_9
+      name: grass-floater-plain
       rect:
         serializedVersion: 2
         x: 210
@@ -314,7 +314,7 @@ TextureImporter:
         width: 70
         height: 70
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -327,7 +327,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tiles-grass_10
+      name: grass-hill
       rect:
         serializedVersion: 2
         x: 280
@@ -335,7 +335,7 @@ TextureImporter:
         width: 70
         height: 70
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -348,7 +348,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tiles-grass_11
+      name: grass-spikes
       rect:
         serializedVersion: 2
         x: 0
@@ -356,7 +356,7 @@ TextureImporter:
         width: 70
         height: 70
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -369,7 +369,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tiles-grass_12
+      name: grass-corner-outside-br
       rect:
         serializedVersion: 2
         x: 70
@@ -377,7 +377,7 @@ TextureImporter:
         width: 70
         height: 70
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -390,7 +390,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tiles-grass_13
+      name: grass-corner-inside-tr
       rect:
         serializedVersion: 2
         x: 140
@@ -398,7 +398,7 @@ TextureImporter:
         width: 70
         height: 70
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -411,7 +411,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tiles-grass_14
+      name: grass-overhang-rounded-right
       rect:
         serializedVersion: 2
         x: 210
@@ -419,7 +419,7 @@ TextureImporter:
         width: 70
         height: 70
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -432,7 +432,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tiles-grass_15
+      name: grass-overhang-right
       rect:
         serializedVersion: 2
         x: 280
@@ -440,7 +440,7 @@ TextureImporter:
         width: 70
         height: 70
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -453,7 +453,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tiles-grass_16
+      name: grass-spikes-tl
       rect:
         serializedVersion: 2
         x: 0
@@ -461,7 +461,7 @@ TextureImporter:
         width: 70
         height: 70
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -474,7 +474,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tiles-grass_17
+      name: grass-corner-outside-bl
       rect:
         serializedVersion: 2
         x: 70
@@ -482,7 +482,7 @@ TextureImporter:
         width: 70
         height: 70
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -495,7 +495,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tiles-grass_18
+      name: grass-platform-mid
       rect:
         serializedVersion: 2
         x: 140
@@ -503,7 +503,7 @@ TextureImporter:
         width: 70
         height: 70
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -516,7 +516,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tiles-grass_19
+      name: grass-overhang-rounded-left
       rect:
         serializedVersion: 2
         x: 210
@@ -524,7 +524,7 @@ TextureImporter:
         width: 70
         height: 70
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -537,7 +537,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tiles-grass_20
+      name: grass-floor
       rect:
         serializedVersion: 2
         x: 280
@@ -545,7 +545,7 @@ TextureImporter:
         width: 70
         height: 70
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -558,7 +558,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tiles-grass_21
+      name: grass-spikes-tr
       rect:
         serializedVersion: 2
         x: 0
@@ -566,7 +566,7 @@ TextureImporter:
         width: 70
         height: 70
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -579,7 +579,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tiles-grass_22
+      name: grass-floor-plain
       rect:
         serializedVersion: 2
         x: 70
@@ -587,7 +587,7 @@ TextureImporter:
         width: 70
         height: 70
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -600,7 +600,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tiles-grass_23
+      name: grass-corner-outside-tr
       rect:
         serializedVersion: 2
         x: 140
@@ -608,7 +608,7 @@ TextureImporter:
         width: 70
         height: 70
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -621,7 +621,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tiles-grass_24
+      name: grass-overhang-sloped-right
       rect:
         serializedVersion: 2
         x: 210
@@ -629,7 +629,7 @@ TextureImporter:
         width: 70
         height: 70
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -642,7 +642,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tiles-grass_25
+      name: grass-overhang-left
       rect:
         serializedVersion: 2
         x: 280
@@ -650,7 +650,7 @@ TextureImporter:
         width: 70
         height: 70
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -663,7 +663,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tiles-grass_26
+      name: grass-filler
       rect:
         serializedVersion: 2
         x: 0
@@ -671,7 +671,7 @@ TextureImporter:
         width: 70
         height: 70
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -684,7 +684,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tiles-grass_27
+      name: grass-spikes-bl
       rect:
         serializedVersion: 2
         x: 70
@@ -692,7 +692,7 @@ TextureImporter:
         width: 70
         height: 70
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -705,7 +705,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tiles-grass_28
+      name: grass-corner-outside-tl
       rect:
         serializedVersion: 2
         x: 140
@@ -713,7 +713,7 @@ TextureImporter:
         width: 70
         height: 70
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -726,7 +726,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tiles-grass_29
+      name: grass-overhang-sloped-left
       rect:
         serializedVersion: 2
         x: 210
@@ -734,7 +734,7 @@ TextureImporter:
         width: 70
         height: 70
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -747,7 +747,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tiles-grass_30
+      name: grass-floater
       rect:
         serializedVersion: 2
         x: 280
@@ -755,7 +755,7 @@ TextureImporter:
         width: 70
         height: 70
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -768,7 +768,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tiles-grass_31
+      name: grass-ceiling
       rect:
         serializedVersion: 2
         x: 0
@@ -776,7 +776,7 @@ TextureImporter:
         width: 70
         height: 70
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -789,7 +789,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tiles-grass_32
+      name: grass-spikes-br
       rect:
         serializedVersion: 2
         x: 70
@@ -797,7 +797,7 @@ TextureImporter:
         width: 70
         height: 70
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -810,7 +810,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tiles-grass_33
+      name: grass-slope-corner-l
       rect:
         serializedVersion: 2
         x: 140
@@ -818,7 +818,7 @@ TextureImporter:
         width: 70
         height: 70
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -831,7 +831,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tiles-grass_34
+      name: grass-slope-left
       rect:
         serializedVersion: 2
         x: 210
@@ -839,7 +839,7 @@ TextureImporter:
         width: 70
         height: 70
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -852,7 +852,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tiles-grass_35
+      name: grass-platform-right
       rect:
         serializedVersion: 2
         x: 280
@@ -860,7 +860,7 @@ TextureImporter:
         width: 70
         height: 70
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -883,42 +883,42 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      tiles-grass_0: -629992627
-      tiles-grass_1: 1469676986
-      tiles-grass_10: -1325445924
-      tiles-grass_11: -780595990
-      tiles-grass_12: 621986900
-      tiles-grass_13: -2064965804
-      tiles-grass_14: 349121563
-      tiles-grass_15: 2134405370
-      tiles-grass_16: -16389600
-      tiles-grass_17: -879194088
-      tiles-grass_18: -1959112310
-      tiles-grass_19: 385765086
-      tiles-grass_2: 332443461
-      tiles-grass_20: 256091348
-      tiles-grass_21: -704400095
-      tiles-grass_22: 1343237926
-      tiles-grass_23: -406510815
-      tiles-grass_24: 1939014494
-      tiles-grass_25: 1272832484
-      tiles-grass_26: -615883834
-      tiles-grass_27: -2110682361
-      tiles-grass_28: -816587381
-      tiles-grass_29: -507948354
-      tiles-grass_3: 1853288381
-      tiles-grass_30: 1319156689
-      tiles-grass_31: 55119543
-      tiles-grass_32: -85365698
-      tiles-grass_33: -1567258835
-      tiles-grass_34: 1833471739
-      tiles-grass_35: -752508830
-      tiles-grass_4: -1909880831
-      tiles-grass_5: -1856686139
-      tiles-grass_6: -2127231405
-      tiles-grass_7: -1106448425
-      tiles-grass_8: -1342218531
-      tiles-grass_9: -634772690
+      grass-ceiling: 55119543
+      grass-corner-inside-bl: -1106448425
+      grass-corner-inside-br: 1469676986
+      grass-corner-inside-tl: -1856686139
+      grass-corner-inside-tr: -2064965804
+      grass-corner-outside-bl: -879194088
+      grass-corner-outside-br: 621986900
+      grass-corner-outside-tl: -816587381
+      grass-corner-outside-tr: -406510815
+      grass-filler: -615883834
+      grass-floater: 1319156689
+      grass-floater-plain: -634772690
+      grass-floor: 256091348
+      grass-floor-plain: 1343237926
+      grass-hill: -1325445924
+      grass-overhang-left: 1272832484
+      grass-overhang-right: 2134405370
+      grass-overhang-rounded-left: 385765086
+      grass-overhang-rounded-right: 349121563
+      grass-overhang-sloped-left: -507948354
+      grass-overhang-sloped-right: 1939014494
+      grass-platform-left: -629992627
+      grass-platform-mid: -1959112310
+      grass-platform-right: -752508830
+      grass-platform-solo: -2127231405
+      grass-slope-corner-l: -1567258835
+      grass-slope-corner-r: 1853288381
+      grass-slope-left: 1833471739
+      grass-slope-right: -1909880831
+      grass-spikes: -780595990
+      grass-spikes-bl: -2110682361
+      grass-spikes-br: -85365698
+      grass-spikes-tl: -16389600
+      grass-spikes-tr: -704400095
+      grass-wall-left: -1342218531
+      grass-wall-right: 332443461
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
