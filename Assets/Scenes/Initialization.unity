@@ -164,13 +164,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 142580567}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6049a9d927cd94f89a31973fa2352d95, type: 3}
+  m_Script: {fileID: 11500000, guid: 065f21a90c4577bd98eb1b9bad9f1760, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _managersScene: {fileID: 11400000, guid: 4ef616b6fb0c483dd919874bdba2cb57, type: 2}
-  _mainMenuScene: {fileID: 11400000, guid: b461667b97701e1ada376ec25ccf8d63, type: 2}
-  _menuLoadChannel:
-    m_AssetGUID: 781de8efff4adad9a9c6f9071b958165
+  _persistentManagersScene: {fileID: 11400000, guid: 46611a7b3ec00e94abf177ebd83435be, type: 2}
+  _mainMenuScene: {fileID: 11400000, guid: f32d5c4280b11104595936258f5112b4, type: 2}
+  _loadMainMenuSceneChannel:
+    m_AssetGUID: 498442d032a0c654b8a6db1dd942aedb
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0

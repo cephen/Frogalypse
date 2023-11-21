@@ -9,7 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66b6d296b206d6562b6761324500966e, type: 3}
+  m_Script: {fileID: 11500000, guid: a1b17fbcf746a750eb65e5ab90278fed, type: 3}
   m_Name: ToggleLoadingScreen
   m_EditorClassIdentifier: 
-  _description: 

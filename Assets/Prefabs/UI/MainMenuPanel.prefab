@@ -62,5 +62,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _levels: {fileID: 11400000, guid: 4f6f513dab8892b4ca2de3b2f3dd6b68, type: 2}
-  _loadLevelChannel: {fileID: 11400000, guid: f71283aa82c0b112281a2a92882c67ea, type: 2}
+  _loadLevelChannel: {fileID: 11400000, guid: d907fd2c8f3574842b507ea69bc39e5c, type: 2}
   _scrollTime: 0.5
