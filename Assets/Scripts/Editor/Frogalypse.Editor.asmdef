@@ -3,9 +3,9 @@
     "rootNamespace": "Frogalypse.Editor",
     "references": [
         "GUID:5e8d8788dc6d56343af892abac3b0002",
-        "GUID:1ce2e11473479c725bd27f8b7ead25ba",
         "GUID:9e24947de15b9834991c9d8411ea37cf",
-        "GUID:84651a3751eca9349aac36a66bba901b"
+        "GUID:84651a3751eca9349aac36a66bba901b",
+        "GUID:a32997a87509783678cbefbbc2047f64"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

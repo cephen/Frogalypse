@@ -1,17 +1,17 @@
 using DG.Tweening;
 
-using SideFX.Events;
+using SideFX.SceneManagement;
 
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Frogalypse {
 	public class FadeController : MonoBehaviour {
-		[SerializeField] private FadeEventChannelSO _fadeChannel;
+		[SerializeField] private FadeEventChannel _fadeChannel;
 		[SerializeField] private Image _image;
 
-		private void OnEnable() => _fadeChannel.OnEventRaised += StartFade;
-		private void OnDisable() => _fadeChannel.OnEventRaised -= StartFade;
+		private void OnEnable() => _fadeChannel.Fade += StartFade;
+		private void OnDisable() => _fadeChannel.Fade -= StartFade;
 
 		/// <summary>
 		/// Controls the colour of a UI Image in order to fade in or out of gameplay

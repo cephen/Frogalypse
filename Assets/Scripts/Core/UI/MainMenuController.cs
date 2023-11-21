@@ -3,7 +3,7 @@ using DG.Tweening;
 using Frogalypse.Levels;
 using Frogalypse.UI;
 
-using SideFX.Events;
+using SideFX.SceneManagement;
 
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -12,7 +12,7 @@ namespace Frogalypse {
 	[RequireComponent(typeof(UIDocument))]
 	internal sealed class MainMenuController : MonoBehaviour {
 		[SerializeField] private LevelDB _levels;
-		[SerializeField] private LoadEventChannelSO _loadLevelChannel;
+		[SerializeField] private LoadEventChannel _loadLevelChannel;
 
 		private UIDocument _doc;
 		private VisualElement _sidebar;

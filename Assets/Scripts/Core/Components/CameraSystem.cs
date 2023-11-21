@@ -1,6 +1,6 @@
 using Cinemachine;
 
-using SideFX;
+using SideFX.Anchors;
 
 using UnityEngine;
 
@@ -17,7 +17,7 @@ namespace Frogalypse {
 		}
 
 		private void OnDisable() {
-			_cameraTransformAnchor.Unset();
+			_cameraTransformAnchor.Clear();
 			_playerTransformAnchor.OnAnchorUpdated -= SetCameraTarget;
 		}
 

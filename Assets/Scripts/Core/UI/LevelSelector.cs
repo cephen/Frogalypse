@@ -2,7 +2,7 @@
 
 using Frogalypse.Levels;
 
-using SideFX.Events;
+using SideFX.SceneManagement;
 
 using UnityEngine.UIElements;
 
@@ -15,7 +15,7 @@ namespace Frogalypse.UI {
 			style.opacity = 0f;
 		}
 
-		internal void Init(LoadEventChannelSO channel, LevelDB levelDatabase) {
+		internal void Init(LoadEventChannel channel, LevelDB levelDatabase) {
 			Clear(); // Remove existing level frames before adding new ones
 			for (int i = 0 ; i < levelDatabase.Count ; i++) {
 				LevelData data = levelDatabase[i];

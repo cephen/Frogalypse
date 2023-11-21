@@ -2,7 +2,7 @@ using Frogalypse.Components;
 using Frogalypse.Input;
 using Frogalypse.Settings;
 
-using SideFX;
+using SideFX.Anchors;
 
 using UnityEngine;
 
