@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe56e629d52735980a29fd08377ca3c7, type: 3}
-  m_Name: MainCameraTransform
+  m_Script: {fileID: 11500000, guid: 420900d8e72fe2d1f9ffddb07ca37faf, type: 3}
+  m_Name: PlayerAnchor
   m_EditorClassIdentifier: 
   _description: 
-  _value: {fileID: 0}
+  <Value>k__BackingField: {fileID: 0}

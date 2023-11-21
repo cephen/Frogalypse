@@ -392,5 +392,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _mainCamera: {fileID: 8609990202482093845}
   _virtualCamera: {fileID: 9080933051847684705}
-  _cameraTransformAnchor: {fileID: 11400000, guid: bbbd649b6a53ea085a20895b89865540, type: 2}
-  _playerTransformAnchor: {fileID: 11400000, guid: a154207a5ced87cf4bdcf43be57a68b6, type: 2}
+  _cameraTransformAnchor: {fileID: 11400000, guid: 5f50a4c78d4465342a0107dfe723d444, type: 2}
+  _playerTransformAnchor: {fileID: 11400000, guid: 7355c32fbbf204144a999983b9d3520c, type: 2}
