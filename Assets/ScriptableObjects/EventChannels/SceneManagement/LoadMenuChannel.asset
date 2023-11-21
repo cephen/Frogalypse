@@ -9,8 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4526557b180f3c309a1ebfc88c97c27c, type: 3}
+  m_Script: {fileID: 11500000, guid: 83c09940d17dd6a7a965400dea776ab3, type: 3}
   m_Name: LoadMenuChannel
   m_EditorClassIdentifier: 
-  _description: Used to request loading the main menu, when returning to the main
-    menu from gameplay or during game Initialization.
+  _description: 

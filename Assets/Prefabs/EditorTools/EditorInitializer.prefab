@@ -45,10 +45,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _thisScene: {fileID: 0}
-  _persistentManagersScene: {fileID: 11400000, guid: 4ef616b6fb0c483dd919874bdba2cb57, type: 2}
+  _persistentManagersScene: {fileID: 11400000, guid: 46611a7b3ec00e94abf177ebd83435be, type: 2}
   _notifyColdStartupChannel:
-    m_AssetGUID: 47b1dcb121ea387f396d08891313770e
+    m_AssetGUID: 5ee77006be5715348801fbe4fe08465b
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  _onSceneReadyChannel: {fileID: 11400000, guid: d86f7d11694430900b5b903b67e9ced6, type: 2}
+  _onSceneReadyChannel: {fileID: 11400000, guid: a213192774ddc8c46b3737021c340e9a, type: 2}

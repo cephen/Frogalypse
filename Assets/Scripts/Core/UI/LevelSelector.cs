@@ -1,8 +1,9 @@
-﻿using DG.Tweening;
+using DG.Tweening;
 
 using Frogalypse.Levels;
+using Frogalypse.Persistence;
 
-using SideFX.Events;
+using SideFX.SceneManagement;
 
 using UnityEngine.UIElements;
 
@@ -15,12 +16,13 @@ namespace Frogalypse.UI {
 			style.opacity = 0f;
 		}
 
-		internal void Init(LoadEventChannelSO channel, LevelDB levelDatabase) {
+		internal void Init(LoadEventChannel channel, LevelDB levelDatabase) {
 			Clear(); // Remove existing level frames before adding new ones
 			for (int i = 0 ; i < levelDatabase.Count ; i++) {
-				LevelData data = levelDatabase[i];
-				LevelFrame frame = new();
-				frame.Init(i + 1, data, channel);
+				GameplayScene scene = levelDatabase[i];
+				LevelRecord record = levelDatabase[scene];
+				LevelFrame frame = new LevelFrame();
+				frame.Init(i + 1, scene, record, channel);
 				Add(frame);
 			}
 		}

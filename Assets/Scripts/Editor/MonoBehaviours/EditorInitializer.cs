@@ -1,5 +1,5 @@
 using SideFX.Events;
-using SideFX.Scenes;
+using SideFX.SceneManagement;
 
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -14,23 +14,23 @@ namespace Frogalypse.Editor {
 	/// </summary>
 	internal sealed class EditorInitializer : MonoBehaviour {
 #if UNITY_EDITOR
-		[SerializeField] private SceneDataSO _thisScene;
-		[SerializeField] private PersistentManagersSO _persistentManagersScene;
-		[SerializeField] private AssetReferenceT<LoadEventChannelSO> _notifyColdStartupChannel;
-		[SerializeField] private VoidEventChannelSO _onSceneReadyChannel;
+		[SerializeField] private SceneData _thisScene;
+		[SerializeField] private PersistentManagersScene _persistentManagersScene;
+		[SerializeField] private AssetReferenceT<LoadEventChannel> _notifyColdStartupChannel;
+		[SerializeField] private EventChannel _onSceneReadyChannel;
 
 		private bool _isColdStart = false;
 
 		private void Awake() {
 			// If the persistent managers aren't loaded, this is an editor session and thus a cold start
-			string sceneName = _persistentManagersScene.sceneReference.editorAsset.name;
+			string sceneName = _persistentManagersScene.SceneReference.editorAsset.name;
 			if (!SceneManager.GetSceneByName(sceneName).isLoaded) { _isColdStart = true; }
 		}
 
 		private void Start() {
 			if (_isColdStart) {
 				_persistentManagersScene
-					.sceneReference
+					.SceneReference
 					.LoadSceneAsync(LoadSceneMode.Additive, activateOnLoad: true)
 					.Completed += OnManagersLoaded;
 			}
@@ -38,16 +38,16 @@ namespace Frogalypse.Editor {
 
 		private void OnManagersLoaded(AsyncOperationHandle<SceneInstance> sceneHandle) {
 			_notifyColdStartupChannel
-			.LoadAssetAsync<LoadEventChannelSO>()
+			.LoadAssetAsync<LoadEventChannel>()
 			.Completed += OnNotifyChannelLoaded;
 		}
 
-		private void OnNotifyChannelLoaded(AsyncOperationHandle<LoadEventChannelSO> channelHandle) {
+		private void OnNotifyChannelLoaded(AsyncOperationHandle<LoadEventChannel> channelHandle) {
 			if (_thisScene != null) {
-				channelHandle.Result.RaiseEvent(_thisScene);
+				channelHandle.Result.Raise(new LoadRequest(_thisScene));
 			} else {
 				// Raise a fake SceneReady event, so dependent scripts can start
-				_onSceneReadyChannel.RaiseEvent();
+				_onSceneReadyChannel.Raise();
 			}
 		}
 

@@ -1,6 +1,6 @@
 using Frogalypse.Settings;
 
-using SideFX;
+using SideFX.Anchors;
 
 using UnityEngine;
 using UnityEngine.InputSystem;
