@@ -9,7 +9,6 @@ using SideFX.SceneManagement;
 using UnityEngine;
 
 namespace Frogalypse.Persistence {
-	internal struct SaveGameEvent : IEvent { }
 
 	[CreateAssetMenu(fileName = "SaveSystem", menuName = "Frogalypse/Save System")]
 	internal class SaveSystem : ScriptableObject {
