@@ -7,7 +7,7 @@ using SideFX.Anchors;
 using UnityEngine;
 
 namespace Frogalypse {
-	[RequireComponent(typeof(MoveComponent), typeof(JumpComponent))]
+	[RequireComponent(typeof(MoveComponent), typeof(JumpComponent), typeof(HealthComponent))]
 	internal class PlayerController : MonoBehaviour {
 		[Header("Assets")]
 		[SerializeField] private InputReader _input;
