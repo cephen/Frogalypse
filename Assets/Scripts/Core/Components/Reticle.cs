@@ -68,11 +68,11 @@ namespace Frogalypse {
 			Vector2 positionDelta = mousePos - playerPos;
 			Vector2 aimDirection = positionDelta.normalized;
 
-			int numHits = Physics2D.CircleCast(playerPos, 0.3f, aimDirection, _playerSettings.tetherSettings.contactFilter, _targets);
+			int numHits = Physics2D.CircleCast(playerPos, 0.3f, aimDirection, _playerSettings.TetherSettings.ContactFilter, _targets);
 
 			for (int i = 0 ; i < numHits ; i++) {
 				RaycastHit2D hit = _targets[i];
-				if (hit.distance < _playerSettings.tetherSettings.maxTravelDistance) {
+				if (hit.distance < _playerSettings.TetherSettings.MaxTravelDistance) {
 					Debug.DrawLine(playerPos, hit.point, Color.green);
 					// If the mouse is further away than the hit point
 					return positionDelta.magnitude > hit.distance
@@ -84,7 +84,7 @@ namespace Frogalypse {
 			}
 
 			// This code is only reached if there are no valid targets
-			Debug.DrawLine(playerPos, playerPos + aimDirection * _playerSettings.tetherSettings.maxTravelDistance, Color.red);
+			Debug.DrawLine(playerPos, playerPos + aimDirection * _playerSettings.TetherSettings.MaxTravelDistance, Color.red);
 			return (false, mousePos);
 		}
 	}

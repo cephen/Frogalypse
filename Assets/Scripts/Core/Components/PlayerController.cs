@@ -37,7 +37,7 @@ namespace Frogalypse {
 			_tetherStartPointAnchor.Provide(_tetherStartPoint);
 			_playerAnchor.Provide(transform);
 			if (_tongue != null)
-				_tongue.UpdateSettings(_playerSettings.tetherSettings);
+				_tongue.UpdateSettings(_playerSettings.TetherSettings);
 			InitMoveComponent();
 			InitJumpComponent();
 		}

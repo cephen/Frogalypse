@@ -6,9 +6,9 @@ namespace Frogalypse.Settings {
 	internal class PlayerSettings : ScriptableObject {
 		[SerializeField] internal ActorMoveSettings MoveSettings;
 
-		[SerializeField] internal TetherSettings tetherSettings;
+		[SerializeField] internal TetherSettings TetherSettings;
 
 		[Header("Animation")]
-		[SerializeField] internal AnimationCurve firingSpeedCurve;
+		[SerializeField] internal AnimationCurve FiringSpeedCurve;
 	}
 }

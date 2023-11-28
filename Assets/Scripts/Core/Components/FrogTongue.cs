@@ -89,7 +89,7 @@ namespace Frogalypse.Components {
 		private void FixedUpdate() {
 			if (_state is State.Travelling) {
 				// Cancel ability when tip is too far from player
-				if (Vector2.Distance(_tetherLauncher.position, _body.position) > _settings.maxTravelDistance) {
+				if (Vector2.Distance(_tetherLauncher.position, _body.position) > _settings.MaxTravelDistance) {
 					MakeReady();
 					return;
 				}
@@ -101,7 +101,7 @@ namespace Frogalypse.Components {
 				float checkDistance = _body.velocity.magnitude * Time.deltaTime;
 
 				// TODO: Move circle check radius into tether settings
-				if (Physics2D.CircleCast(_body.position, 0.3f, direction, _settings.contactFilter, hits, checkDistance) > 0)
+				if (Physics2D.CircleCast(_body.position, 0.3f, direction, _settings.ContactFilter, hits, checkDistance) > 0)
 					MakeAnchored(hits[0]);
 			}
 		}
@@ -131,7 +131,7 @@ namespace Frogalypse.Components {
 			transform.position = hit.point;
 			_anchorPoint = hit.point;
 			_spring.connectedBody = _playerBody;
-			_spring.distance = Mathf.Min(Vector2.Distance(_body.position, _tetherLauncher.position), _settings.targetLength);
+			_spring.distance = Mathf.Min(Vector2.Distance(_body.position, _tetherLauncher.position), _settings.TargetLength);
 			_spring.enabled = true;
 			_state = State.Anchored;
 		}
@@ -156,8 +156,8 @@ namespace Frogalypse.Components {
 			Vector2 target = (Vector2) _reticle.position;
 			Vector2 delta = target - startPos;
 			Vector2 direction = delta.normalized;
-			float distance = Mathf.Min(delta.magnitude, _settings.maxTravelDistance);
-			Vector2 velocity = direction * (distance / _settings.travelTime);
+			float distance = Mathf.Min(delta.magnitude, _settings.MaxTravelDistance);
+			Vector2 velocity = direction * (distance / _settings.TravelTime);
 
 #if UNITY_EDITOR
 			Debug.Log("Launching Tether\n" +
