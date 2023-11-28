@@ -15,7 +15,7 @@ namespace Frogalypse.UI {
 			if (TryGetComponent(out UIDocument component)) {
 				_document = component;
 				_root = _document.rootVisualElement;
-				_healthBar = _root.Q<HealthbarWidget>("health-bar");
+				_healthBar = _root.Q<HealthbarWidget>("healthbar");
 			}
 
 			if (_healthBar != null && _healthbarData != null)
