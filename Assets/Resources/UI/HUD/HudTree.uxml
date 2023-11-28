@@ -1,0 +1,4 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/Art/UI/HUD/HudStyles.uss?fileID=7433441132597879392&amp;guid=15037068aa1b0286eaf1b0cf141f3cdd&amp;type=3#HudStyles" />
+    <ui:VisualElement name="wrapper" style="flex-grow: 1;" />
+</ui:UXML>
