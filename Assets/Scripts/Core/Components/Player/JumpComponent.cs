@@ -8,9 +8,9 @@ namespace Frogalypse.Components {
 
 		private Rigidbody2D _body;
 		private ContactFilter2D _contactFilter;
-		private JumpState _state = JumpState.Grounded;
+		private State _state = State.Grounded;
 
-		private enum JumpState : byte {
+		private enum State : byte {
 			Grounded, Rising, Falling
 		}
 
@@ -19,12 +19,12 @@ namespace Frogalypse.Components {
 		private void FixedUpdate() {
 			// TODO: If the player walks off an edge they aren't switched to the falling state
 			switch (_state) {
-				case JumpState.Rising:
+				case State.Rising:
 					if (_body.velocity.y < 0f) {
-						_state = JumpState.Falling;
+						_state = State.Falling;
 					}
 					break;
-				case JumpState.Falling:
+				case State.Falling:
 					_body.gravityScale = _fallingGravityScale;
 					break;
 				default:
@@ -37,18 +37,18 @@ namespace Frogalypse.Components {
 				return;
 			}
 			_body.AddForce(Vector2.up * _jumpForce, ForceMode2D.Impulse);
-			_state = JumpState.Rising;
+			_state = State.Rising;
 		}
 
 		internal void OnJumpCancelled() {
-			_state = JumpState.Falling;
+			_state = State.Falling;
 		}
 
 		internal void SetGroundContactFilter(ContactFilter2D filter) => _contactFilter = filter;
 
 		private void OnCollisionEnter2D() {
 			if (IsGrounded()) {
-				_state = JumpState.Grounded;
+				_state = State.Grounded;
 				_body.gravityScale = 1f;
 			}
 		}
