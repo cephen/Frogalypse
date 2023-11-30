@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 
+using Frogalypse.Levels;
 using Frogalypse.Settings;
 
 using Newtonsoft.Json;

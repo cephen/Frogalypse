@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Frogalypse.Persistence {
+namespace Frogalypse.Levels {
 	[Serializable]
 	internal struct LevelRecord {
 		public bool IsComplete { get; internal set; }
