@@ -1,5 +1,6 @@
 using Frogalypse.Events;
 
+using SideFX.Anchors;
 using SideFX.Events;
 
 using UnityEngine;
@@ -7,6 +8,7 @@ using UnityEngine;
 namespace Frogalypse {
 	public class SpawnSystem : MonoBehaviour {
 		[SerializeField] private PlayerController _playerPrefab;
+		[SerializeField] private TransformAnchor _playerAnchor;
 		private EventBinding<SpawnPlayer> _spawnPlayerBinding;
 
 		private void OnEnable() {
@@ -24,7 +26,8 @@ namespace Frogalypse {
 				return;
 			}
 			Debug.Log($"Spawning Player at {@event.Position}");
-			Instantiate(_playerPrefab, position: @event.Position, Quaternion.identity);
+			var player = Instantiate(_playerPrefab, position: @event.Position, Quaternion.identity);
+			_playerAnchor.Provide(player.transform);
 		}
 	}
 }

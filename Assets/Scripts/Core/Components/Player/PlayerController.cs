@@ -14,7 +14,6 @@ namespace Frogalypse {
 		[SerializeField] private InputReader _input;
 		[SerializeField] private PlayerSettings _playerSettings;
 		[SerializeField] private HealthData _health;
-		[SerializeField] private TransformAnchor _playerAnchor;
 		[SerializeField] private TransformAnchor _tetherStartPointAnchor;
 		[SerializeField] private TransformAnchor _mainCameraAnchor;
 
@@ -37,7 +36,6 @@ namespace Frogalypse {
 			}
 
 			_tetherStartPointAnchor.Provide(_tetherStartPoint);
-			_playerAnchor.Provide(transform);
 			if (_tongue != null)
 				_tongue.UpdateSettings(_playerSettings.TetherSettings);
 			InitMoveComponent();
