@@ -6,7 +6,6 @@ using Frogalypse.Settings;
 using Frogalypse.UI;
 
 using SideFX.Events;
-using SideFX.SceneManagement;
 
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -15,9 +14,6 @@ namespace Frogalypse {
 	[RequireComponent(typeof(UIDocument))]
 	internal sealed class MainMenuController : MonoBehaviour {
 		[SerializeField] private LevelDB _levels;
-		[SerializeField] private LoadEventChannel _loadLevelChannel;
-		//[SerializeField] private EventChannel _saveSettingsChannel;
-		//[SerializeField] private EventChannel _saveGameChannel;
 
 		private UIDocument _doc;
 		private VisualElement _sidebar;
@@ -58,7 +54,7 @@ namespace Frogalypse {
 			_exitSettingsButton = _doc.rootVisualElement.Q<Button>("exit-settings");
 
 			_levelSelector = _doc.rootVisualElement.Q<LevelSelector>("level-selector");
-			_levelSelector.Init(_loadLevelChannel, _levels);
+			_levelSelector.Init(_levels);
 		}
 
 		private void Update() {
