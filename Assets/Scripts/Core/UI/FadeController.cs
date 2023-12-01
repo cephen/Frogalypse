@@ -1,29 +1,34 @@
 using DG.Tweening;
 
-using SideFX.SceneManagement;
+using SideFX.Events;
+using SideFX.SceneManagement.Events;
 
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Frogalypse {
+	/// <summary>
+	/// Controls the colour of a UI Image in order to fade in or out of gameplay
+	/// </summary>
 	public class FadeController : MonoBehaviour {
-		[SerializeField] private FadeEventChannel _fadeChannel;
 		[SerializeField] private Image _image;
 
-		private void OnEnable() => _fadeChannel.Fade += StartFade;
-		private void OnDisable() => _fadeChannel.Fade -= StartFade;
+		private EventBinding<FadeIn> _fadeInBinding;
+		private EventBinding<FadeTo> _fadeToBinding;
 
-		/// <summary>
-		/// Controls the colour of a UI Image in order to fade in or out of gameplay
-		/// </summary>
-		/// <param name="fadeIn">
-		/// If false, the screen becomes black.
-		/// If true, the rectangle image fades out, making gameplay visible
-		/// </param>
-		/// <param name="duration">Time taken in seconds for the fade to complete</param>
-		/// <param name="targetColor">The colour to fade to</param>
-		private void StartFade(bool fadeIn, float duration, Color targetColor) {
-			_image.DOBlendableColor(targetColor, duration);
+		private void OnEnable() {
+			_fadeInBinding = new EventBinding<FadeIn>(OnFadeIn);
+			_fadeToBinding = new EventBinding<FadeTo>(OnFadeTo);
+			EventBus<FadeIn>.Register(_fadeInBinding);
+			EventBus<FadeTo>.Register(_fadeToBinding);
 		}
+
+		private void OnDisable() {
+			EventBus<FadeIn>.Deregister(_fadeInBinding);
+			EventBus<FadeTo>.Deregister(_fadeToBinding);
+		}
+
+		private void OnFadeIn(FadeIn fade) => _image.DOBlendableColor(Color.clear, fade.Duration);
+		private void OnFadeTo(FadeTo fade) => _image.DOBlendableColor(fade.TargetColor, fade.Duration);
 	}
 }

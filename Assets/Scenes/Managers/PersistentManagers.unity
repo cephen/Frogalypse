@@ -315,7 +315,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9732b9b3a273c753eae534df50265dbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _fadeChannel: {fileID: 11400000, guid: 8436957312d91184695f5829be20f8c0, type: 2}
   _image: {fileID: 1894590455}
 --- !u!1 &1894590453
 GameObject:
