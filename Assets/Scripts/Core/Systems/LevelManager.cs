@@ -1,3 +1,5 @@
+using System;
+
 using Frogalypse.Events;
 using Frogalypse.Tags;
 
@@ -14,6 +16,7 @@ namespace Frogalypse.Levels {
 
 		private LevelTimer _timer;
 		private EventBinding<SceneReady> _sceneReadyBinding;
+		private EventBinding<GoalReached> _goalReachedBinding;
 
 		private void Awake() {
 			_timer = new LevelTimer(startNow: false);
@@ -21,11 +24,14 @@ namespace Frogalypse.Levels {
 
 		private void OnEnable() {
 			_sceneReadyBinding = new EventBinding<SceneReady>(OnSceneReady);
+			_goalReachedBinding = new EventBinding<GoalReached>(OnGoalReached);
 			EventBus<SceneReady>.Register(_sceneReadyBinding);
+			EventBus<GoalReached>.Register(_goalReachedBinding);
 		}
 
 		private void OnDisable() {
 			EventBus<SceneReady>.Deregister(_sceneReadyBinding);
+			EventBus<GoalReached>.Deregister(_goalReachedBinding);
 		}
 
 		private void OnSceneReady(SceneReady @event) {
@@ -33,6 +39,13 @@ namespace Frogalypse.Levels {
 				Debug.Log("Starting Timer");
 				_timer.Start();
 			}
+		}
+
+		private void OnGoalReached(GoalReached @event) {
+			TimeSpan timeTaken = _timer.Finish();
+			EventBus<LevelCompleted>.Raise(new LevelCompleted {
+				TimeTaken = timeTaken,
+			});
 		}
 
 		private bool CheckGoalZoneExists() {
@@ -54,5 +67,9 @@ namespace Frogalypse.Levels {
 			Debug.LogError("No player start object found", this);
 			return false;
 		}
+	}
+
+	internal readonly struct LevelCompleted : IEvent {
+		public readonly TimeSpan TimeTaken { get; init; }
 	}
 }
