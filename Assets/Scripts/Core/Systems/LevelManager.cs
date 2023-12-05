@@ -1,4 +1,5 @@
 using Frogalypse.Events;
+using Frogalypse.Tags;
 
 using SideFX.Anchors;
 using SideFX.Events;
@@ -8,9 +9,6 @@ using UnityEngine;
 
 namespace Frogalypse.Levels {
 	internal class LevelManager : MonoBehaviour {
-		[field: SerializeField] internal Transform PlayerStartPosition { get; private set; } = default;
-		[field: SerializeField] internal Collider2D GoalZone { get; private set; }
-
 		[SerializeField] private TransformAnchor _playerAnchor;
 
 		private LevelTimer _timer;
@@ -25,18 +23,26 @@ namespace Frogalypse.Levels {
 			EventBus<SceneReady>.Register(_sceneReadyBinding);
 		}
 
-		private void OnDrawGizmos() {
-			Gizmos.color = Color.green;
-			Vector2 spawnPos = (Vector2) PlayerStartPosition.position;
-			Gizmos.DrawLine(spawnPos, spawnPos + Vector2.up);
+		private void OnDisable() {
+			EventBus<SceneReady>.Deregister(_sceneReadyBinding);
 		}
 
 		private void OnSceneReady(SceneReady @event) {
-			Debug.Log("Spawning Player");
-			EventBus<SpawnPlayer>.Raise(default);
+			TrySpawnPlayer();
 
 			Debug.Log("Starting Timer");
 			_timer.Start();
+		}
+
+		private bool TrySpawnPlayer() {
+			if (FindFirstObjectByType<PlayerStart>() is PlayerStart start && start != null) {
+				Debug.Log("Spawning Player");
+				EventBus<SpawnPlayer>.Raise(new(start.transform.position));
+				return true;
+			}
+
+			Debug.LogError("No player start object found", this);
+			return false;
 		}
 	}
 }
