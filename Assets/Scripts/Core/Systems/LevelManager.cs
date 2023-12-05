@@ -6,6 +6,7 @@ using SideFX.Events;
 using SideFX.SceneManagement.Events;
 
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Frogalypse.Levels {
 	internal class LevelManager : MonoBehaviour {
@@ -28,10 +29,19 @@ namespace Frogalypse.Levels {
 		}
 
 		private void OnSceneReady(SceneReady @event) {
-			TrySpawnPlayer();
+			if (CheckGoalZoneExists() && TrySpawnPlayer()) {
+				Debug.Log("Starting Timer");
+				_timer.Start();
+			}
+		}
 
-			Debug.Log("Starting Timer");
-			_timer.Start();
+		private bool CheckGoalZoneExists() {
+			if (FindFirstObjectByType<GoalZone>() is GoalZone goal && goal != null) {
+				Debug.Log($"Found Goal Zone: {goal.transform.position}");
+				return true;
+			}
+			Debug.LogError($"No goal zone in scene:  {SceneManager.GetActiveScene().name}");
+			return false;
 		}
 
 		private bool TrySpawnPlayer() {
