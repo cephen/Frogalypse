@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: PlayerSettings
   m_EditorClassIdentifier: 
   MoveSettings: {fileID: 11400000, guid: 52f273ff262654846931955c22adf89a, type: 2}
-  tetherSettings:
-    targetLength: 4
-    travelTime: 0.2
-    maxTravelDistance: 20
-    contactFilter:
+  TetherSettings:
+    TargetLength: 4
+    TravelTime: 0.2
+    MaxTravelDistance: 8
+    ContactFilter:
       useTriggers: 0
       useLayerMask: 1
       useDepth: 0
@@ -31,27 +31,9 @@ MonoBehaviour:
       maxDepth: 0
       minNormalAngle: 0
       maxNormalAngle: 0
-  firingSpeedCurve:
+  FiringSpeedCurve:
     serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
+    m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
