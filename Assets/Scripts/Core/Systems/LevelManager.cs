@@ -43,6 +43,8 @@ namespace Frogalypse.Levels {
 
 		private void OnGoalReached(GoalReached @event) {
 			TimeSpan timeTaken = _timer.Finish();
+			Debug.Log($"Time taken to complete level: {timeTaken.Minutes}:{timeTaken.Seconds}");
+
 			EventBus<LevelCompleted>.Raise(new LevelCompleted {
 				TimeTaken = timeTaken,
 			});
