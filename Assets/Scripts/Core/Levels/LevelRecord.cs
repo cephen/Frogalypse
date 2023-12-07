@@ -8,7 +8,7 @@ namespace Frogalypse.Levels {
 
 		public static LevelRecord Default() => new() {
 			IsComplete = false,
-			BestTime = TimeSpan.MaxValue,
+			BestTime = TimeSpan.FromDays(1),
 		};
 	}
 }
