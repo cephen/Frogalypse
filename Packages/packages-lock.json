@@ -299,13 +299,13 @@
       "url": "https://packages.unity.com"
     },
     "dev.sidefx.tools": {
-      "version": "https://gitlab.com/side-fx/unity-tools.git",
+      "version": "https://gitlab.com/side-fx/unity-tools.git#0.2.2",
       "depth": 0,
       "source": "git",
       "dependencies": {
         "com.unity.addressables": "1.19.0"
       },
-      "hash": "bfaf2f45a48d82fb692d7d5eec1d33acbfb2a239"
+      "hash": "876493a52f9b5cd1664087d52fd5d9f5905510b6"
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",

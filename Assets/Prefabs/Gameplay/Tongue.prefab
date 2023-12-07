@@ -71,9 +71,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _input: {fileID: 11400000, guid: 0f714ea4d2c5f8048982a4cd167d05da, type: 2}
-  _playerAnchor: {fileID: 11400000, guid: a154207a5ced87cf4bdcf43be57a68b6, type: 2}
-  _tetherLauncherAnchor: {fileID: 11400000, guid: ee2f54d630683124ea75a04fdfa31143, type: 2}
-  _reticleAnchor: {fileID: 11400000, guid: 1e81bd72df752ab7a912cb98dc18b59a, type: 2}
+  _playerAnchor: {fileID: 11400000, guid: 7355c32fbbf204144a999983b9d3520c, type: 2}
+  _tetherLauncherAnchor: {fileID: 11400000, guid: 575a395281fe56b42b08e1afcbe1c5d1, type: 2}
+  _reticleAnchor: {fileID: 11400000, guid: c47f5654b5b26d945947742f10a32a1f, type: 2}
 --- !u!231 &870515042289676989
 SpringJoint2D:
   m_ObjectHideFlags: 0

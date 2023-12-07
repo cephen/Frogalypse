@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5210e805c50a7de73b8d5be1db66e764, type: 3}
+  m_Name: HealthbarSettings
+  m_EditorClassIdentifier: 
+  <EmptyLeft>k__BackingField: {fileID: 897597855, guid: 615a674b5453a4d4495aae7cfef46d5d, type: 3}
+  <EmptyMid>k__BackingField: {fileID: -1277613604, guid: 615a674b5453a4d4495aae7cfef46d5d, type: 3}
+  <EmptyRight>k__BackingField: {fileID: 1063438203, guid: 615a674b5453a4d4495aae7cfef46d5d, type: 3}
+  <FilledLeft>k__BackingField: {fileID: 868888658, guid: 615a674b5453a4d4495aae7cfef46d5d, type: 3}
+  <FilledMid>k__BackingField: {fileID: -680850238, guid: 615a674b5453a4d4495aae7cfef46d5d, type: 3}
+  <FilledRight>k__BackingField: {fileID: -619607348, guid: 615a674b5453a4d4495aae7cfef46d5d, type: 3}
+  <PlayerHealth>k__BackingField: {fileID: 11400000, guid: 4d07039227041814c84987a98769e3ec, type: 2}

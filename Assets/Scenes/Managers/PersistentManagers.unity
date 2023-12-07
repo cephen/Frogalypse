@@ -315,7 +315,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9732b9b3a273c753eae534df50265dbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _fadeChannel: {fileID: 11400000, guid: 8436957312d91184695f5829be20f8c0, type: 2}
   _image: {fileID: 1894590455}
 --- !u!1 &1894590453
 GameObject:
@@ -438,12 +437,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gameplayManagersScene: {fileID: 11400000, guid: 8a265d7d9ba3c954e96cde13e7f546db, type: 2}
-  _loadMainMenuScene: {fileID: 11400000, guid: 498442d032a0c654b8a6db1dd942aedb, type: 2}
-  _loadGameplayScene: {fileID: 11400000, guid: d907fd2c8f3574842b507ea69bc39e5c, type: 2}
-  _coldStartupLocation: {fileID: 11400000, guid: 5ee77006be5715348801fbe4fe08465b, type: 2}
-  _toggleLoadingScreenChannel: {fileID: 11400000, guid: b418b0be8e540f5f1bef9de2af4f77d7, type: 2}
-  _requestFadeChannel: {fileID: 11400000, guid: 8436957312d91184695f5829be20f8c0, type: 2}
-  _sceneReadyChannel: {fileID: 11400000, guid: a213192774ddc8c46b3737021c340e9a, type: 2}
 --- !u!1001 &1076373441676235533
 PrefabInstance:
   m_ObjectHideFlags: 0

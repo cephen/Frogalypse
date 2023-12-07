@@ -72,7 +72,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 298959725
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 7b6fb906d1b9c3f4cad2ffe7b90eb789, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -98,20 +98,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerSettings: {fileID: 11400000, guid: 380801c2e6df3ee7c82bac8e89cfdf53, type: 2}
-  _reticleSettings: {fileID: 11400000, guid: 45d99a9689f1ec474adad898abfa3fa9, type: 2}
-  _playerAnchor: {fileID: 11400000, guid: a154207a5ced87cf4bdcf43be57a68b6, type: 2}
-  _reticleAnchor: {fileID: 11400000, guid: 1e81bd72df752ab7a912cb98dc18b59a, type: 2}
-  _targetFilter:
-    useTriggers: 0
-    useLayerMask: 1
-    useDepth: 0
-    useOutsideDepth: 0
-    useNormalAngle: 0
-    useOutsideNormalAngle: 0
-    layerMask:
-      serializedVersion: 2
-      m_Bits: 3072
-    minDepth: 0
-    maxDepth: 0
-    minNormalAngle: 0
-    maxNormalAngle: 0
+  _playerAnchor: {fileID: 11400000, guid: 7355c32fbbf204144a999983b9d3520c, type: 2}
+  _reticleAnchor: {fileID: 11400000, guid: c47f5654b5b26d945947742f10a32a1f, type: 2}
