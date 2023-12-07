@@ -45,5 +45,23 @@ namespace Frogalypse.Levels {
 				}
 			}
 		}
+
+		internal void SaveRecord(GameplayScene level, LevelRecord newRecord) {
+			if (!_records.ContainsKey(level)) {
+				_records.Add(level, newRecord);
+				return;
+			}
+
+			LevelRecord current = _records[level];
+
+			LevelRecord next = new LevelRecord {
+				IsComplete = true,
+				BestTime = newRecord.BestTime.TotalMilliseconds < current.BestTime.TotalMilliseconds
+					? newRecord.BestTime
+					: current.BestTime,
+			};
+
+			_records[level] = next;
+		}
 	}
 }
