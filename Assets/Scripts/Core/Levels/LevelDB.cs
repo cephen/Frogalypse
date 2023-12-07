@@ -4,8 +4,6 @@ using Frogalypse.Persistence;
 
 using SideFX.SceneManagement;
 
-using UnityEditor;
-
 using UnityEngine;
 
 namespace Frogalypse.Levels {
@@ -39,7 +37,7 @@ namespace Frogalypse.Levels {
 		private void OnSaveLoaded(Save save) {
 			_records.Clear();
 			foreach (GameplayScene level in _levels) {
-				string assetId = AssetDatabase.AssetPathToGUID(AssetDatabase.GetAssetPath(level));
+				string assetId = level.Guid;
 				if (save.LevelRecords.TryGetValue(assetId, out LevelRecord record)) {
 					_records.Add(level, record);
 				} else {

@@ -8,8 +8,6 @@ using Newtonsoft.Json;
 
 using SideFX.SceneManagement;
 
-using UnityEditor;
-
 using UnityEngine;
 
 namespace Frogalypse.Persistence {
@@ -21,14 +19,13 @@ namespace Frogalypse.Persistence {
 		public FrogalypseSettings Settings => _settings;
 		public Dictionary<string, LevelRecord> LevelRecords => _levelRecords;
 
-
 		public Save() {
 			_settings = FrogalypseSettings.Default();
 			_levelRecords = new Dictionary<string, LevelRecord>();
 		}
 
 		public void SaveRecord(GameplayScene level, LevelRecord newRecord) {
-			string levelID = AssetDatabase.AssetPathToGUID(AssetDatabase.GetAssetPath(level));
+			string levelID = level.Guid;
 			if (!LevelRecords.ContainsKey(levelID))
 				LevelRecords.Add(levelID, LevelRecord.Default());
 
