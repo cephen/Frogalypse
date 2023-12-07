@@ -70,8 +70,4 @@ namespace Frogalypse.Levels {
 			return false;
 		}
 	}
-
-	internal readonly struct LevelCompleted : IEvent {
-		public readonly TimeSpan TimeTaken { get; init; }
-	}
 }
