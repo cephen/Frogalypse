@@ -67,7 +67,7 @@ namespace Frogalypse.Persistence {
 
 			LevelRecord newRecord = new LevelRecord {
 				IsComplete = true,
-				BestTime = @event.TimeTaken.TotalMilliseconds < currentRecord.BestTime.TotalMilliseconds
+				BestTime = @event.TimeTaken < currentRecord.BestTime
 					? @event.TimeTaken
 					: currentRecord.BestTime,
 			};

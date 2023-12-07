@@ -59,7 +59,6 @@ namespace Frogalypse {
 			 * TODO:
 			 * - Pause player movement
 			 * - Show level end screen
-			 * - Save level record
 			 */
 			EventBus<LevelCompleted>.Raise(new LevelCompleted {
 				LevelScene = _currentLevel,

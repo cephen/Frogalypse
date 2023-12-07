@@ -26,8 +26,10 @@ namespace Frogalypse.Persistence {
 
 		public void SaveRecord(GameplayScene level, LevelRecord newRecord) {
 			string levelID = level.Guid;
-			if (!LevelRecords.ContainsKey(levelID))
-				LevelRecords.Add(levelID, LevelRecord.Default());
+			if (!LevelRecords.ContainsKey(levelID)) {
+				LevelRecords.Add(levelID, newRecord);
+				return;
+			}
 
 			LevelRecord current = LevelRecords[levelID];
 			LevelRecord next = new() {
