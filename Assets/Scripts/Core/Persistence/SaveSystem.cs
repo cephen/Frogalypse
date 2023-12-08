@@ -61,16 +61,13 @@ namespace Frogalypse.Persistence {
 		}
 
 		private void OnLevelCompleted(LevelCompleted @event) {
-			LevelRecord currentRecord = _levelDatabase[@event.LevelScene];
+			Debug.Log($"Saving level record {@event.LevelScene} - {@event.TimeTaken}");
 
-			LevelRecord newRecord = new LevelRecord {
+			_levelDatabase.SaveRecord(@event.LevelScene, new LevelRecord {
 				IsComplete = true,
-				BestTime = @event.TimeTaken < currentRecord.BestTime
-					? @event.TimeTaken
-					: currentRecord.BestTime,
-			};
-			Debug.Log($"Saving level record {@event.LevelScene} - {newRecord}");
-			_levelDatabase.SaveRecord(@event.LevelScene, newRecord);
+				BestTime = @event.TimeTaken,
+			});
+
 			SaveDataToDisk();
 		}
 	}
