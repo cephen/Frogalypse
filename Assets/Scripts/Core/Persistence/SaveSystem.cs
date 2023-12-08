@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 using Frogalypse.Levels;
 using Frogalypse.Settings;
@@ -52,7 +52,7 @@ namespace Frogalypse.Persistence {
 		}
 
 		public bool LoadSaveDataFromDisk() {
-			FileManager.CreateIfNotExists(SaveName, _saveData.ToJson());
+			FileManager.CreateIfNotExists(SaveName, new Save().ToJson());
 
 			if (FileManager.LoadFromFile(SaveName, out string json)) {
 				_saveData.LoadFromJson(json);
