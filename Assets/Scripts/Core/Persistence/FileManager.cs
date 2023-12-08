@@ -7,16 +7,17 @@ namespace Frogalypse.Persistence {
 	public static class FileManager {
 		public static bool CreateIfNotExists(string fileName, string contents) {
 			string fullPath = Path.Combine(Application.persistentDataPath, fileName);
+
 			if (File.Exists(fullPath)) {
 				return true;
-			} else {
-				try {
-					File.WriteAllText(fullPath, contents);
-					return true;
-				} catch (Exception e) {
-					Debug.LogError($"Failed to create file {fullPath} with exception {e}");
-					return false;
-				}
+			}
+
+			try {
+				File.WriteAllText(fullPath, contents);
+				return true;
+			} catch (Exception e) {
+				Debug.LogError($"Failed to create file {fullPath} with exception {e}");
+				return false;
 			}
 		}
 
