@@ -38,8 +38,6 @@ namespace Frogalypse.Persistence {
 			EventBus<LevelCompleted>.Deregister(_levelCompleteBinding);
 		}
 
-		public void WriteEmptySaveFile() => FileManager.WriteToFile(SaveName, new Save().ToJson());
-
 		public void SaveDataToDisk() {
 			_saveData.LevelRecords.Clear();
 			for (int i = 0 ; i < _levelDatabase.Count ; i++) {
@@ -52,7 +50,7 @@ namespace Frogalypse.Persistence {
 		}
 
 		public bool LoadSaveDataFromDisk() {
-			FileManager.CreateIfNotExists(SaveName, _saveData.ToJson());
+			FileManager.CreateIfNotExists(SaveName, new Save().ToJson());
 
 			if (FileManager.LoadFromFile(SaveName, out string json)) {
 				_saveData.LoadFromJson(json);
@@ -63,16 +61,13 @@ namespace Frogalypse.Persistence {
 		}
 
 		private void OnLevelCompleted(LevelCompleted @event) {
-			LevelRecord currentRecord = _levelDatabase[@event.LevelScene];
+			Debug.Log($"Saving level record {@event.LevelScene} - {@event.TimeTaken}");
 
-			LevelRecord newRecord = new LevelRecord {
+			_levelDatabase.SaveRecord(@event.LevelScene, new LevelRecord {
 				IsComplete = true,
-				BestTime = @event.TimeTaken < currentRecord.BestTime
-					? @event.TimeTaken
-					: currentRecord.BestTime,
-			};
-			Debug.Log($"Saving level record {@event.LevelScene} - {newRecord}");
-			_levelDatabase.SaveRecord(@event.LevelScene, newRecord);
+				BestTime = @event.TimeTaken,
+			});
+
 			SaveDataToDisk();
 		}
 	}

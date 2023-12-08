@@ -36,6 +36,9 @@ namespace Frogalypse.Editor {
 
 		private void OnManagersLoaded(AsyncOperationHandle<SceneInstance> handle) {
 			if (_thisScene != null) {
+				// reload the current scene to:
+				// - Load gameplay managers
+				// - Spawn the player at the player start location
 				EventBus<LoadRequest>.Raise(new LoadRequest(_thisScene));
 			} else {
 				EventBus<SceneReady>.Raise(default);

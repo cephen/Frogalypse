@@ -25,26 +25,27 @@ namespace Frogalypse.Persistence {
 		}
 
 		public void SaveRecord(GameplayScene level, LevelRecord newRecord) {
-			string levelID = level.Guid;
+			string levelID = level.Guid; // The AssetDatabase ID of the level's scene file
+
 			if (!LevelRecords.ContainsKey(levelID)) {
 				LevelRecords.Add(levelID, newRecord);
 				return;
 			}
 
 			LevelRecord current = LevelRecords[levelID];
-			LevelRecord next = new() {
-				IsComplete = newRecord.IsComplete,
-				BestTime = newRecord.BestTime.TotalMilliseconds < current.BestTime.TotalMilliseconds ? current.BestTime : newRecord.BestTime,
+			LevelRecord toSave = new() {
+				IsComplete = true,
+				BestTime = newRecord.BestTime < current.BestTime
+					? current.BestTime
+					: newRecord.BestTime,
 			};
 
-			LevelRecords[levelID] = next;
+			LevelRecords[levelID] = toSave;
 		}
 
 		public void SaveSettings(GameSettingsSO settings) {
-			_settings = new FrogalypseSettings {
-				Audio = settings.AudioSettings,
-				Graphics = settings.GraphicsSettings,
-			};
+			_settings.Audio = settings.AudioSettings;
+			_settings.Graphics = settings.GraphicsSettings;
 		}
 
 		public string ToJson() => JsonConvert.SerializeObject(this);

@@ -14,11 +14,7 @@ namespace Frogalypse.Settings {
 
 		private EventBinding<SaveSettingsEvent> _saveSettingsBinding;
 
-		private void Awake() {
-			if (!_saveSystem.LoadSaveDataFromDisk()) {
-				_saveSystem.WriteEmptySaveFile();
-				_saveSystem.LoadSaveDataFromDisk();
-			}
+		private void Start() {
 			_settings.LoadSavedSettings(_saveSystem.Save.Settings);
 		}
 
