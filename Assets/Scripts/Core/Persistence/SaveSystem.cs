@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 using Frogalypse.Levels;
 using Frogalypse.Settings;
@@ -37,8 +37,6 @@ namespace Frogalypse.Persistence {
 			EventBus<SaveGameEvent>.Deregister(_saveGameBinding);
 			EventBus<LevelCompleted>.Deregister(_levelCompleteBinding);
 		}
-
-		public void WriteEmptySaveFile() => FileManager.WriteToFile(SaveName, new Save().ToJson());
 
 		public void SaveDataToDisk() {
 			_saveData.LevelRecords.Clear();
