@@ -44,10 +44,8 @@ namespace Frogalypse.Persistence {
 		}
 
 		public void SaveSettings(GameSettingsSO settings) {
-			_settings = new FrogalypseSettings {
-				Audio = settings.AudioSettings,
-				Graphics = settings.GraphicsSettings,
-			};
+			_settings.Audio = settings.AudioSettings;
+			_settings.Graphics = settings.GraphicsSettings;
 		}
 
 		public string ToJson() => JsonConvert.SerializeObject(this);
