@@ -77,7 +77,6 @@ namespace Frogalypse {
 
 		private bool TrySpawnPlayer() {
 			if (FindFirstObjectByType<PlayerStart>() is PlayerStart start && start != null) {
-				Debug.Log("Spawning Player");
 				EventBus<SpawnPlayer>.Raise(new(start.transform.position));
 				return true;
 			}
