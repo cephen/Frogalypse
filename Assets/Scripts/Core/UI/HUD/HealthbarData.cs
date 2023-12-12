@@ -1,5 +1,3 @@
-using Frogalypse.SharedData;
-
 using UnityEngine;
 
 namespace Frogalypse.UI {
@@ -11,6 +9,5 @@ namespace Frogalypse.UI {
 		[field: SerializeField] public Sprite FilledLeft { get; private set; }
 		[field: SerializeField] public Sprite FilledMid { get; private set; }
 		[field: SerializeField] public Sprite FilledRight { get; private set; }
-		[field: SerializeField] public HealthData PlayerHealth { get; private set; }
 	}
 }
