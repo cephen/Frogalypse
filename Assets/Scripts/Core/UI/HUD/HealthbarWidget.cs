@@ -1,3 +1,5 @@
+using Frogalypse.Components;
+
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -7,6 +9,9 @@ namespace Frogalypse.UI {
 
 		private HealthbarData _sprites;
 		private HealthComponent _health;
+
+		private byte Current => _health.CurrentHealth;
+		private byte Max => _health.MaxHealth.Value;
 
 		public HealthbarWidget() { }
 
@@ -26,19 +31,22 @@ namespace Frogalypse.UI {
 			Redraw();
 		}
 
-		public void Redraw() {
-			Clear(); // Remove all children
-			byte max = _data.PlayerHealth.Max;
-			byte current = _data.PlayerHealth.Current;
+		internal void Redraw() {
+			if (_health == null) {
+				Debug.LogError($"Tried to draw health bar but health component isn't set correctly", _health);
+				return;
+			}
 
-			for (byte i = 1 ; i <= max ; i++) {
+			Clear(); // Remove all children
+
+			for (byte i = 1 ; i <= Max ; i++) {
 				Image image = new();
 				if (i == 1) {
-					image.sprite = i <= current ? _data.FilledLeft : _data.EmptyLeft;
-				} else if (i == max) {
-					image.sprite = i <= current ? _data.FilledRight : _data.EmptyRight;
+					image.sprite = i <= Current ? _sprites.FilledLeft : _sprites.EmptyLeft;
+				} else if (i == Max) {
+					image.sprite = i <= Current ? _sprites.FilledRight : _sprites.EmptyRight;
 				} else {
-					image.sprite = i <= current ? _data.FilledMid : _data.EmptyMid;
+					image.sprite = i <= Current ? _sprites.FilledMid : _sprites.EmptyMid;
 				}
 				Add(image);
 			}
