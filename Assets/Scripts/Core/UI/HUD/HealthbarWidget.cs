@@ -1,20 +1,28 @@
+using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace Frogalypse.UI {
 	public class HealthbarWidget : VisualElement {
 		public new class UxmlFactory : UxmlFactory<HealthbarWidget> { }
 
-		private HealthbarData _data;
+		private HealthbarData _sprites;
+		private HealthComponent _health;
 
 		public HealthbarWidget() { }
 
-		public void Init(HealthbarData data) {
-			// Unsubscribe if already subscribed (for instance if Init is called twice)
-			if (_data != null)
-				_data.PlayerHealth.Damaged -= Redraw;
+		internal void SetSprites(HealthbarData sprites) {
+			_sprites = sprites;
+			Redraw();
+		}
 
-			_data = data;
-			_data.PlayerHealth.Damaged += Redraw;
+		internal void SetHealthComponent(HealthComponent health) {
+			// Unsubscribe if already subscribed (for instance if Init is called twice)
+			if (_health != null)
+				_health.HealthChanged -= Redraw;
+
+			_health = health;
+			_health.HealthChanged += Redraw;
+
 			Redraw();
 		}
 
