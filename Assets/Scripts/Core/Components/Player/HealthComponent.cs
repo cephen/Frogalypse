@@ -25,11 +25,13 @@ namespace Frogalypse.Components {
 		}
 
 		public void Damage(byte amount) {
-			CurrentHealth = (byte) Mathf.Max(CurrentHealth - amount, 0);
+			CurrentHealth = (byte) Math.Max(CurrentHealth - amount, 0);
 			HealthChanged?.Invoke();
 			if (CurrentHealth == 0)
 				Died?.Invoke();
 		}
+
+		public void Reset() => CurrentHealth = MaxHealth.Value;
 
 		private void OnDeath() => Debug.Log($"{name} just died! L + skill issue + ratio");
 		private void OnHealthChanged() => Debug.Log($"{name}'s health changed: {CurrentHealth}");

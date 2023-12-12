@@ -1,19 +1,17 @@
 using Frogalypse.Components;
 using Frogalypse.Input;
 using Frogalypse.Settings;
-using Frogalypse.SharedData;
 
 using SideFX.Anchors;
 
 using UnityEngine;
 
 namespace Frogalypse {
-	[RequireComponent(typeof(MoveComponent), typeof(JumpComponent))]
+	[RequireComponent(typeof(MoveComponent), typeof(JumpComponent), typeof(HealthComponent))]
 	internal class PlayerController : MonoBehaviour {
 		[Header("Assets")]
 		[SerializeField] private InputReader _input;
 		[SerializeField] private PlayerSettings _playerSettings;
-		[SerializeField] private HealthData _health;
 		[SerializeField] private TransformAnchor _tetherStartPointAnchor;
 		[SerializeField] private TransformAnchor _mainCameraAnchor;
 
@@ -27,6 +25,7 @@ namespace Frogalypse {
 		// Components
 		private MoveComponent _mover;
 		private JumpComponent _jump;
+		private HealthComponent _health;
 		private Camera _camera;
 
 		private void Awake() {
@@ -40,6 +39,7 @@ namespace Frogalypse {
 				_tongue.UpdateSettings(_playerSettings.TetherSettings);
 			InitMoveComponent();
 			InitJumpComponent();
+			_health = GetComponent<HealthComponent>();
 			_health.Reset();
 		}
 
