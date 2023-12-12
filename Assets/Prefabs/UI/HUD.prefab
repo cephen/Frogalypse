@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _healthbarData: {fileID: 11400000, guid: 901c1a2fde2c1ea0d9d395746da4971d, type: 2}
+  _playerAnchor: {fileID: 11400000, guid: 7355c32fbbf204144a999983b9d3520c, type: 2}
 --- !u!114 &8756262027048553314
 MonoBehaviour:
   m_ObjectHideFlags: 0
