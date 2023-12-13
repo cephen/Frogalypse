@@ -28,7 +28,7 @@
 }
 
 .section-header {
-    -unity-font: url('project://database/Assets/Art/Fonts/LilitaOne-Regular.ttf?fileID=12800000&guid=90102fddbfef25d9a8179bed75db327b&type=3#LilitaOne-Regular');
+    -unity-font: resource('Fonts/LilitaOne-Regular');
     font-size: 64px;
     -unity-text-align: upper-center;
     color: rgb(210, 210, 210);
@@ -44,14 +44,14 @@
     padding-top: 15px;
     padding-bottom: 15px;
     font-size: 28px;
-    -unity-font: url('project://database/Assets/Art/Fonts/Poppins-Medium.ttf?fileID=12800000&guid=9176a281ae798ea2088a36167f1be911&type=3#Poppins-Medium');
+    -unity-font: resource('Fonts/Poppins-Medium');
     -unity-font-definition: initial;
     -unity-font-style: normal;
     -unity-text-align: upper-center;
     min-width: 250px;
     margin-top: 20px;
     color: rgb(38, 38, 38);
-    background-image: url('project://database/Assets/Art/Textures/UI/9-Slices/Outline/blue.png?fileID=21300000&guid=9b0e6beef646348438fcba249dad0aa9&type=3#blue');
+    background-image: url('project://database/Assets/Resources/Textures/UI/9-Slices/Outline/blue.png?fileID=21300000&guid=9b0e6beef646348438fcba249dad0aa9&type=3#blue');
     -unity-slice-left: 16;
     -unity-slice-top: 16;
     -unity-slice-right: 16;
@@ -60,36 +60,36 @@
 }
 
 .menu-button:hover {
-    background-image: url('project://database/Assets/Art/Textures/UI/9-Slices/Colored/blue.png?fileID=21300000&guid=cf39639b5190cdc42bed8ec65fe61f66&type=3#blue');
+    background-image: url('project://database/Assets/Resources/Textures/UI/9-Slices/Colored/blue.png?fileID=21300000&guid=cf39639b5190cdc42bed8ec65fe61f66&type=3#blue');
 }
 
 .menu-button:active {
-    background-image: url('project://database/Assets/Art/Textures/UI/9-Slices/Colored/blue_pressed.png?fileID=2800000&guid=d76e3696840d23142915795f8547ea29&type=3#blue_pressed');
+    background-image: url('project://database/Assets/Resources/Textures/UI/9-Slices/Colored/blue_pressed.png?fileID=2800000&guid=d76e3696840d23142915795f8547ea29&type=3#blue_pressed');
 }
 
 #save-settings {
-    background-image: url('project://database/Assets/Art/Textures/UI/9-Slices/Outline/green.png?fileID=2800000&guid=cb0b2fbb10d56b74fb1646393e78810c&type=3#green');
+    background-image: url('project://database/Assets/Resources/Textures/UI/9-Slices/Outline/green.png?fileID=2800000&guid=cb0b2fbb10d56b74fb1646393e78810c&type=3#green');
 }
 
 #save-settings:hover {
-    background-image: url('project://database/Assets/Art/Textures/UI/9-Slices/Colored/green.png?fileID=2800000&guid=58f4f77194e4194478d7648ce2870c2c&type=3#green');
+    background-image: url('project://database/Assets/Resources/Textures/UI/9-Slices/Colored/green.png?fileID=2800000&guid=58f4f77194e4194478d7648ce2870c2c&type=3#green');
 }
 
 #save-settings:active {
-    background-image: url('project://database/Assets/Art/Textures/UI/9-Slices/Colored/green_pressed.png?fileID=2800000&guid=ac9da45fe74f0c44c938341edc625ef5&type=3#green_pressed');
+    background-image: url('project://database/Assets/Resources/Textures/UI/9-Slices/Colored/green_pressed.png?fileID=2800000&guid=ac9da45fe74f0c44c938341edc625ef5&type=3#green_pressed');
 }
 
 #exit-settings {
-    background-image: url('project://database/Assets/Art/Textures/UI/9-Slices/Outline/red.png?fileID=2800000&guid=555c1ce107e70e341b29550a623bdb81&type=3#red');
+    background-image: url('project://database/Assets/Resources/Textures/UI/9-Slices/Outline/red.png?fileID=2800000&guid=555c1ce107e70e341b29550a623bdb81&type=3#red');
 }
 
 #exit-settings:hover {
     background-color: rgb(102, 9, 0);
-    background-image: url('project://database/Assets/Art/Textures/UI/9-Slices/Colored/red.png?fileID=2800000&guid=5f58d9ba0e765f84882087a1f9d2e2dc&type=3#red');
+    background-image: url('project://database/Assets/Resources/Textures/UI/9-Slices/Colored/red.png?fileID=2800000&guid=5f58d9ba0e765f84882087a1f9d2e2dc&type=3#red');
 }
 
 #exit-settings:active {
-    background-image: url('project://database/Assets/Art/Textures/UI/9-Slices/Colored/red_pressed.png?fileID=2800000&guid=1c32ce0206ec04143b14b38bf570da81&type=3#red_pressed');
+    background-image: url('project://database/Assets/Resources/Textures/UI/9-Slices/Colored/red_pressed.png?fileID=2800000&guid=1c32ce0206ec04143b14b38bf570da81&type=3#red_pressed');
 }
 
 #level-selector {
@@ -119,13 +119,13 @@
     padding-right: 10px;
     padding-top: 10px;
     padding-bottom: 10px;
-    -unity-font: url('project://database/Assets/Art/Fonts/LilitaOne-Regular.ttf?fileID=12800000&guid=90102fddbfef25d9a8179bed75db327b&type=3#LilitaOne-Regular');
+    -unity-font: resource('Fonts/LilitaOne-Regular');
     -unity-font-definition: initial;
     font-size: 40px;
     -unity-text-outline-width: 1px;
     -unity-text-outline-color: rgb(0, 0, 0);
     -unity-text-align: middle-center;
-    background-image: url('project://database/Assets/Art/Textures/UI/9-Slices/Outline/yellow.png?fileID=21300000&guid=860eeb78402da7a448606a50c7a692e6&type=3#yellow');
+    background-image: url('project://database/Assets/Resources/Textures/UI/9-Slices/Outline/yellow.png?fileID=21300000&guid=860eeb78402da7a448606a50c7a692e6&type=3#yellow');
     -unity-slice-left: 16;
     -unity-slice-top: 16;
     -unity-slice-right: 16;
@@ -134,25 +134,25 @@
 
 .complete-level {
     color: rgb(229, 229, 229);
-    background-image: url('project://database/Assets/Art/Textures/UI/9-Slices/Outline/green.png?fileID=21300000&guid=cb0b2fbb10d56b74fb1646393e78810c&type=3#green');
+    background-image: url('project://database/Assets/Resources/Textures/UI/9-Slices/Outline/green.png?fileID=21300000&guid=cb0b2fbb10d56b74fb1646393e78810c&type=3#green');
 }
 
 .complete-level:hover {
     color: rgb(18, 128, 13);
-    background-image: url('project://database/Assets/Art/Textures/UI/9-Slices/Colored/green.png?fileID=21300000&guid=58f4f77194e4194478d7648ce2870c2c&type=3#green');
+    background-image: url('project://database/Assets/Resources/Textures/UI/9-Slices/Colored/green.png?fileID=21300000&guid=58f4f77194e4194478d7648ce2870c2c&type=3#green');
 }
 
 .complete-level:active {
     color: rgb(18, 128, 13);
-    background-image: url('project://database/Assets/Art/Textures/UI/9-Slices/Colored/green_pressed.png?fileID=21300000&guid=ac9da45fe74f0c44c938341edc625ef5&type=3#green_pressed');
+    background-image: url('project://database/Assets/Resources/Textures/UI/9-Slices/Colored/green_pressed.png?fileID=21300000&guid=ac9da45fe74f0c44c938341edc625ef5&type=3#green_pressed');
 }
 
 .incomplete-level:hover {
     color: rgb(128, 34, 26);
-    background-image: url('project://database/Assets/Art/Textures/UI/9-Slices/Colored/yellow.png?fileID=21300000&guid=dbce09dacce96ba41a56a5e02d85cb43&type=3#yellow');
+    background-image: url('project://database/Assets/Resources/Textures/UI/9-Slices/Colored/yellow.png?fileID=21300000&guid=dbce09dacce96ba41a56a5e02d85cb43&type=3#yellow');
 }
 
 .incomplete-level:active {
     color: rgb(128, 34, 26);
-    background-image: url('project://database/Assets/Art/Textures/UI/9-Slices/Colored/yellow_pressed.png?fileID=21300000&guid=b02da3a97a99bd9498136a92e5b112a0&type=3#yellow_pressed');
+    background-image: url('project://database/Assets/Resources/Textures/UI/9-Slices/Colored/yellow_pressed.png?fileID=21300000&guid=b02da3a97a99bd9498136a92e5b112a0&type=3#yellow_pressed');
 }
