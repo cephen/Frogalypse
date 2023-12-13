@@ -1587,7 +1587,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tiles-general_70
+      name: hazard-spikes-metal
       rect:
         serializedVersion: 2
         x: 210
@@ -11604,7 +11604,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tiles-general_547
+      name: hazard-spikes-ice-top-1
       rect:
         serializedVersion: 2
         x: 0
@@ -11625,7 +11625,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tiles-general_548
+      name: hazard-spikes-ice-top-2
       rect:
         serializedVersion: 2
         x: 21
@@ -11646,7 +11646,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tiles-general_549
+      name: hazard-spikes-ice-top-3
       rect:
         serializedVersion: 2
         x: 42
@@ -11667,7 +11667,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tiles-general_550
+      name: hazard-spikes-ice-bottom-1
       rect:
         serializedVersion: 2
         x: 63
@@ -11688,7 +11688,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tiles-general_551
+      name: hazard-spikes-ice-bottom-2
       rect:
         serializedVersion: 2
         x: 84
@@ -11709,7 +11709,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tiles-general_552
+      name: hazard-spikes-ice-bottom-3
       rect:
         serializedVersion: 2
         x: 105
@@ -18241,6 +18241,13 @@ TextureImporter:
       flag-yellow-a: -1164174454
       flag-yellow-b: 640112245
       flag-yellow-inactive: 596230956
+      hazard-spikes-ice-bottom-1: 1820210187
+      hazard-spikes-ice-bottom-2: 242643148
+      hazard-spikes-ice-bottom-3: 369641434
+      hazard-spikes-ice-top-1: 1221198438
+      hazard-spikes-ice-top-2: -1035323551
+      hazard-spikes-ice-top-3: -1335187162
+      hazard-spikes-metal: 1154306312
       heart-empty: -1663030569
       heart-filled: -2055947076
       heart-half: 1412661822
@@ -18720,13 +18727,7 @@ TextureImporter:
       tiles-general_544: -614508475
       tiles-general_545: -854610573
       tiles-general_546: 105578647
-      tiles-general_547: 1221198438
-      tiles-general_548: -1035323551
-      tiles-general_549: -1335187162
       tiles-general_55: 1996558762
-      tiles-general_550: 1820210187
-      tiles-general_551: 242643148
-      tiles-general_552: 369641434
       tiles-general_553: 1016202080
       tiles-general_558: -1413526140
       tiles-general_559: -4549005
@@ -18886,7 +18887,6 @@ TextureImporter:
       tiles-general_698: -1657594299
       tiles-general_699: -1264725049
       tiles-general_7: 22871176
-      tiles-general_70: 1154306312
       tiles-general_700: 57048040
       tiles-general_701: 128695133
       tiles-general_702: 87118817
